@@ -8,7 +8,8 @@ class StudentInfosController < ApplicationController
     end
 
     def new
-      @student = User.find_by(id: 2)
+      @program_category = ProgramCategory.find_by(id: params[:program_id])
+      @student = User.find_by(id: params[:student_id])
       @student_infos = StudentInfo.new
     end
 

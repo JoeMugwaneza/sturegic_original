@@ -1,24 +1,32 @@
-<% @student_infos.errors.full_messages.each do |message| %>
 
-<%= message %>
-
-<%end%>
-<%= form_for @student_infos do |f| %>
-  <%= f.label :education_level%>
-  <%= f.select :education_level, [["O-level", "O-level"], ["A-level", "A-level"], ["Associate Degree", "Associate Degree"], ["Bachelor Degree", "Bachelor Degree"]], {include_blank: "Select Education Level"}, {class: "form-control", required: "required"}%>
-  <%= f.label :course %>
-  <%= f.select :course_id ,  Course.all.collect {|c| [ c.name , c.id.to_i ] }, {include_blank: 'None'}, {class: "form-control", required: "required"} %><br>
-  <%= f.hidden_field :country_id, value:"#{@student.country.id}" %>
-  <% if @student && @student.country.name == "Rwanda" %>
-    <%= f.label :district %>
-    <%= f.select :district_id ,  District.all.collect {|d| [ d.name , d.id.to_i ] }, {include_blank: 'None'}, {class: "form-control", required: "required"} %><br>
-  <% else %>
-    <%= f.label :city %>
-    <%= f.input_field :city %>
-  <% end %>
-  <%= f.hidden_field :program_category_id, value:"#{2}" %>
-  <%= f.hidden_field :registrar_id , value: "#{1}" %>
-  <%= f.hidden_field :student_id, value: "#{@student.id}" %>
-<%= f.submit value:"Save Application" %>
+<% ProgramCategory.all.each do |program_category| %>
+  <%= link_to "#{program_category.name}", "/student_infos/new?student_id=#{@student.id}&program_id=#{program_category.id}"%>
 <% end %>
+<% if @program_category %>
+  <%= form_for @student_infos do |f| %>
+    <%= f.label :education_level%>
+    <%= f.select :education_level, [["O-level", "O-level"], ["A-level", "A-level"], ["Associate Degree", "Associate Degree"], ["Bachelor Degree", "Bachelor Degree"]], {include_blank: "Select Education Level"}, {class: "form-control", required: "required"}%>
+    <%= f.label :course %>
+    <%= f.select :course_id ,  Course.all.collect {|c| [ c.name , c.id.to_i ] }, {include_blank: 'None'}, {class: "form-control", required: "required"} %><br>
+    <%= f.hidden_field :country_id, value:"#{@student.country.id}" %>
+    <% if @student && @student.country.name == "Rwanda" %>
+      <%= f.label :district %>
+      <%= f.select :district_id ,  District.all.collect {|d| [ d.name , d.id.to_i ] }, {include_blank: 'None'}, {class: "form-control", required: "required"} %><br>
+    <% else %>
+      <%= f.label :city %>
+      <%= f.input_field :city %>
+    <% end %>
+    <%= f.hidden_field :program_category_id, value:"#{@program_category.id}" %>
+    <%= f.hidden_field :registrar_id , value: "#{current_user.id}" %>
+    <%= f.hidden_field :student_id, value: "#{@student.id}" %>
+  <%= f.submit value:"Save Application" %>
+  <% end %>
 
+  <br>
+  <h3>Sponsor Information</h3>
+  <b>Names</b>:<%= current_user.username %><br>
+  <b>ID/Passport<b>:<br>
+  <b> Reg N<sup>0</sup></b>:<br>
+  <b>Tel</b><%= current_user.tel %><br>
+  <b>Email</b>:<%=current_user.email %><br>
+<% end %>
