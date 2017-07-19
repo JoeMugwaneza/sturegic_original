@@ -1,0 +1,31 @@
+<h3>Student Info</h3>
+<b>Name:</b><%= @student.first_name %> <%= @student.last_name %><br>
+<b>Username:</b> <%= @student.username %><br>
+<b>email:</b><%= @student.email %><br>
+<b>Country:</b><%= @student.country.name %><br>
+<b>Reg N<sup>0</sup>:</b><%= @student.reg_no %><br>
+<b>Gender:</b><%= @student.sex %><br>
+<b>Martial Status:</b><%=@student.martial_status %><br>
+<b>Tel:</b><%= @student.tel %><br>
+<b>Registration Date:</b><%= @student.created_at %><br>
+
+<h3>Edit Student Registration Info</h3><br>
+<%= form_for @student_infos, method: :patch do |f| %>
+    <%= f.label :education_level%>
+    <%= f.select :education_level, [["O-level", "O-level"], ["A-level", "A-level"], ["Associate Degree", "Associate Degree"], ["Bachelor Degree", "Bachelor Degree"]], {include_blank: "Select Education Level"}, {class: "form-control", required: "required"}%>
+    <%= f.label :course %>
+    <%= f.select :course_id ,  Course.all.collect {|c| [ c.name , c.id.to_i ] }, {include_blank: 'None'}, {class: "form-control", required: "required"} %><br>
+    <% if @student && @student.country.name == "Rwanda" %>
+      <%= f.label :district %>
+      <%= f.select :district_id ,  District.all.collect {|d| [ d.name , d.id.to_i ] }, {include_blank: 'None'}, {class: "form-control", required: "required"} %><br>
+    <% else %>
+      <%= f.label :city %>
+      <%= f.text_field :city %>
+    <% end %>
+    <%= f.label :program_category_id %>
+    <%= f.select :program_category_id,  ProgramCategory.all.collect {|c| [ c.name , c.id.to_i ] }, {include_blank: 'None'}, {class: "form-control", required: "required"} %><br>
+  <%= f.submit value:"Save Application" %>
+  <% end %>
+  <br>
+  <span><b><u>N.B</u></b></span>
+  <span><p>to update more information about <%=@student.username %> go to <a href="#">account setting</a></p></span>
