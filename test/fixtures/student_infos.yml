@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student_id: MyString
+  registrar_id: 1
+  district_id: 1
+  country_id: 1
+  program_category_id: 1
+  education_level: MyString
+  course_id: 1
+  city: MyString
+
+two:
+  student_id: MyString
+  registrar_id: 1
+  district_id: 1
+  country_id: 1
+  program_category_id: 1
+  education_level: MyString
+  course_id: 1
+  city: MyString

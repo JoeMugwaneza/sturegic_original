@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  username: MyString
+  email: MyString
+  admin: false
+  agent: false
+  country_id: 1
+  reg_no: MyString
+  sex: MyString
+  martial_status: MyString
+  tel: MyString
+  password_digest: MyString
+
+two:
+  first_name: MyString
+  last_name: MyString
+  username: MyString
+  email: MyString
+  admin: false
+  agent: false
+  country_id: 1
+  reg_no: MyString
+  sex: MyString
+  martial_status: MyString
+  tel: MyString
+  password_digest: MyString
