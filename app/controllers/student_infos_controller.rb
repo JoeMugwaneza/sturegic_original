@@ -8,15 +8,17 @@ class StudentInfosController < ApplicationController
     end
 
     def new
-      @student = User.find_by(id: params[:student_id])
+      @student = User.find_by(id: 2)
       @student_infos = StudentInfo.new
     end
 
     def create
       @student_infos = StudentInfo.new(student_infos_params)
-      lkjlgkjfgkj
-      if @student.save
-        @
+      if @student_infos.save
+       flash[:scuess] = "Student Application Successfully Submited" 
+       redirect_to "/"
+      else
+        render :new
       end
     end
 
@@ -32,7 +34,7 @@ class StudentInfosController < ApplicationController
       
     end
     def student_infos_params
-      params.require(:student_info).permit(:education_level, :course_id, :program_category_id, :district_id, :city, :registrar_id, :student_id)
+      params.require(:student_info).permit(:education_level, :course_id, :program_category_id, :district_id, :registrar_id, :student_id, :country_id)
     end
     def find_program
       @program_category = ProgramCategory.find_by(id: 1)
