@@ -1,64 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>SturegicOriginal</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>SturegicOriginal</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+</head>
 
-  <body>
-    <nav class="navbar navbar-light myNavbar">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-   
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a class="nav-content-format" href="#">KIAC<span class="sr-only">(current)</span></a></li>
-        
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle nav-content-format" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <div class="glyphicon glyphicon-user"></div> Plante Josh<span class="caret"></span></a>
-        
-          <ul class="dropdown-menu">
-            <li><a href="#">Profile Info</a></li>
-            <li><a href="#">Bonus Status</a></li>
-          </ul>
-        </li>
-        <li><a class="nav-content-format" href="#">Logout</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+<body>
+  <nav class="navbar navbar-light myNavbar">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
 
-  <div class="container">
-  <div id="user_header">
-  <% if current_user %>
-    Logged in as <%= current_user.email %>
-    <%= link_to "Log Out", logout_path %>
-    <% else %>
-      <%= link_to "Sign Up", signup_path %> or
-      <%= link_to "Log In", login_path %>
-    <% end %>
-  </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a class="nav-content-format" href="#">KIAC<span class="sr-only">(current)</span></a></li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle nav-content-format" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <div class="glyphicon glyphicon-user"></div> Plante Josh<span class="caret"></span></a>
+
+            <ul class="dropdown-menu">
+              <li><a href="#">Profile Info</a></li>
+              <li><a href="#">Bonus Status</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-content-format" href="/logout">Logout</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
     <p>
       <% flash.each do |key, value| %>
       <% alert_class = case key
       when :notice then "success"
       when :alert then "danger"
       else key
-      end %>
-      <%= content_tag :div, class: "alert alert-#{alert_class}" do %>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <%= value %>
-      <% end %>
-      <% end %>
-    </p>
-  </div>
+        end %>
+        <%= content_tag :div, class: "alert alert-#{alert_class}" do %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= value %>
+        <% end %>
+        <% end %>
+      </p>
+    </div>
     <%= yield %>
   </body>
-</html>
+  </html>

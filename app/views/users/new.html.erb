@@ -1,69 +1,74 @@
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6 col-xs-12 thumbnail application-box">
+    <h1 class="text-center application-header"><strong>Application Form: Step 1</strong></h1>
+    <div class="col-md-12 thumbnail info-box">
+      <div class="col-md-3"></div>
+      <div class="col-md-6 col-xs-12">
+        <div class="text-center">
+          <h3 class="text-center application-header"><strong>Student's Information</strong></h3>
+          <hr>
 
-<h2>Sign up</h2>
+          <%= form_for @user do |f| %>
+          <% if @user.errors.any? %>
+          <div class="error_messages">
+            <h2>Form is Invalid</h2>
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+          <% end %>
+          <div class="field">
+            <%= f.text_field :first_name, autofocus: true, placeholder:"First Name...", class:"form-control application-input"  %>
+          </div>
 
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-  <div class="error_messages">
-    <h2>Form is Invalid</h2>
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
+          <div class="field">
+            <%= f.text_field :last_name, autofocus: true, placeholder:"Last Name...", class:"form-control application-input"  %>
+          </div>
+
+          <div class="field">
+            <%= f.text_field :username, autofocus: true, placeholder:"Preferred Username ...", class:"form-control application-input" %>
+          </div>
+
+          <div class="field">
+            <%= f.text_field :tel, autofocus: true, placeholder:"Phone Number ...", class:"form-control application-input"  %>
+          </div>
+
+          <div class="field select-form-input">
+            <%= f.select :sex, [["Male", "Male"], ["Female", "Female"]], :include_blank => "Gender", class:" form-group select-form-input"  %><br>
+          </div>
+
+          <div class="field select-form-input">
+            <%= f.select :martial_status, [["Single", "Single"], ["Married", "Married"]], :include_blank => "Martial tatus" %>
+
+          </div>
+          
+          <div class="field select-form-input">
+            <%= f.collection_select(:country_id, Country.all, :id, :name, :include_blank => "Country")%><br>
+          </div>
+
+          <div class="field">
+            <%= f.email_field :email, autofocus: true, placeholder:"Email ...", class:"form-control application-input" %>
+          </div>
+
+          <div class="field">
+            <%= f.password_field :password, autocomplete: "off", placeholder:"Create Password...", class:"form-control application-input" %>
+          </div>
+
+          <div class="field">
+            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Retype Password...", class:"form-control application-input" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Create Account", class:"btn btn-submit application-input" %>
+          </div>
+          <% end %>
+          <hr>
+          <p>Check your email inbox after clicking "Create Account" to confirm provided information and continue the application</p>
+        </div>
+      </div>
+    </div>
   </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true %>
-  </div>
-
-   <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :telephone %><br />
-    <%= f.text_field :tel, autofocus: true %>
-  </div>
-
-   <div class="field">
-    <%= f.label :sex %><br />
-    <%= f.select :sex, [["Male", "Male"], ["Female", "Female"]], :include_blank => "Select One"%><br>
-  </div>
-
-  <div class="field">
-    <%= f.label :martial_status %><br />
-    <%= f.select :martial_status, [["Single", "Single"], ["Married", "Married"], ["Divorsed", "Divorsed"]], :include_blank => "Select One" %>
-
-  </div>
-
-  <div class="field">
-    <%= f.label :country %><br />
-    <%= f.collection_select(:country_id, Country.all, :id, :name, :include_blank => "Select One")%><br>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+</div>
