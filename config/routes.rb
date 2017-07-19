@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :student_infos
   root 'dashboards#index'
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
@@ -10,9 +9,12 @@ Rails.application.routes.draw do
   resources :sessions
 
 
+  resources :student_infos
+    get 'student_infos/new/confirm_email'
+
+
   # designs
   get "application1" => "designs#application1" 
   get "application2" => "designs#application2" 
-
 
 end
