@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+
+html, body {
+   background-color: #325e7f;
+   font-family: 'Varela Round', sans-serif;
+}
+
+.myNavbar {
+  background-color: #123854;
+  margin-bottom: 0px;
+}
+
+.nav-content-format {
+  color: white;
+}
