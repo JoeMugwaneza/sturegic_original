@@ -5,6 +5,14 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
+
   resources :users
   resources :sessions
+
+
+  # designs
+  get "application1" => "designs#application1" 
+  get "application2" => "designs#application2" 
+
+
 end
