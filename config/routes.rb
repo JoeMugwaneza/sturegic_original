@@ -7,4 +7,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :sessions
+
+  resources :student_infos
+    get 'student_infos/new/confirm_email'
 end
