@@ -1,24 +1,22 @@
-<% @student_infos.errors.full_messages.each do |message| %>
 
-<%= message %>
 
-<%end%>
-<%= form_for @student_infos do |f| %>
-  <%= f.label :education_level%>
-  <%= f.select :education_level, [["O-level", "O-level"], ["A-level", "A-level"], ["Associate Degree", "Associate Degree"], ["Bachelor Degree", "Bachelor Degree"]], {include_blank: "Select Education Level"}, {class: "form-control", required: "required"}%>
-  <%= f.label :course %>
-  <%= f.select :course_id ,  Course.all.collect {|c| [ c.name , c.id.to_i ] }, {include_blank: 'None'}, {class: "form-control", required: "required"} %><br>
-  <%= f.hidden_field :country_id, value:"#{@student.country.id}" %>
-  <% if @student && @student.country.name == "Rwanda" %>
-    <%= f.label :district %>
-    <%= f.select :district_id ,  District.all.collect {|d| [ d.name , d.id.to_i ] }, {include_blank: 'None'}, {class: "form-control", required: "required"} %><br>
-  <% else %>
-    <%= f.label :city %>
-    <%= f.input_field :city %>
+  <%= form_for @student_infos do |f| %>
+    <%= f.label :education_level%>
+    <%= f.select :education_level, [["O-level", "O-level"], ["A-level", "A-level"], ["Associate Degree", "Associate Degree"], ["Bachelor Degree", "Bachelor Degree"]], {include_blank: "Select Education Level"}, {class: "form-control", required: "required"}%>
+    <%= f.label :course %>
+    <%= f.select :course_id ,  @program_category.courses.all.collect {|c| [ c.name , c.id.to_i ] }, {include_blank: 'None'}, {class: "form-control", required: "required"} %><br>
+    <% if @student && @student.country.name == "Rwanda" %>
+      <%= f.label :district %>
+      <%= f.select :district_id ,  District.all.collect {|d| [ d.name , d.id.to_i ] }, {include_blank: 'None'}, {class: "form-control", required: "required"} %><br>
+    <% else %>
+      <%= f.label :city %>
+      <%= f.text_field :city %>
+    <% end %>
+    <%= f.hidden_field :country_id, value:"#{@student.country.id}" %>
+    <%= f.hidden_field :program_category_id, value:"#{@program_category.id}" %>
+    <%= f.hidden_field :registrar_id , value: "#{current_user.id}" %>
+    <%= f.hidden_field :student_id, value: "#{@student.id}" %>
+  <%= f.submit value:"Save Application" %>
   <% end %>
-  <%= f.hidden_field :program_category_id, value:"#{2}" %>
-  <%= f.hidden_field :registrar_id , value: "#{1}" %>
-  <%= f.hidden_field :student_id, value: "#{@student.id}" %>
-<%= f.submit value:"Save Application" %>
-<% end %>
+
 

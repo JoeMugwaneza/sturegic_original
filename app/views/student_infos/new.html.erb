@@ -1,1 +1,14 @@
+
+<% ProgramCategory.all.each do |program_category| %>
+  <%= link_to "#{program_category.name}", "/student_infos/new?student_id=#{@student.id}&program_id=#{program_category.id}"%>
+<% end %>
+<% if @program_category %>
 <%= render "form" %>
+<% end %>
+<br>
+<h3>Sponsor Information</h3>
+<b>Names</b>:<%= current_user.username %><br>
+<b>ID/Passport<b>:<br>
+<b> Reg N<sup>0</sup></b>:<br>
+<b>Tel</b><%= current_user.tel %><br>
+<b>Email</b>:<%=current_user.email %><br>
