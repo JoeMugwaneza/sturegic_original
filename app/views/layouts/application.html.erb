@@ -9,6 +9,30 @@
   </head>
 
   <body>
+  <div class="container">
+  <div id="user_header">
+  <% if current_user %>
+    Logged in as <%= current_user.email %>
+    <%= link_to "Log Out", logout_path %>
+    <% else %>
+      <%= link_to "Sign Up", signup_path %> or
+      <%= link_to "Log In", login_path %>
+    <% end %>
+  </div>
+    <p>
+      <% flash.each do |key, value| %>
+      <% alert_class = case key
+      when :notice then "success"
+      when :alert then "danger"
+      else key
+      end %>
+      <%= content_tag :div, class: "alert alert-#{alert_class}" do %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= value %>
+      <% end %>
+      <% end %>
+    </p>
+  </div>
     <%= yield %>
   </body>
 </html>

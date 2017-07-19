@@ -1,0 +1,69 @@
+
+<h2>Sign up</h2>
+
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+  <div class="error_messages">
+    <h2>Form is Invalid</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autofocus: true %>
+  </div>
+
+   <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :telephone %><br />
+    <%= f.text_field :tel, autofocus: true %>
+  </div>
+
+   <div class="field">
+    <%= f.label :sex %><br />
+    <%= f.select :sex, [["Male", "Male"], ["Female", "Female"]], :include_blank => "Select One"%><br>
+  </div>
+
+  <div class="field">
+    <%= f.label :martial_status %><br />
+    <%= f.select :martial_status, [["Single", "Single"], ["Married", "Married"], ["Divorsed", "Divorsed"]], :include_blank => "Select One" %>
+
+  </div>
+
+  <div class="field">
+    <%= f.label :country %><br />
+    <%= f.collection_select(:country_id, Country.all, :id, :name, :include_blank => "Select One")%><br>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
