@@ -8,12 +8,14 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   
-  resources :users
+  resources :users do
+    member do
+      get :confirm_email
+    end
+  end
   resources :sessions
-
-
-  resources :student_infos
-    get 'student_infos/new/confirm_email'
+  resources :student_infos 
+  
 
 
   # designs

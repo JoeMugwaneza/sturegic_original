@@ -1,10 +1,8 @@
-  <h4> Hi <%= @user.username%></h4>
+Dear <%= @user.username%>,
+
+Thanks for registration! To confirm your registration click the Url below
+<%= confirm_email_user_url(@user.confirm_token) %>
+
  
-  <p>
-    Thanks for registration! To confirm your registration click the Url below.
-  </p><br>
-  <p>
-    <%= student_infos_new_confirm_email_url(@user.confirm_token) %>
-  </p>
 
     
