@@ -17,12 +17,14 @@
 
 html, body {
    background-color: #325e7f;
-   font-family: 'Varela Round', sans-serif;
+   font-family: 'Bellefair', sans-serif;
+
 }
 
 .myNavbar {
   background-color: #123854;
   margin-bottom: 0px;
+  font-size: 20px;
 }
 
 .nav-content-format {
@@ -91,7 +93,7 @@ html,body{
     border-radius: 100%;
     border: 2px solid #aaa;
     background-size: cover;
-    background-image: #eee url(http://subtlepatterns.com/patterns/sativa.png);
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfKxvyKagceRtaGkS51-mhNsl51shUWiyTXItMDeHWKFlKc3Sxrw);
 }
 
 .form-box input{
@@ -99,9 +101,10 @@ html,body{
     padding: 10px;
     text-align: center;
     height:40px;
-    border: 1px solid #ccc;;
-    background: #fafafa;
+    border: 1px solid #ccc;
+    background: #82E0AA;
     transition:0.2s ease-in-out;
+    font-size: 18px;
 
 }
 
