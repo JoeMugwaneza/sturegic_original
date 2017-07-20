@@ -6,8 +6,6 @@ class User < ApplicationRecord
   belongs_to :country
 
   validates_uniqueness_of :email
-  validates :password, length: { minimum: 6 }
-
   before_create :confirmation_taken
   
   private
@@ -18,10 +16,9 @@ class User < ApplicationRecord
     end
   end
 
-  def email_activate
+  def activate_email
     self.email_confirmed = true
     self.confirm_token = nil
-    save!(:validate => false)
-    
+    save!(:validate => false) 
   end
 end

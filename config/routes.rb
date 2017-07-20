@@ -10,11 +10,10 @@ Rails.application.routes.draw do
   
   resources :users
   resources :sessions
-
-
   resources :student_infos
-    get 'student_infos/new/confirm_email'
 
+  resources :users
+   get 'users/:token/confirm_email/', :to => "users#confirm_email", as: 'confirm_email'
 
   # designs
   get "application1" => "designs#application1" 
