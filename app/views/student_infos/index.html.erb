@@ -1,0 +1,24 @@
+<h3>Pending Registration</h3>
+  <table>
+    <th>
+      <tr>Reg N<sup>0</sup></tr>
+      <tr>Student Name</tr>
+      <tr>Status </tr>
+    </th>
+    <%@pending_student_infos.each do |student_info| %>
+      <tr>
+        <td>Not yet generated</td>
+        <td>
+        <a href="#">
+        <%= student_info.student.first_name %> <%= student_info.student.last_name %>
+        </a>
+        </td>
+        <td><%= student_info.status %></td>
+        <td><%= link_to "Approve", "/student_infos?appr=#{student_info.id}" %></td>
+      </tr>
+    <% end %>
+  </table>
+<h3>Approved Registration</h3>
+<% @approved_student_infos.each do |student_info| %>
+  <%= student_info.student.first_name %> <%= student_info.student.last_name %>
+<% end %>
