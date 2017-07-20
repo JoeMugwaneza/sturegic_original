@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  before_action :authorize
   def new
     @user = User.new
   end
@@ -7,13 +7,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-
-
       UserMailer.registration_confirmation(@user).deliver_now
 
-      flash[:success] = "Please confirm your email address to continue"
+      flash[:success] = "Please confirm your #{@user.email} address to continue"
 
-      redirect_to login_path
+      redirect_to root_path
     else
       flash[:error] = "Ooops, something went wrong!"
       render 'new'
