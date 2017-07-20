@@ -22,7 +22,12 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle nav-content-format" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <div class="glyphicon glyphicon-user"></div> Plante Josh<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle nav-content-format" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <div class="glyphicon glyphicon-user"></div>
+            <% if current_user%>
+              <%= current_user.username %>
+            <% end %>
+            <span class="caret"></span>
+            </a>
 
             <ul class="dropdown-menu">
               <li><a href="#">Profile Info</a></li>

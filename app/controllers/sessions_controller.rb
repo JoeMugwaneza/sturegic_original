@@ -9,15 +9,16 @@ class SessionsController < ApplicationController
 
       session[:user_id] = user.id
 
-      if user.email_confirmed
+      # if user.email_confirmed
 
-        redirect_to root_url
-      else
+      #   redirect_to root_url
+      # else
 
-        flash[:error] = 'Please activate your account by following the instruction in the account confirmation email you received to proceed'
+      #   flash[:error] = 'Please activate your account by following the instruction in the account confirmation email you received to proceed'
         
-        render 'new'
-      end
+      #   render 'new'
+      # end
+      redirect_to root_path
 
     else
       flash.now.alert = "Email or Password is invalid"
