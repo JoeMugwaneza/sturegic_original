@@ -3,6 +3,6 @@ class UserMailer < ApplicationMailer
   
   def registration_confirmation(user)
     @user = user
-    mail(:to => "#{user.first_name} <#{user.email}>", :subject => "Registration Conformation")
+    mail(to: @user.email, :subject => "Registration Conformation")
   end
 end
