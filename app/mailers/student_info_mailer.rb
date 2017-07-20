@@ -1,0 +1,2 @@
+class StudentInfoMailer < ApplicationMailer
+end
