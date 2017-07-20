@@ -11,11 +11,11 @@ class SessionsController < ApplicationController
 
       if user.email_confirmed
 
-        log_in user
-
         redirect_to root_url
       else
+
         flash[:error] = 'Please activate your account by following the instruction in the account confirmation email you received to proceed'
+        
         render 'new'
       end
 

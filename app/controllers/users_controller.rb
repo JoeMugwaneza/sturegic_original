@@ -9,11 +9,11 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
 
-      UserMailer.registration_confirmation(@user).deliver
+      UserMailer.registration_confirmation(@user).deliver_now
 
       flash[:success] = "Please confirm your email address to continue"
 
-      redirect_to root_url
+      redirect_to login_path
     else
       flash[:error] = "Ooops, something went wrong!"
       render 'new'
