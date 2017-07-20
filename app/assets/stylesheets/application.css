@@ -93,7 +93,7 @@ html,body{
     border-radius: 100%;
     border: 2px solid #aaa;
     background-size: cover;
-    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfKxvyKagceRtaGkS51-mhNsl51shUWiyTXItMDeHWKFlKc3Sxrw);
+    background-image: url(https://cdn.countryflags.com/thumbs/rwanda/flag-round-250.png);
 }
 
 .form-box input{
@@ -102,7 +102,7 @@ html,body{
     text-align: center;
     height:40px;
     border: 1px solid #ccc;
-    background: #82E0AA;
+/*    background: #82E0AA;*/
     transition:0.2s ease-in-out;
     font-size: 18px;
 

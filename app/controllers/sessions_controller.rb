@@ -9,9 +9,6 @@ class SessionsController < ApplicationController
 
       session[:user_id] = user.id
 
-      redirect_to root_url
-
-
 
       if user.email_confirmed
 
@@ -20,11 +17,11 @@ class SessionsController < ApplicationController
 
         flash[:error] = 'Please activate your account by following the instruction in the account confirmation email you received to proceed'
         
-        render 'new'
+        redirect_to login_path
       end
     else
       flash.now.alert = "Email or Password is invalid"
-      render 'new'
+      redirect_to login_path
     end
   end
 
