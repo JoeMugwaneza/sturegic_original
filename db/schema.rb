@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20170720092948) do
     t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "status"
+    t.boolean "status", default: false
   end
 
   create_table "users", force: :cascade do |t|
