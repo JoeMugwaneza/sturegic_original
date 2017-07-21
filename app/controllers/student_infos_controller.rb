@@ -2,8 +2,34 @@ class StudentInfosController < ApplicationController
   before_action :authorize
   def index
     if current_user.admin
-      @pending_student_infos = StudentInfo.where(status: false)
-      @approved_student_infos = StudentInfo.where(status: true)
+      if params[:district_id]
+        @student_infos = StudentInfo.where(district_id: params[:district_id])
+        @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
+
+        render :index
+
+      elsif params[:program_id]
+        @student_infos = StudentInfo.where(program_category_id: params[:program_id])
+        @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
+
+        render :index
+      elsif params[:course_id] 
+        @student_infos = StudentInfo.where(course_id: params[:course_id])
+        @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
+
+        render :index
+      else
+        
+        @student_infos = Country.find_by(name:"Rwanda").student_infos
+        @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
+
+        render :index
+
+      end
+        
+
+
+      #approving the request
       if params[:appr]
         @student_info = StudentInfo.find_by(id: params[:appr])
         @student_info.status = !@student_info.status
