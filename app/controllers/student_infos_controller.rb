@@ -8,8 +8,8 @@ class StudentInfosController < ApplicationController
         @student_info = StudentInfo.find_by(id: params[:appr])
         @student_info.status = !@student_info.status
         if @student_info.save
-          StudentInfoMailer.student_info_approval_notification(@student_info.student).deliver_now
-          flash[:sucess] = "Student Registration Approved"
+          StudentInfoMailer.student_info_approval_notification(@student_info).deliver_now
+          flash[:success] = "Student Registration Approved"
           redirect_to "/student_infos"
         else
           flash[:warning] = "Something is wrong, student registration approval failed"
