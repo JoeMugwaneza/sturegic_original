@@ -17,16 +17,16 @@ class SessionsController < ApplicationController
 
         redirect_to root_url
       else
-
-        flash[:error] = 'Please activate your account by following the instruction in the account confirmation email you received to proceed'
-        
+        flash[:info] = "Please activate your account by following the instruction in the account confirmation email you received to proceed"
         redirect_to login_path
       end
+
     else
-      flash.now.alert = "Email or Password is invalid"
+      flash[:warning] = "Email or Password is invalid"
       redirect_to login_path
     end
   end
+
 
   def destroy
     cookies.delete(:auth_token)

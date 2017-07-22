@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authorize
+  # before_action :authorize
   def new
     @user = User.new
   end
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       UserMailer.registration_confirmation(@user).deliver_now
 
-      flash[:success] = "Please confirm your #{@user.email} address to continue"
+      flash[:success] = "Please confirm your email address: #{@user.email} to continue"
 
       redirect_to root_path
     else
