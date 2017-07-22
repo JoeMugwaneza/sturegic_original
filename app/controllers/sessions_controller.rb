@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
         redirect_to root_url
       else
         flash[:info] = "Please activate your account by following the instruction in the account confirmation email you received to proceed"
+    
         redirect_to login_path
       end
 
