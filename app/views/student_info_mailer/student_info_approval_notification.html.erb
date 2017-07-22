@@ -1,4 +1,7 @@
-Dear <%= student.first_name %>
+Dear <%= @student_info.student.first_name %> & <%= @student_info.registrar.first_name %>
 
-You are recieving this eamil because your registration with Reg N<sup>0</sup>...... has been reviewed and approved by KIAC recruitiment board. 
+Student with the following details has been approved on STUREGIC:
+Name:<%= @student_info.student.first_name %> 
+Last Name: <%= @student_info.student.last_name %>
+Reg N<sup>0</sup>...... 
 Thanks!
