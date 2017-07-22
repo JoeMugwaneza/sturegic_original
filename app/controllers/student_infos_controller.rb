@@ -18,6 +18,11 @@ class StudentInfosController < ApplicationController
         @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
 
         render :index
+      elsif params[:search]
+        @student_infos = StudentInfo.where(country_id: Country.find_by(name: "Rwanda").id)
+        @int_student_infos = StudentInfo.where(city: params[:search])
+
+        render :index
       else
         
         @student_infos = Country.find_by(name:"Rwanda").student_infos
@@ -49,7 +54,7 @@ class StudentInfosController < ApplicationController
   end
 
   def show
-    
+    find_student_infos
   end
 
   def new

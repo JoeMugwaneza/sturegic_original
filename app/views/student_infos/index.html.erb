@@ -2,24 +2,6 @@
 <div class="container">
   <div class="row">
     <div class="span12">
-<!--             <p class="lead">Bare minimum radio button tabs example:</p>
-          <div id="tab" class="btn-group" data-toggle="buttons-radio">
-            <a href="#prices" class="btn active" data-toggle="tab">Prices</a>
-            <a href="#features" class="btn" data-toggle="tab">Features</a>
-            <a href="#requests" class="btn" data-toggle="tab">Requests</a>
-            <a href="#contact" class="btn"  data-toggle="tab">Contact</a>
-          </div>
-           
-          <div class="tab-content">
-            <div class="tab-pane active" id="prices">Prices content</div>
-            <div class="tab-pane" id="features">Features Content</div>
-            <div class="tab-pane" id="requests">Requests Content</div>
-            <div class="tab-pane" id="contact">Contact Content</div>
-          </div>
-           
-           
-          <hr> -->
-
       <div id="tab" class="btn-group" data-toggle="buttons-radio">
         <% Country.all.each do |country| %>
         <a href="#<%=country.name %>" class="btn btn-large btn-info active" data-toggle="tab"><%= country.name %></a>
@@ -104,7 +86,7 @@
             <div class="widget stacked widget-table action-table">       
               <%= form_tag student_infos_path, :method => 'get' do %>
                 <p>
-                  <%= text_field_tag :search, params[:search] %>
+                  <%= text_field_tag :search, params[:search], placeholder: "city..", required:"required"%>
                   <%= submit_tag "Search", :name => nil %>
                 </p>
               <% end %>
