@@ -6,6 +6,12 @@ class User < ApplicationRecord
   belongs_to :country
 
   validates_uniqueness_of :email
+  validates_presence_of :password_confirmation, :if => :password_digest_changed?
+  # validates :password, :presence => true,
+  #                      :confirmation => true,
+  #                      :length => { :within => 6..40 },
+  #                      :unless => :already_has_password?
+
 
   before_create :confirmation_taken
   before_create {generate_token(:auth_token)}
@@ -37,5 +43,29 @@ class User < ApplicationRecord
     self.confirm_token = nil
     save!(:validate => false) 
   end
+    #Confirm that the use who is going to edit the profit is corrent
+  def correct_user
+    @user = User.find_by(id: params[:id])
+    redirect_to root_url unless current_user?(@user) || current_user.admin?
+  end
 
+  #confirm that the user who want to update the info is signed in
+  def logged_in_user
+    unless log_in?
+      flash[:danger] = "Please login in"
+      redirect_to login_path
+    end
+  end
+
+  def log_in?
+    !current_user.nil?
+  end
+
+  def current_user?(user)
+    user == current_user
+  end
+
+  # def already_has_password?
+  #     !self.password_digest.blank?
+  # end
 end
