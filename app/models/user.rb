@@ -6,11 +6,8 @@ class User < ApplicationRecord
   belongs_to :country
 
   validates_uniqueness_of :email
-  validates_presence_of :password_confirmation, :if => :password_digest_changed?
-  # validates :password, :presence => true,
-  #                      :confirmation => true,
-  #                      :length => { :within => 6..40 },
-  #                      :unless => :already_has_password?
+  validates :password, :presence =>true, :confirmation => true, :length => { :within => 6..40 }, :on => :create
+  validates :password, :confirmation => true, :length => { :within => 6..40 }, :on => :update, :unless => lambda{ |user| user.password.blank? } 
 
 
   before_create :confirmation_taken
@@ -64,8 +61,4 @@ class User < ApplicationRecord
   def current_user?(user)
     user == current_user
   end
-
-  # def already_has_password?
-  #     !self.password_digest.blank?
-  # end
 end
