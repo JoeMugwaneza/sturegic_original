@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    before_action :logged_in_user, only: [:edit, :update]
+    before_action :correct_user,   only: [:edit, :update]
   # before_action :authorize
   def new
     @user = User.new
@@ -29,6 +31,23 @@ class UsersController < ApplicationController
       flash[:error] = "Sorry, Student does not exit"
       redirect_to signup_path
     end
+    
+  end
+
+
+  def edit
+     find_user
+  end
+
+  def update
+    find_user
+    if @user.update_attributes(user_params)
+      flash[:sucess] = "Profile updated"
+      redirect_to root_path
+    else
+      render 'edit'
+    end
+
   end
 
   private
@@ -37,5 +56,29 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :username, :email, :admin, :agent, :country_id, :reg_no, :sex, :martial_status, :tel, :password, :password_confirmation)
   end
 
+  def find_user
+    @user = User.find_by(id: params[:id])
+  end
 
+  #Confirm that the use who is going to edit the profit is corrent
+  def correct_user
+    @user = User.find_by(id: params[:id])
+    redirect_to root_path unless current_user?(@user) || current_user.admin?
+  end
+
+  #confirm that the user who want to update the info is signed in
+  def logged_in_user
+    unless log_in?
+      flash[:danger] = "Please login in"
+      redirect_to login_path
+    end
+  end
+
+  def log_in?
+    !current_user.nil?
+  end
+
+  def current_user?(user)
+    user == current_user
+  end
 end
