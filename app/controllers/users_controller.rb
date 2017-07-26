@@ -49,6 +49,7 @@ class UsersController < ApplicationController
 
   def update
     find_user
+    params[:user].delete(:password) if params[:user][:password].blank?
     if @user.update_attributes(user_params)
       flash[:sucess] = "Profile updated"
       redirect_to root_path
