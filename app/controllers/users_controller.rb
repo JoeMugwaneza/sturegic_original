@@ -2,6 +2,10 @@ class UsersController < ApplicationController
     before_action :logged_in_user, only: [:edit, :update]
     before_action :correct_user,   only: [:edit, :update]
   # before_action :authorize
+  def show
+    find_user
+  end
+
   def new
     @user = User.new
   end
@@ -26,7 +30,11 @@ class UsersController < ApplicationController
     @user.assign_attributes(email_confirmed: true, confirm_token: nil)
     if @user.save
       flash[:sucess] = "Welcome to Stregic system! you email has be confirmed, sign in to continue application"
-      redirect_to "/student_infos/new?student_id=#{@user.id}"
+      if current_user
+        redirect_to "/student_infos/new?student_id=#{@user.id}"
+      else
+        redirect_to "/login"
+      end
     else
       flash[:error] = "Sorry, Student does not exit"
       redirect_to signup_path
