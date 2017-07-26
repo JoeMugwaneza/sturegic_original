@@ -1,14 +1,33 @@
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6 col-xs-12 thumbnail application-box">
+    <h1 class="text-center application-header"><strong>Application Form: Final Step</strong></h1>
+    <div class="col-md-12 thumbnail info-box">
+      <div class="col-md-3"></div>
+      <div class="col-md-6 col-xs-12">
+        <div class="text-center">
+          <h2 class="text-center application-header">Student's Location</h2>
+          <hr>
+          <% ProgramCategory.all.each do |program_category| %>
+          <%= link_to "#{program_category.name}", "/student_infos/new?student_id=#{@student.id}&program_id=#{program_category.id}"%>
+          <% end %>
+          <% if @program_category %>
+          <%= render "form" %>
+          <% end %>
+          
+          <h2 class="text-center application-header">Sponsor's Information</h2>
+          <hr>
 
-<% ProgramCategory.all.each do |program_category| %>
-  <%= link_to "#{program_category.name}", "/student_infos/new?student_id=#{@student.id}&program_id=#{program_category.id}"%>
-<% end %>
-<% if @program_category %>
-<%= render "form" %>
-<% end %>
-<br>
-<h3>Sponsor Information</h3>
-<b>Names</b>:<%= current_user.username %><br>
-<b>ID/Passport<b>:<br>
-<b> Reg N<sup>0</sup></b>:<br>
-<b>Tel</b><%= current_user.tel %><br>
-<b>Email</b>:<%=current_user.email %><br>
+          <p class="form-control application-input"><%= current_user.username %></p>
+          <p class="form-control application-input">ID/Passport<p>
+            <p class="form-control application-input"> Reg N<sup>0</sup></p>
+            <p class="form-control application-input"><%= current_user.tel %></p>
+            <p class="form-control application-input"><%=current_user.email %></p>
+
+            <hr>
+            <p>You will receive an email, if your are successfully enrolled in the program</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
