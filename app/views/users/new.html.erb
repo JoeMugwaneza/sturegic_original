@@ -21,19 +21,19 @@
           </div>
           <% end %>
           <div class="field">
-            <%= f.text_field :first_name, class:"form-control application-input"  %>
+            <%= f.text_field :first_name, class:"form-control application-input", placeholder:"First Name...", title:"First Name"  %>
           </div>
 
           <div class="field">
-            <%= f.text_field :last_name, class:"form-control application-input"  %>
+            <%= f.text_field :last_name, class:"form-control application-input", placeholder:"Last Name...", title:"Last Name"  %>
           </div>
 
           <div class="field">
-            <%= f.text_field :username,class:"form-control application-input" %>
+            <%= f.text_field :username,class:"form-control application-input", placeholder:"Username...", title:"username" %>
           </div>
 
           <div class="field">
-            <%= f.text_field :tel, class:"form-control application-input"  %>
+            <%= f.text_field :tel, class:"form-control application-input", placeholder:"Telephone number ...", title:"Telephone number"  %>
           </div>
 
           <div class="field select-form-input">
@@ -50,15 +50,15 @@
           </div>
 
           <div class="field">
-            <%= f.email_field :email, class:"form-control application-input" %>
+            <%= f.email_field :email, class:"form-control application-input", placeholder:"Email ...", title:"Email" %>
           </div>
 
           <div class="field">
-            <%= f.password_field :password, autocomplete: "off", placeholder:"Create Password...", class:"form-control application-input" %>
+            <%= f.password_field :password, autocomplete: "off", placeholder:"Create Password...", class:"form-control application-input", title:"Password" %>
           </div>
 
           <div class="field">
-            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Retype Password...", class:"form-control application-input" %>
+            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Retype Password...", class:"form-control application-input", title:"Confirm Password" %>
           </div>
 
           <div class="actions">
