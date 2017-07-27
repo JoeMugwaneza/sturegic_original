@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   # designs
   get "application1" => "designs#application1" 
-  get "application2" => "designs#application2" 
+  get "application2" => "designs#application2"
+  get "bonus" => "designs#bonus"
 
 end

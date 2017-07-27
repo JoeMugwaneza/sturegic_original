@@ -14,6 +14,7 @@ class User < ApplicationRecord
   before_create {generate_token(:auth_token)}
 
 
+
   def generate_token(column)
     begin 
       self[column] = SecureRandom.urlsafe_base64
@@ -26,6 +27,8 @@ class User < ApplicationRecord
     save!
     UserMailer.password_reset(self).deliver
   end
+
+  include UsersHelper
   
   private
 
@@ -61,4 +64,5 @@ class User < ApplicationRecord
   def current_user?(user)
     user == current_user
   end
+
 end
