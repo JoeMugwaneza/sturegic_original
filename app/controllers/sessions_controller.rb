@@ -7,25 +7,30 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
 
-      session[:user_id] = user.id
-
+      if params[:remember_me]
+        cookies.permanent[:auth_token] = user.auth_token
+      else
+        cookies[:auth_token] = user.auth_token
+      end
 
       if user.email_confirmed
 
         redirect_to root_url
       else
-        flash[:warning] = 'Please activate your account by following the instruction in the account confirmation email you received to proceed'
-        
+        flash[:info] = "Please activate your account by following the instruction in the account confirmation email you received to proceed"
+    
         redirect_to login_path
       end
+
     else
-      flash.now.alert = "Email or Password is invalid"
+      flash[:warning] = "Email or Password is invalid"
       redirect_to login_path
     end
   end
 
+
   def destroy
-    session[:user_id] = nil
+    cookies.delete(:auth_token)
     redirect_to login_path, notice: "Logged out"
   end
 end

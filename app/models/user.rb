@@ -6,7 +6,29 @@ class User < ApplicationRecord
   belongs_to :country
 
   validates_uniqueness_of :email
+  validates :password, :presence =>true, :confirmation => true, :length => { :within => 6..40 }, :on => :create
+  validates :password, :confirmation => true, :length => { :within => 6..40 }, :on => :update, :unless => lambda{ |user| user.password.blank? } 
+
+
   before_create :confirmation_taken
+  before_create {generate_token(:auth_token)}
+
+
+
+  def generate_token(column)
+    begin 
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column]) 
+  end
+
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.password_reset(self).deliver
+  end
+
+  include UsersHelper
   
   private
 
@@ -21,4 +43,26 @@ class User < ApplicationRecord
     self.confirm_token = nil
     save!(:validate => false) 
   end
+    #Confirm that the use who is going to edit the profit is corrent
+  def correct_user
+    @user = User.find_by(id: params[:id])
+    redirect_to root_url unless current_user?(@user) || current_user.admin?
+  end
+
+  #confirm that the user who want to update the info is signed in
+  def logged_in_user
+    unless log_in?
+      flash[:danger] = "Please login in"
+      redirect_to login_path
+    end
+  end
+
+  def log_in?
+    !current_user.nil?
+  end
+
+  def current_user?(user)
+    user == current_user
+  end
+
 end
