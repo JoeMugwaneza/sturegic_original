@@ -174,6 +174,11 @@ html,body{
 
 /*User profile*/
 
+.flexible {
+  width: 100%;
+  height: auto;
+}
+
 
 .user-row {
     margin-bottom: 14px;
@@ -189,9 +194,14 @@ html,body{
     height: 100%;
 }
 
+.approved{
+  color:green;
+  font-size: 20px;
+}
 .dropdown-user:hover {
     cursor: pointer;
 }
+.tabletable-user-information 
 
 .table-user-information > tbody > tr {
     border-top: 1px solid rgb(221, 221, 221);

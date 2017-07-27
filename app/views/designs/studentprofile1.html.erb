@@ -1,0 +1,101 @@
+
+<div class="container">
+      <div class="row">
+      <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+           <!-- <A href="edit.html" >Edit Profile</A>
+
+        <A href="edit.html" >Logout</A> -->
+       <br>
+<!-- <p class=" text-info">May 05,2014,03:00 pm </p> -->
+      </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+   
+   
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title"> Student Information </h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO2iWi9hI_kyFkqqnko6OX94_GjvInBmZi8yerCi5Et6HXiS7iTg" class="img-circle img-responsive"> </div>
+                
+                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                  <dl>
+                    <dt>DEPARTMENT:</dt>
+                    <dd>Administrator</dd>
+                    <dt>HIRE DATE</dt>
+                    <dd>11/12/2013</dd>
+                    <dt>DATE OF BIRTH</dt>
+                       <dd>11/12/2013</dd>
+                    <dt>GENDER</dt>
+                    <dd>Male</dd>
+                  </dl>
+                </div>-->
+
+                
+                
+
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                    <h4> Personal Information </h4> 
+                     <tr>
+                        <td>Name:</td>
+                        <td><%= current_user.first_name%> <%= current_user.last_name%> </td>
+                      </tr>
+                      <tr>
+                        <td>Username:</td>
+                        <td> Berry.G</td>
+                      </tr>
+                      <tr>
+                        <td>Email Adress</td>
+                        <td><a href="mariebertrande.umuhire@gmail.com"><%=current_user.email %></a></td>
+                        </tr>
+                        <tr>
+                        <td>Country:</td>
+                        <td> Rwanda</td>
+                      </tr>
+                      <tr>
+                        <td>Gender:</td>
+                        <td> Female</td>
+                      </tr>
+                       <tr>
+                        <td>Marital Status:</td>
+                        <td> Married</td>
+                      </tr>
+                      
+                      <tr>
+                        <td>Telephone</td>
+                        <td><%= current_user.tel%></td>
+                      </tr>
+                  
+                        <tr>
+                        <td>Marital Status:</td>
+                        <td> Married</td>
+                      </tr>
+
+                       <!--  <td>Phone Number</td>
+                        <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
+                        </td> -->
+      
+                     
+                    </tbody>
+                  </table>
+                  
+                  <a href="/studentprofile2" class="btn btn-primary">Next</a>
+                 
+                </div>
+              </div>
+            </div>
+                 <div class="panel-footer">
+                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                        <span class="pull-right">
+                            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                        </span>
+                    </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
