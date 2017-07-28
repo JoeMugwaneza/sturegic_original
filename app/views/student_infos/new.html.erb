@@ -1,16 +1,16 @@
 <div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-6 col-xs-12 thumbnail application-box">
+  <div class="col-md-6 col-xs-12 col-md-offset-3 thumbnail application-box">
     <h1 class="text-center application-header"><strong>Application Form: Final Step</strong></h1>
     <div class="col-md-12 thumbnail info-box">
-      <div class="col-md-3"></div>
-      <div class="col-md-6 col-xs-12">
-        <div class="text-center">
-          <h2 class="text-center application-header">Student's Location</h2>
-          <hr>
-          <% ProgramCategory.all.each do |program_category| %>
-          <%= link_to "#{program_category.name}", "/student_infos/new?student_id=#{@student.id}&program_id=#{program_category.id}"%>
-          <% end %>
+      <div class="text-center">
+
+        <h2 class="text-center application-header">Program Preference</h2>
+        <hr>
+        <% ProgramCategory.all.each do |program_category| %>
+        <%= link_to "#{program_category.name}", "/student_infos/new?student_id=#{@student.id}&program_id=#{program_category.id}", class:"btn btn-program" %>
+        <% end %>
+
+        <div class="col-md-6 col-xs-12 col-md-offset-3">
           <% if @program_category %>
           <%= render "form" %>
           <% end %>
@@ -20,7 +20,10 @@
 
           <p class="form-control application-input"><%= current_user.username %></p>
           <p class="form-control application-input">ID/Passport<p>
-            <p class="form-control application-input"> Reg N<sup>0</sup></p>
+            <div class="form-control application-input">
+              <p>Reg N</p>
+              <sup>0</sup>
+            </div>
             <p class="form-control application-input"><%= current_user.tel %></p>
             <p class="form-control application-input"><%=current_user.email %></p>
 
