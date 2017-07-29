@@ -1,10 +1,53 @@
-<% @user.studentgroups.each do |group|%>
-  <h2> Group <%= @user.studentgroups.index(group) +1 %></h2>
-  <b>Level 1:</b> <%= @user.level_one(@user.studentgroups.index(group)).count %><br>
-  <b>Level two:</b> <%= @user.level_two(@user.studentgroups.index(group)).count %><br>
-  <b>level three:</b> <%= @user.level_three(@user.studentgroups.index(group)).count %><br>
-  <b>level four:</b> <%= @user.level_four(@user.studentgroups.index(group)).count %><br>
-  <b>level five:</b> <%= @user.level_five(@user.studentgroups.index(group)).count %><br>
+<% if @user.techgroups.any? %> 
+  Technical Program
+  <% @user.techgroups.each do |group|%>
+    <h2> Group <%= @user.techgroups.index(group) +1 %></h2>
+    <b>Level 1:</b> <%= @user.level_one(@user.techgroups.index(group), "Tech").count %><br>
+    <%= @user.level_one(@user.techgroups.index(group), "Tech").pluck(:first_name) %><br>
+    <b>Level two:</b> <%= @user.level_two(@user.techgroups.index(group), "Tech").count %><br>
+    <%= @user.level_two(@user.techgroups.index(group), "Tech").pluck(:first_name) %><br>
+    <b>level three:</b> <%= @user.level_three(@user.techgroups.index(group), "Tech").count %><br>
+    <%= @user.level_three(@user.techgroups.index(group), "Tech").pluck(:first_name) %><br>
+    <b>level four:</b> <%= @user.level_four(@user.techgroups.index(group), "Tech").count %><br>
+    <%= @user.level_four(@user.techgroups.index(group), "Tech").pluck(:first_name) %><br>
+    <b>level five:</b> <%= @user.level_five(@user.techgroups.index(group), "Tech").count %><br>
+    <%= @user.level_five(@user.techgroups.index(group), "Tech").pluck(:first_name) %><br>
+    <br>
+  <% end %> 
   <br>
 <% end %>
-
+<% if @user.trafficgroups.any? %>
+  Digital Traffic Rules
+  <% @user.trafficgroups.each do |group|%>
+    <h2> Group <%= @user.trafficgroups.index(group) +1 %></h2>
+    <b>Level 1:</b> <%= @user.level_one(@user.trafficgroups.index(group), "Traffic").count %><br>
+    <%= @user.level_one(@user.trafficgroups.index(group), "Traffic").pluck(:first_name) %><br>
+    <b>Level two:</b> <%= @user.level_two(@user.trafficgroups.index(group), "Traffic").count %><br>
+    <%= @user.level_two(@user.trafficgroups.index(group), "Traffic").pluck(:first_name) %><br>
+    <b>level three:</b> <%= @user.level_three(@user.trafficgroups.index(group), "Traffic").count %><br>
+    <%= @user.level_three(@user.trafficgroups.index(group), "Traffic").pluck(:first_name) %><br>
+    <b>level four:</b> <%= @user.level_four(@user.trafficgroups.index(group), "Traffic").count %><br>
+    <%= @user.level_four(@user.trafficgroups.index(group), "Traffic").pluck(:first_name) %><br>
+    <b>level five:</b> <%= @user.level_five(@user.trafficgroups.index(group), "Traffic").count %><br>
+    <%= @user.level_five(@user.trafficgroups.index(group), "Traffic").pluck(:first_name) %><br>
+    <br>
+  <% end %>
+  <br>
+<% end %>
+<% if @user.englishgroups.any?%>
+  English Courses
+  <% @user.englishgroups.each do |group|%>
+    <h2> Group <%= @user.englishgroups.index(group) +1 %></h2>
+    <b>Level 1:</b> <%= @user.level_one(@user.englishgroups.index(group),"English").count %><br>
+    <%= @user.level_one(@user.englishgroups.index(group), "English").pluck(:first_name) %><br>
+    <b>Level two:</b> <%= @user.level_two(@user.englishgroups.index(group), "English").count %><br>
+    <%= @user.level_two(@user.englishgroups.index(group), "English").pluck(:first_name) %><br>
+    <b>level three:</b> <%= @user.level_three(@user.englishgroups.index(group), "English").count %><br>
+    <%= @user.level_three(@user.englishgroups.index(group), "English").pluck(:first_name) %><br>
+    <b>level four:</b> <%= @user.level_four(@user.englishgroups.index(group), "English").count %><br>
+    <%= @user.level_four(@user.englishgroups.index(group), "English").pluck(:first_name) %><br>
+    <b>level five:</b> <%= @user.level_five(@user.englishgroups.index(group), "English").count %><br>
+    <%= @user.level_five(@user.englishgroups.index(group), "English").pluck(:first_name) %><br>
+    <br>
+  <% end %>
+<% end %>

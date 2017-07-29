@@ -15,18 +15,28 @@ module UsersHelper
   #   return users
   # end
   
-  def level_one(n)
+  def level_one(n,p)
     n = n.to_i
     users = []
-    self.studentgroups[n].each do |student|
-      users.push(student)
+    if self.techgroups && p == "Tech"
+      self.techgroups[n].each do |student|
+        users.push(student)
+      end
+    elsif self.trafficgroups && p == "Traffic"
+      self.trafficgroups[n].each do |student|
+        users.push(student)
+      end
+    else
+      self.englishgroups[n].each do |student|
+        users.push(student)
+      end
     end
     return users
   end
 
-  def level_two(n)
+  def level_two(n,p)
     users = []
-    self.level_one(n).each do |user|
+    self.level_one(n,p).each do |user|
       user.studentInfos.each do |studentInfo|
         users.push(studentInfo.student)
       end
@@ -34,9 +44,9 @@ module UsersHelper
     return users
   end
 
-  def level_three(n)
+  def level_three(n,p)
     users = []
-    self.level_two(n).each do |user|
+    self.level_two(n,p).each do |user|
       user.studentInfos.each do |studentInfo|
         users.push(studentInfo.student)
       end
@@ -44,9 +54,9 @@ module UsersHelper
     return users
   end
 
-  def level_four(n)
+  def level_four(n,p)
     users = []
-    self.level_three(n).each do |user|
+    self.level_three(n,p).each do |user|
       user.studentInfos.each do |studentInfo|
         users.push(studentInfo.student)
       end
@@ -54,9 +64,9 @@ module UsersHelper
     return users
   end
 
-  def level_five(n)
+  def level_five(n,p)
     users = []
-    self.level_four(n).each do |user|
+    self.level_four(n,p).each do |user|
       user.studentInfos.each do |studentInfo|
         users.push(studentInfo.student)
       end
