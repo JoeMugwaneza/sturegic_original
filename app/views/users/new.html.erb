@@ -52,6 +52,10 @@
 >>>>>>> ba0b43709e9918322a8ad0b448135a624a5b722a
           </div>
 
+          <div class="field">
+            <%= f.text_field :identification, class:"form-control application-input", placeholder:"Enter your ID number or Passport  ...", title:"ID number/Passport for internation student"  %>
+          </div>
+
           <div class="field select-form-input">
             <%= f.select :sex, [["Male", "Male"], ["Female", "Female"]], :include_blank => "Gender", class:" form-group select-form-input"  %><br>
           </div>
