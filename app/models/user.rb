@@ -13,7 +13,15 @@ class User < ApplicationRecord
   before_create :confirmation_taken
   before_create {generate_token(:auth_token)}
 
+  def studentgroups
+    students = []
+    self.studentInfos.each do |studentInfo|
+      students.push(studentInfo.student)
+    end
+    groups = students.each_slice(1).to_a
 
+    return groups
+  end
 
   def generate_token(column)
     begin 

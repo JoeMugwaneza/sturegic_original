@@ -1,5 +1,10 @@
-Level one: <%= @user.level_one.pluck(:first_name) %><br>
-level two: <%= @user.level_two.pluck(:first_name) %><br>
-level three: <%= @user.level_three.pluck(:first_name) %><br>
-level four: <%= @user.level_four.pluck(:first_name) %><br>
-level five: <%= @user.level_five.pluck(:first_name) %><br>
+<% @user.studentgroups.each do |group|%>
+  <h2> Group <%= @user.studentgroups.index(group) +1 %></h2>
+  <b>Level 1:</b> <%= @user.level_one(@user.studentgroups.index(group)).count %><br>
+  <b>Level two:</b> <%= @user.level_two(@user.studentgroups.index(group)).count %><br>
+  <b>level three:</b> <%= @user.level_three(@user.studentgroups.index(group)).count %><br>
+  <b>level four:</b> <%= @user.level_four(@user.studentgroups.index(group)).count %><br>
+  <b>level five:</b> <%= @user.level_five(@user.studentgroups.index(group)).count %><br>
+  <br>
+<% end %>
+
