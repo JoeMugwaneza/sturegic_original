@@ -36,6 +36,10 @@
             <%= f.text_field :tel, class:"form-control application-input", placeholder:"Telephone number ...", title:"Telephone number"  %>
           </div>
 
+          <div class="field">
+            <%= f.text_field :identification, class:"form-control application-input", placeholder:"Enter your ID number or Passport  ...", title:"ID number/Passport for internation student"  %>
+          </div>
+
           <div class="field select-form-input">
             <%= f.select :sex, [["Male", "Male"], ["Female", "Female"]], :include_blank => "Gender", class:" form-group select-form-input"  %><br>
           </div>
