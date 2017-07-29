@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  # before_action :authorize
+
     before_action :logged_in_user, only: [:edit, :update]
     before_action :correct_user,   only: [:edit, :update]
   # before_action :authorize
@@ -13,11 +16,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      UserMailer.registration_confirmation(@user).deliver_now
+      # UserMailer.registration_confirmation(@user).deliver_now
 
-      flash[:success] = "Please confirm your email address: #{@user.email} to continue"
+      flash[:success] = "You have successfully complited the first step"
 
-      redirect_to root_path
+      redirect_to "/student_infos/new?student_id=#{@user.id}"
     else
       flash[:error] = "Ooops, something went wrong!"
       render 'new'
@@ -30,11 +33,19 @@ class UsersController < ApplicationController
     @user.assign_attributes(email_confirmed: true, confirm_token: nil)
     if @user.save
       flash[:sucess] = "Welcome to Stregic system! you email has be confirmed, sign in to continue application"
+
+    if current_user
+      redirect_to "/student_infos/new?student_id=#{@user.id}"
+
       if current_user
         redirect_to "/student_infos/new?student_id=#{@user.id}"
       else
         redirect_to "/login"
       end
+
+    else
+      redirect_to "/login"
+    end
     else
       flash[:error] = "Sorry, Student does not exit"
       redirect_to signup_path

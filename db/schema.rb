@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170727111256) do
 
   # These are extensions that must be enabled in order to support this database
@@ -86,6 +87,9 @@ ActiveRecord::Schema.define(version: 20170727111256) do
     t.string "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.string "identification"
+    t.string "registrar_name"
+    t.boolean "application_submission", default: false
+
   end
 
 end

@@ -1,4 +1,19 @@
 module UsersHelper
+  def groups
+    users = {}
+    students = []
+    self.studentInfos.each do |studentInfo|
+      students.push(studentInfo.student)
+    end
+    groups = students.each_slice(1).to_a
+
+    group_n = 1
+    groups.each do |group|
+      users["group_#{group_n}"] = group
+      group_n += 1
+    end
+    return users
+  end
   
   def level_one
     users = []

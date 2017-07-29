@@ -7,7 +7,7 @@ class StudentInfosController < ApplicationController
         @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
 
         render :index
-
+        
       elsif params[:program_id]
         @student_infos = StudentInfo.where(program_category_id: params[:program_id])
         @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
@@ -31,8 +31,6 @@ class StudentInfosController < ApplicationController
         render :index
 
       end
-        
-
 
       #approving the request
       if params[:appr]
@@ -66,7 +64,8 @@ class StudentInfosController < ApplicationController
   def create
     @student_infos = StudentInfo.new(student_infos_params)
     if @student_infos.save
-      StudentInfoMailer.student_info_approval(@student_infos).deliver_now
+      @student_infos.student.update(application_submission: true)
+      # StudentInfoMailer.student_info_approval(@student_infos).deliver_now
      flash[:scuess] = "Student Application Successfully Submited" 
      redirect_to "/"
     else
