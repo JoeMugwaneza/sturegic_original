@@ -23,7 +23,8 @@ Rails.application.routes.draw do
   get "studentprofile2" => "designs#studentprofile2"
 
   get "application2" => "designs#application2"
-  get "bonus" => "designs#bonus"
+
+  get "bonus" => "designs#index"
   get "studentprofile" => "designs#studentprofile"
 
 
