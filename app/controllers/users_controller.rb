@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     before_action :correct_user,   only: [:edit, :update]
   # before_action :authorize
   def show
-    find_user
+    @user = User.friendly.find(params[:id])
   end
 
   def new
@@ -77,7 +77,7 @@ class UsersController < ApplicationController
   end
 
   def find_user
-    @user = User.find_by(id: params[:id])
+    @user = User.friendly.find(params[:id])
   end
 
   #Confirm that the use who is going to edit the profit is corrent
