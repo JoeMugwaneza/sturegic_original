@@ -37,7 +37,7 @@ class StudentInfosController < ApplicationController
         @student_info = StudentInfo.find_by(id: params[:appr])
         @student_info.status = !@student_info.status
         if @student_info.save
-          StudentInfoMailer.student_info_approval_notification(@student_info).deliver_now
+          # StudentInfoMailer.student_info_approval_notification(@student_info).deliver_now
           flash[:success] = "Student Registration Approved"
           redirect_to "/student_infos"
         else
@@ -93,6 +93,6 @@ class StudentInfosController < ApplicationController
     @student_infos = StudentInfo.find_by(id: params[:id])
   end
   def student_infos_params
-    params.require(:student_info).permit(:education_level, :course_id, :program_category_id, :district_id, :registrar_id, :student_id, :country_id, :city)
+    params.require(:student_info).permit(:education_level, :course_id, :program_category_id, :district_id, :registrar_id, :student_id, :country_id, :city, :reg_no)
   end
 end

@@ -14,6 +14,37 @@ class User < ApplicationRecord
   before_create {generate_token(:auth_token)}
 
 
+  #please during deployment remember to change the program_category_id accordingly becuase they may mess up with your database
+  def techgroups
+    students = []
+    self.studentInfos.where(program_category_id: 2).each do |studentInfo|
+      students.push(studentInfo.student)
+    end
+    groups = students.each_slice(5).to_a
+
+    return groups
+  end
+
+  def trafficgroups
+    students = []
+    self.studentInfos.where(program_category_id: 4).each do |studentInfo|
+      students.push(studentInfo.student)
+    end
+    groups = students.each_slice(5).to_a
+
+    return groups
+  end
+
+
+  def englishgroups
+    students = []
+    self.studentInfos.where(program_category_id: 3).each do |studentInfo|
+      students.push(studentInfo.student)
+    end
+    groups = students.each_slice(5).to_a
+
+    return groups
+  end
 
   def generate_token(column)
     begin 
