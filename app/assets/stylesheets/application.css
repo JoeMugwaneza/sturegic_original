@@ -16,14 +16,15 @@
 
 
 
- html, body {
-   background-color: #325e7f;
-   font-family: 'Bellefair', sans-serif;
+ 
 
- }
 
 td, th {
   font-size: 17px;
+}
+ html, body {
+  background-color: #325e7f;
+  font-family: 'Bellefair', sans-serif;
 }
 
 .thead {
@@ -230,7 +231,6 @@ html,body{
 }
 
 
-
 /*admindashboard*/
 
 
@@ -378,7 +378,6 @@ tr:hover {
  background-color: #ffff99;
 }
 
-
 /*agent*/
 
 
@@ -458,4 +457,3 @@ span.tags
   margin-left: -10px;
   z-index: 10;
 }
-
