@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
       if user.email_confirmed
 
-        redirect_to user_path(user)
+        redirect_to student_path(user)
       else
         flash[:info] = "Please activate your account by following the instruction in the account confirmation email you received to proceed"
     
