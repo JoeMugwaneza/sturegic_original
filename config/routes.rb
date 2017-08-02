@@ -8,12 +8,12 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   
- 
   resources :sessions
   resources :student_infos
   resources :users
   resources :password_resets
    get 'users/:token/confirm_email/', :to => "users#confirm_email", as: 'confirm_email'
+   get 'students/:id', to: 'users#show', as: 'student'
 
   # designs
   get "application1" => "designs#application1" 
