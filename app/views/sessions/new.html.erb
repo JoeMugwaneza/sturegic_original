@@ -6,7 +6,8 @@
 <%= form_tag sessions_path do %>
   <div class="field" name="user" type="text" placeholder="username">
     
-    <%= text_field_tag :email %>
+    <%= text_field_tag :email, :address, placeholder: 'Email...' %>
+    <%= email_field(:user, :address, placeholder: 'ex: joe@joe.com') %>
   </div>
   <div class="field, type="password" placeholder="password">
   
