@@ -17,6 +17,17 @@ Rails.application.routes.draw do
 
   # designs
   get "application1" => "designs#application1" 
-  get "application2" => "designs#application2" 
 
+  get "application2" => "designs#application2" 
+  get "studentprofile1" => "designs#studentprofile1"
+  get "studentprofile2" => "designs#studentprofile2"
+  get "admin" => "designs#admin"
+  get "agent" => "designs#agent"
+
+  get "application2" => "designs#application2"
+
+  get "bonus" => "designs#index"
+  get "studentprofile" => "designs#studentprofile"
+
+  get "admindashboard" => "designs#admindashboard"
 end

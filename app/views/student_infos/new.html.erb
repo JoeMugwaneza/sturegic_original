@@ -1,14 +1,128 @@
+<div class="row">
+  <div class="col-md-6 col-xs-12 col-md-offset-3 thumbnail application-box">
+    <h1 class="text-center application-header"><strong>Application Form: Final Step</strong></h1>
+    <div class="col-md-12 thumbnail info-box">
+      <div class="text-center">
 
-<% ProgramCategory.all.each do |program_category| %>
-  <%= link_to "#{program_category.name}", "/student_infos/new?student_id=#{@student.id}&program_id=#{program_category.id}"%>
-<% end %>
-<% if @program_category %>
-<%= render "form" %>
-<% end %>
-<br>
-<h3>Sponsor Information</h3>
-<b>Names</b>:<%= current_user.username %><br>
-<b>ID/Passport<b>:<br>
-<b> Reg N<sup>0</sup></b>:<br>
-<b>Tel</b><%= current_user.tel %><br>
-<b>Email</b>:<%=current_user.email %><br>
+        <h2 class="text-center application-header">Program Preference</h2>
+        <hr>
+        <% ProgramCategory.all.each do |program_category| %>
+        <%= link_to "#{program_category.name}", "/student_infos/new?student_id=#{@student.id}&program_id=#{program_category.id}", class:"btn btn-program" %>
+        <% end %>
+
+        <div class="col-md-6 col-xs-12 col-md-offset-3">
+          <% if @program_category %>
+          <%= render "form" %>
+          <% end %>
+          
+          <h2 class="text-center application-header">Sponsor's Information</h2>
+          <hr>
+
+
+
+
+
+<div class="container">
+      <div class="row">
+      <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+           <!-- <A href="edit.html" >Edit Profile</A>
+
+        <A href="edit.html" >Logout</A> -->
+       <br>
+<!-- <p class=" text-info">May 05,2014,03:00 pm </p> -->
+      </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+   
+   
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title"> Sponsor Information</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO2iWi9hI_kyFkqqnko6OX94_GjvInBmZi8yerCi5Et6HXiS7iTg" class="img-circle img-responsive"> </div>
+                
+                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                  <dl>
+                    <dt>DEPARTMENT:</dt>
+                    <dd>Administrator</dd>
+                    <dt>HIRE DATE</dt>
+                    <dd>11/12/2013</dd>
+                    <dt>DATE OF BIRTH</dt>
+                       <dd>11/12/2013</dd>
+                    <dt>GENDER</dt>
+                    <dd>Male</dd>
+                  </dl>
+                </div>-->
+
+                
+                
+
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                     <tr>
+                        <td>Name:</td>
+                        <td><%= current_user.username %></td>
+                      </tr>
+                      <tr>
+                        <td>ID Passport:</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>Registration Number:</td>
+                        <td><sup>0</sup></td>
+                      </tr>
+                      <tr>
+                        <td>Telephone</td>
+                        <td><%= current_user.tel%></td>
+                      </tr>
+                  
+                      <tr>
+                        <td>Email</td>
+                        <td><a href="mariebertrande.umuhire@gmail.com"><%=current_user.email %></a></td>
+                      </tr>
+                        <td>Phone Number</td>
+                        <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
+                        </td>
+                           
+                      </tr>
+                     
+                    </tbody>
+                  </table>
+                  
+                  <a href="#" class="btn btn-primary">Next</a>
+                  <a href="#" class="btn btn-primary">Previous</a>
+                </div>
+              </div>
+            </div>
+                 <div class="panel-footer">
+                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                        <span class="pull-right">
+                            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                        </span>
+                    </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+          <p class="form-control application-input"><%= current_user.username %></p>
+          <p class="form-control application-input">ID/Passport<p>
+            <div class="form-control application-input">
+              <p>Reg N</p>
+              <sup>0</sup>
+            </div>
+            <p class="form-control application-input"><%= current_user.tel %></p>
+            <p class="form-control application-input"><%=current_user.email %></p>
+
+            <hr>
+            <p>You will receive an email, if your are successfully enrolled in the program</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

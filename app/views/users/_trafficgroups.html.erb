@@ -1,0 +1,57 @@
+<% @user.trafficgroups.each do |group|%>
+<h2> Group <%= @user.trafficgroups.index(group) +1 %></h2>
+<div class="panel col-md-offset-2">
+  <div class="panel-heading" style="background-color: #0b56a8;">
+    <h3 class="panel-title" style="color: white;">All Levels</h3>
+    <span class="pull-right">
+      <!-- Tabs -->
+      <ul class="nav panel-tabs">
+        <li class="active"><a href="#col1" data-toggle="tab">Level 1</a></li>
+        <li><a href="#col2" data-toggle="tab">Level 2</a></li>
+        <li><a href="#col3" data-toggle="tab">Level 3</a></li>
+        <li><a href="#col4" data-toggle="tab">Level 4</a></li>
+        <li><a href="#col5" data-toggle="tab">Level 5</a></li>
+      </ul>
+    </span>
+  </div>
+  <div class="panel-body">
+    <div class="tab-content">
+      <div class="tab-pane active" id="col1">
+      <%= @user.level_one(@user.trafficgroups.index(group), "Traffic").count %> registered students
+      <hr>
+      <p>Name - Program -School fees -  Bonus - Sponsor - Date 
+        <%= @user.level_one(@user.trafficgroups.index(group), "Traffic").pluck(:first_name) %>
+      </p>
+      </div>
+      <div class="tab-pane" id="col2">
+      <%= @user.level_two(@user.trafficgroups.index(group), "Traffic").count %> registered students
+      <hr>
+      <p>Name - Program - Bonus - Sponsor - Date 
+        <%= @user.level_two(@user.trafficgroups.index(group), "Traffic").pluck(:first_name) %>
+      </p>
+      </div>
+      <div class="tab-pane" id="col3">
+      <%= @user.level_three(@user.trafficgroups.index(group), "Traffic").count %> registered students
+      <hr>
+      <p>Name - Program - Bonus - Sponsor - Date 
+        <%= @user.level_three(@user.trafficgroups.index(group), "Traffic").pluck(:first_name) %>
+      </p>
+      </div>
+      <div class="tab-pane" id="col4">
+      <%= @user.level_four(@user.trafficgroups.index(group), "Traffic").count %> registered students
+      <hr>
+      <p>Name - Program - Bonus - Sponsor - Date 
+        <%= @user.level_four(@user.trafficgroups.index(group), "Traffic").pluck(:first_name) %>
+      </p>
+      </div>
+      <div class="tab-pane" id="col5">
+      <%= @user.level_five(@user.trafficgroups.index(group), "Traffic").count %> registered students
+      <hr>
+      <p>Name - Program - Bonus - Sponsor - Date 
+        <%= @user.level_five(@user.trafficgroups.index(group), "Traffic").pluck(:first_name) %>
+      </p>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

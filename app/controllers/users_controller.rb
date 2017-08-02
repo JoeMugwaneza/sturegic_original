@@ -1,7 +1,14 @@
 class UsersController < ApplicationController
+
+  # before_action :authorize
+
     before_action :logged_in_user, only: [:edit, :update]
     before_action :correct_user,   only: [:edit, :update]
   # before_action :authorize
+  def show
+    @user = User.friendly.find(params[:id])
+  end
+
   def new
     @user = User.new
   end
@@ -9,11 +16,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      UserMailer.registration_confirmation(@user).deliver_now
+      # UserMailer.registration_confirmation(@user).deliver_now
 
-      flash[:success] = "Please confirm your email address: #{@user.email} to continue"
+      flash[:success] = "You have successfully complited the first step"
 
-      redirect_to root_path
+      redirect_to "/student_infos/new?student_id=#{@user.id}"
     else
       flash[:error] = "Ooops, something went wrong!"
       render 'new'
@@ -26,7 +33,19 @@ class UsersController < ApplicationController
     @user.assign_attributes(email_confirmed: true, confirm_token: nil)
     if @user.save
       flash[:sucess] = "Welcome to Stregic system! you email has be confirmed, sign in to continue application"
+
+    if current_user
       redirect_to "/student_infos/new?student_id=#{@user.id}"
+
+      if current_user
+        redirect_to "/student_infos/new?student_id=#{@user.id}"
+      else
+        redirect_to "/login"
+      end
+
+    else
+      redirect_to "/login"
+    end
     else
       flash[:error] = "Sorry, Student does not exit"
       redirect_to signup_path
@@ -41,6 +60,7 @@ class UsersController < ApplicationController
 
   def update
     find_user
+    params[:user].delete(:password) if params[:user][:password].blank?
     if @user.update_attributes(user_params)
       flash[:sucess] = "Profile updated"
       redirect_to root_path
@@ -53,11 +73,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :email, :admin, :agent, :country_id, :reg_no, :sex, :martial_status, :tel, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :admin, :agent, :country_id, :sex, :martial_status, :tel, :password, :password_confirmation, :identification)
   end
 
   def find_user
-    @user = User.find_by(id: params[:id])
+    @user = User.friendly.find(params[:id])
   end
 
   #Confirm that the use who is going to edit the profit is corrent

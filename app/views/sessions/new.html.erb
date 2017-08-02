@@ -5,7 +5,13 @@
             <div class="form-box">
 <%= form_tag sessions_path do %>
     
+
     <%= text_field :email, :address, placeholder: 'email...'%>
+
+    <%= text_field_tag :email %>
+  </div>
+  <div class="field" type="password" placeholder="password">
+
   
     <%= password_field :password, :adress, placeholder: 'password...'%>
     

@@ -1,7 +1,5 @@
-<div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-6 col-xs-12 thumbnail application-box">
-    <h1 class="text-center application-header"><strong>Application Form: Step 1</strong></h1>
+  <div class="col-md-6 col-md-offset-3 col-xs-12 thumbnail application-box">
+    <h1 class="text-center application-header"><strong>Update Your Profile</strong></h1>
     <div class="col-md-12 thumbnail info-box">
       <div class="col-md-3"></div>
       <div class="col-md-6 col-xs-12">
@@ -21,19 +19,24 @@
           </div>
           <% end %>
           <div class="field">
-            <%= f.text_field :first_name, class:"form-control application-input"  %>
+
+            <%= f.text_field :first_name, class:"form-control application-input", placeholder:"First Name...", title:"First Name"  %>
           </div>
 
           <div class="field">
-            <%= f.text_field :last_name, class:"form-control application-input"  %>
+            <%= f.text_field :last_name, class:"form-control application-input", placeholder:"Last Name...", title:"Last Name"  %>
           </div>
 
           <div class="field">
-            <%= f.text_field :username,class:"form-control application-input" %>
+            <%= f.text_field :username,class:"form-control application-input", placeholder:"Username...", title:"username" %>
           </div>
 
           <div class="field">
-            <%= f.text_field :tel, class:"form-control application-input"  %>
+            <%= f.text_field :tel, class:"form-control application-input", placeholder:"Telephone number ...", title:"Telephone number"  %>
+          </div>
+
+          <div class="field">
+            <%= f.text_field :identification, class:"form-control application-input", placeholder:"Enter your ID number or Passport  ...", title:"ID number/Passport for internation student"  %>
           </div>
 
           <div class="field select-form-input">
@@ -50,19 +53,21 @@
           </div>
 
           <div class="field">
-            <%= f.email_field :email, class:"form-control application-input" %>
+
+            <%= f.email_field :email, class:"form-control application-input", placeholder:"Email ...", title:"Email" %>
           </div>
 
           <div class="field">
-            <%= f.password_field :password, autocomplete: "off", placeholder:"Create Password...", class:"form-control application-input" %>
+            <%= f.password_field :password, autocomplete: "off", placeholder:"Create Password...", class:"form-control application-input", title:"Password" %>
           </div>
 
           <div class="field">
-            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Retype Password...", class:"form-control application-input" %>
+            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Retype Password...", class:"form-control application-input", title:"Confirm Password" %>
+
           </div>
 
           <div class="actions">
-            <%= f.submit "Create Account", class:"btn btn-submit application-input" %>
+            <%= f.submit "Create profile", class:"btn btn-submit application-input" %>
           </div>
           <% end %>
           <hr>
@@ -71,4 +76,3 @@
       </div>
     </div>
   </div>
-</div>

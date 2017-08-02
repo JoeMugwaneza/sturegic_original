@@ -22,6 +22,7 @@
 
         </ul>
         <ul class="nav navbar-nav navbar-right">
+            <% if log_in? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle nav-content-format" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <div class="glyphicon glyphicon-user">
             <% if current_user %>
@@ -29,9 +30,10 @@
             <% end %>
             <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Profile Info</a></li>
+              <li><a href="/studentprofile1">Profile Info</a></li>
               <li><a href="#">Bonus Status</a></li>
             </ul>
+            <% end %>
           </li>
           <% if current_user %>
           <li><a class="nav-content-format" href="/logout">Logout</a></li>

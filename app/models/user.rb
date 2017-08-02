@@ -1,21 +1,57 @@
 class User < ApplicationRecord
   has_secure_password
+  extend FriendlyId
+
+  friendly_id :username, use: :slugged
+
+  def should_generate_new_friendly_id?
+    new_record?
+  end
   
   has_many :studentInfos, foreign_key: :registrar_id
 
   belongs_to :country
 
   validates_uniqueness_of :email
-  validates_presence_of :password_confirmation, :if => :password_digest_changed?
-  # validates :password, :presence => true,
-  #                      :confirmation => true,
-  #                      :length => { :within => 6..40 },
-  #                      :unless => :already_has_password?
+  validates :password, :presence =>true, :confirmation => true, :length => { :within => 6..40 }, :on => :create
+  validates :password, :confirmation => true, :length => { :within => 6..40 }, :on => :update, :unless => lambda{ |user| user.password.blank? } 
 
 
   before_create :confirmation_taken
   before_create {generate_token(:auth_token)}
 
+
+  #please during deployment remember to change the program_category_id accordingly becuase they may mess up with your database
+  def techgroups
+    students = []
+    self.studentInfos.where(program_category_id: 1).each do |studentInfo|
+      students.push(studentInfo.student)
+    end
+    groups = students.each_slice(5).to_a
+
+    return groups
+  end
+
+  def trafficgroups
+    students = []
+    self.studentInfos.where(program_category_id: 2).each do |studentInfo|
+      students.push(studentInfo.student)
+    end
+    groups = students.each_slice(5).to_a
+
+    return groups
+  end
+
+
+  def englishgroups
+    students = []
+    self.studentInfos.where(program_category_id: 3).each do |studentInfo|
+      students.push(studentInfo.student)
+    end
+    groups = students.each_slice(5).to_a
+
+    return groups
+  end
 
   def generate_token(column)
     begin 
@@ -29,6 +65,8 @@ class User < ApplicationRecord
     save!
     UserMailer.password_reset(self).deliver
   end
+
+  include UsersHelper
   
   private
 
@@ -65,7 +103,4 @@ class User < ApplicationRecord
     user == current_user
   end
 
-  # def already_has_password?
-  #     !self.password_digest.blank?
-  # end
 end
