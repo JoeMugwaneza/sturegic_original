@@ -96,3 +96,7 @@ $(document).ready(function() {
         alert("This is a demo.\n :-)");
     });
 });
+
+$(document).ready(function(){
+    $("#test").dataTable();
+})
