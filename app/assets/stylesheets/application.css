@@ -16,19 +16,23 @@
 
 
 
+ 
+
+
+td, th {
+  font-size: 17px;
+}
  html, body {
-   background-color: #325e7f;
-   font-family: 'Bellefair', sans-serif;
-
- }
-
-html, body {
   background-color: #325e7f;
   font-family: 'Bellefair', sans-serif;
 }
 
+.thead {
+  background-color: #123854;
+  color: #bcbcbd;
+}
 
- .myNavbar {
+.myNavbar {
   background-color: #123854;
   margin-bottom: 0px;
   font-size: 20px;
@@ -100,7 +104,7 @@ html,body{
   border-radius: 100%;
   border: 2px solid #aaa;
   background-size: cover;
-  background-image: url(https://cdn.countryflags.com/thumbs/rwanda/flag-round-250.png);
+  background-image: url(https://mqfoia-dm2306.files.1drv.com/y4mc3V1ptDTgeUQhugNej_qsif32FDGjbuBqVP2u6KfUKDE8ElCUopAx_IxkZc9WQ8c_FhD0aOT9a0IGAY1_zbijb3tJ-h9tx93MIIDeVhZr9Dq-AYcbdb7QeeLPaS4LE51Sf1wCo4fCW4aGSpMIc1OYXut21xncOPL5PcEUU00KECgXebdxmuFtMyp0GLAzC3qTBPmcmuTpr-hfqtFCidalA?width=225&height=225&cropmode=none);
 }
 
 .form-box input{
@@ -228,231 +232,82 @@ html,body{
 
 
 
-/*admindashboard*/
 
-
-
-.texto { background: #2d3b46 }
-.alerta { background: #fff; padding: 10px 0px; text-align: center; color: #565656; font-size: 12px; }
-.alerta span { color: #c9093c; font-size: 14px; font-weight: bold; }
-
-.clientes .content-title {
-  background: #9fc943;
-}
-.concorrentes .content-title {
-  background: #ff454a;
-}
-.concorrentes .content-title img,
-.clientes .content-title img {
-  display: inline-block;
-  padding: 0px 5px;
-  margin-top: -5px;
-}
-.clientes .content-title span {
-  color: #fff;
-  margin: 0;
-  padding: 10px 0px;
-  font-size: 18px;
-  font-weight: 100;
-  display: inline-block;
-  letter-spacing: 0.5px;
-}
-.concorrentes .content-title span {
-  color: #fff;
-  margin: 0;
-  padding: 10px 0px;
-  font-size: 18px;
-  font-weight: 100;
-  display: inline-block;
-
-  letter-spacing: 0.5px;
-}
-.concorrentes,
-.clientes {
-  padding: 0;
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
-}
-.concorrentes {
-  margin-left: 20px;
-}
-.concorrentes .concorrentes-content .line,
-.clientes .clientes-content .line {
-  height: 5px;
-}
-.concorrentes .concorrentes-content .line-1 {
-  height: 5px;
-  width: 70%;
-  background: #ff454a;
-  float: left;
-}
-.clientes .clientes-content .line-1 {
-  height: 5px;
-  width: 70%;
-  background: #9fc943;
-  float: left;
-}
-.concorrentes .concorrentes-content .line-2,
-.clientes .clientes-content .line-2 {
-  height: 5px;
-  width: 30%;
-  background: #2b3b48;
-  float: right;
-}
-.concorrentes .concorrentes-content .number,
-.clientes .clientes-content .number {
-  color: #6d767b;
-  background-color: white;
-  font-size: 18px;
-  text-align: center;
-  padding: 5px 0px;
-}
-.concorrentes .concorrentes-content .number span {
-  color: #ff454a;
-  font-size: 30px;
-}
-.clientes .clientes-content .number span {
-  color: #9dc93e;
-  font-size: 30px;
-  box-sizing: 30px;
-}
-.concorrentes .concorrentes-content .analysis,
-.clientes .clientes-content .analysis {
-  padding: 15px 15px 10px;
-  display: inline-block;
-  width: 100%;
-  background-color: white;
-}
-.concorrentes .concorrentes-content .analysis .quote,
-.clientes .clientes-content .analysis .quote {
-  color: #444444;
-  float: left;
-  background-color: white;
-}
-.concorrentes .concorrentes-content .analysis .see-more,
-.clientes .clientes-content .analysis .see-more {
-  width: 25%;
-  color: #444444;
-  float: right;
-  background-color: white;
-}
-.concorrentes .concorrentes-content .analysis .see-more span,
-.clientes .clientes-content .analysis .see-more span {
-  padding: 0px 3px;
-  top: 2px;
-}
-
-/*table*/
-
-.row{
-  margin-right: 400px;
-  font-size: 17px;
-  margin-top:40px;
-  padding: 10px;
-  background-color: white;
-  width: 800px;
-  height: auto;
-  
-}
-.clickable{
-  cursor: pointer;   
-}
-
-.panel-heading div {
-  margin-top: -18px;
-  font-size: 18px;
-}
-.panel-heading div span{
-  margin-left:5px;
-}
-.panel-body{
-  display: none;
-  position: right;
-}
-
-
-
-tr:hover {
-   background-color: #ffff99;
-}
-
-
-/*agent*/
 
 
 .profile 
 {
-    min-height: 355px;
-    display: inline-block;
-    }
+  min-height: 355px;
+  display: inline-block;
+}
 figcaption.ratings
 {
-    margin-top:20px;
-    }
+  margin-top:20px;
+}
 figcaption.ratings a
 {
-    color:#f1c40f;
-    font-size:11px;
-    }
+  color:#f1c40f;
+  font-size:11px;
+}
 figcaption.ratings a:hover
 {
-    color:#f39c12;
-    text-decoration:none;
-    }
+  color:#f39c12;
+  text-decoration:none;
+}
 .divider 
 {
-    border-top:1px solid rgba(0,0,0,0.1);
-    }
+  border-top:1px solid rgba(0,0,0,0.1);
+}
 .emphasis 
 {
-    border-top: 4px solid transparent;
-    }
+  border-top: 4px solid transparent;
+}
 .emphasis:hover 
 {
-    border-top: 4px solid #1abc9c;
-    }
+  border-top: 4px solid #1abc9c;
+}
 .emphasis h2
 {
-    margin-bottom:0;
-    }
+  margin-bottom:0;
+}
 span.tags 
 {
-    background: #1abc9c;
-    border-radius: 2px;
-    color: #f5f5f5;
-    font-weight: bold;
-    padding: 2px 4px;
-    }
+  background: #1abc9c;
+  border-radius: 2px;
+  color: #f5f5f5;
+  font-weight: bold;
+  padding: 2px 4px;
+}
 .dropdown-menu 
 {
-    background-color: #34495e;    
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    width: 250px;
-    margin-left: -125px;
-    left: 50%;
-    }
+  background-color: #34495e;    
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  width: 250px;
+  margin-left: -125px;
+  left: 50%;
+}
 .dropdown-menu .divider 
 {
-    background:none;    
-    }
+  background:none;    
+}
 .dropdown-menu>li>a
 {
-    color:#f5f5f5;
-    }
+  color:#f5f5f5;
+}
 .dropup .dropdown-menu 
 {
-    margin-bottom:10px;
-    }
+  margin-bottom:10px;
+}
 .dropup .dropdown-menu:before 
 {
-    content: "";
-    border-top: 10px solid #34495e;
-    border-right: 10px solid transparent;
-    border-left: 10px solid transparent;
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    margin-left: -10px;
-    z-index: 10;
-    }
-
+  content: "";
+  border-top: 10px solid #34495e;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  margin-left: -10px;
+  z-index: 10;
+}
