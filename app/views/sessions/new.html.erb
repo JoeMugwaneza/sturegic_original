@@ -4,13 +4,17 @@
             <div class="avatar"></div>
             <div class="form-box">
 <%= form_tag sessions_path do %>
-  <div class="field" name="user" type="text" placeholder="username">
     
+
+    <%= text_field :email, :address, placeholder: 'email...'%>
+
     <%= text_field_tag :email %>
   </div>
   <div class="field" type="password" placeholder="password">
+
   
-    <%= password_field_tag :password%>
+    <%= password_field :password, :adress, placeholder: 'password...'%>
+    
   </div>
   <p><%= link_to "forgotten password?", new_password_reset_path %></p>
   <div class="field">
