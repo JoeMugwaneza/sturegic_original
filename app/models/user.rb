@@ -1,14 +1,15 @@
 class User < ApplicationRecord
   has_secure_password
-  extend FriendlyId
+  # extend FriendlyId
 
-  friendly_id :username, use: :slugged
+  # friendly_id :username, use: :slugged
 
   def should_generate_new_friendly_id?
     new_record?
   end
   
   has_many :studentInfos, foreign_key: :registrar_id
+  has_one :studentInfo, foreign_key: :student_id
 
   belongs_to :country
 

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :student_infos
   resources :users
   resources :password_resets
+
   get 'users/:token/confirm_email/', :to => "users#confirm_email", as: 'confirm_email'
 
   get 'students/:id', to: 'users#show', as: 'student'
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
   get 'students/:id/profile-two', to: "profiles#profile_two", as: 'student_profile_two'
 
   get 'students/:id/edit', to: 'profiles#edit'
+
 
   get "application1" => "designs#application1" 
 
