@@ -55,11 +55,12 @@ class UsersController < ApplicationController
 
 
   def edit
-     find_user
+    @user = User.friendly.find(params[:id])
   end
 
   def update
-    find_user
+    @user = User.friendly.find(params[:id])
+    
     params[:user].delete(:password) if params[:user][:password].blank?
     if @user.update_attributes(user_params)
       flash[:sucess] = "Profile updated"
