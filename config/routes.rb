@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :student_infos
   resources :users
   resources :password_resets
-   get 'users/:token/confirm_email/', :to => "users#confirm_email", as: 'confirm_email'
+  get 'users/:token/confirm_email/', :to => "users#confirm_email", as: 'confirm_email'
 
   # designs
   get "application1" => "designs#application1" 
