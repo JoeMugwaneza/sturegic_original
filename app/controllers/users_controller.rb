@@ -15,13 +15,17 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
+    if @user.save 
       # UserMailer.registration_confirmation(@user).deliver_now
+      if current_user.admin == true && @user.agent == true || @user.admin == true
+        flash[:success] = "You have successfully added a new user"
+        redirect_to "/"
+      else
+        flash[:success] = "You have successfully complited the first step"
 
-      flash[:success] = "You have successfully complited the first step"
-
-      redirect_to "/student_infos/new?student_id=#{@user.id}"
-    else
+        redirect_to "/student_infos/new?student_id=#{@user.id}"
+      end
+    elsif 
       flash[:error] = "Ooops, something went wrong!"
       render 'new'
     end
@@ -73,7 +77,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :email, :admin, :agent, :country_id, :sex, :martial_status, :tel, :password, :password_confirmation, :identification)
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :admin, :agent, :country_id, :sex, :martial_status, :tel, :password, :password_confirmation, :identification, :agent)
   end
 
   def find_user

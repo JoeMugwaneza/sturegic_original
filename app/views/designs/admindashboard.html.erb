@@ -51,70 +51,36 @@
                 <th>Program</th>
                 <th>Course</th>
                 <th>Status</th>
-                <th>Role</th>
+                <th>Application</th>
             </tr>
         </thead>
         <tbody>
+          <% @students.each do |student| %>
+          <% @table_number += 1 %>
             <tr>
-                <td>1</td>
-                <td>Peter</td>
-                <td>Mucyo</td>
-                <td>Rwanda</td>
-                <td>Kicukiro</td>
-                <td>Technical Programs</td>
-                <td>Coding</td>
-                <td>Approved</td>
-                <td>Student</td>
+                <td><%= @table_number %></td>
+                <td><%= student.first_name %></td>
+                <td><%= student.last_name %></td>
+                <td><%= student.country.name%></td>
+                <% if student.studentInfo%>
+                <td><%= student.studentInfo.district.name%></td>
+                <td><%= student.studentInfo.program_category.name%></td>
+                <td><%= student.studentInfo.course.name%></td>
+                <% if student.studentInfo.status == true %>
+                  <td>Approved</td>
+                <% else %>
+                  <td>Pending</td>
+                <% end %>
+                <td>Submitted</td>
+                <% else %>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>Not Yet</td>
+                <% end %>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Teo</td>
-                <td>Muhire</td>
-                <td>Kenya</td>
-                <td>Musanze</td>
-                <td>Technical Programs</td>
-                <td>SPSS</td>
-                <td>Pending</td>
-                <td>Student</td>
-
-            </tr>
-            <tr>
-             <tr>
-                <td>3</td>
-                <td>Jane</td>
-                <td>Rutamu</td>
-                <td>Uganda</td>
-                <td>Kampala</td>
-                <td>Traffic Rules</td>
-                <td>Traffic Rules</td>
-                <td>Approved</td>
-                <td>Student</td>
-
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Andre</td>
-                <td>Kamali</td>
-                <td>Rwanda</td>
-                <td>Nyagatare</td>
-                <td>English </td>
-                <td>Writing and Reading</td>
-                <td>Approved</td>
-                <td>Student</td>
-
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Claire</td>
-                <td>Keza</td>
-                <td>Kenya</td>
-                <td>Nairobi</td>
-                <td>Technical Programs</td>
-                <td>Coding</td>
-                <td>Pending</td>
-                <td>Student</td>
-
-            </tr>
+          <% end %>
         </tbody>
     </table>
 
@@ -134,17 +100,18 @@
           <th>Students</th>
           <th>Status</th>
       </tr>
-  </thead>
-  <tbody>
-
-    <tr>
-      <td>Aline Tessy</td>
-      <td>Rwanda</td>
-      <td>Musanze</td>
-      <td>32</td>
-      <td><a class="btn btn-register pull-right" href="#">Remove</a></td>
-  </tr>
-</tbody>
+    </thead>
+    <tbody>
+    <% @agents.each do |agent| %>
+      <tr>
+        <td><%= agent.first_name %> <%= agent.last_name %></td> 
+        <td><%= agent.country.name%></td> 
+        <td>Musanze</td>
+        <td><%= agent.studentInfos.count%></td> 
+        <td><a class="btn btn-register pull-right" href="#">Remove</a></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
 </div>
@@ -166,14 +133,15 @@
       </tr>
   </thead>
   <tbody>
-
+  <% @admins.each do |admin| %>
     <tr>
-      <td>Muta Nara</td>
-      <td>Uganda</td>
-      <td>Kampala</td>
-      <td>146</td>
+      <td><%= admin.first_name %> <%= admin.last_name %></td>
+      <td><%= admin.country.name %></td>
+      <td>Kigali</td>
+      <td><%= admin.studentInfos.count %></td>
       <td><a class="btn btn-register pull-right" href="#">Remove</a></td>
-  </tr>
+    </tr>
+  <% end %>
 </tbody>
 </table>
 </div>
