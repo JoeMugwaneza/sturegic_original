@@ -13,15 +13,7 @@ class SessionsController < ApplicationController
         cookies[:auth_token] = user.auth_token
       end
 
-      if user.email_confirmed
-
-        redirect_to student_path(user)
-      else
-        flash[:info] = "Please activate your account by following the instruction in the account confirmation email you received to proceed"
-    
-        redirect_to login_path
-      end
-
+      redirect_to student_path(user)
     else
       flash[:warning] = "Email or Password is invalid"
       redirect_to login_path

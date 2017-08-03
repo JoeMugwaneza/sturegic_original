@@ -31,7 +31,7 @@
             <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="#">Bonus Status</a></li>
-              <li><a href="/students/<%= @user.friendly_id%>/edit">Settings</a></li>
+              <li><a href="/students/<%= current_user.id%>/edit">Settings</a></li>
             </ul>
             <% end %>
           </li>
