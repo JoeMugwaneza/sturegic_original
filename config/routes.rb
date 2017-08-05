@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   default_url_options :host => "stregic.herokuapp.com"
   
   root 'dashboards#index'
