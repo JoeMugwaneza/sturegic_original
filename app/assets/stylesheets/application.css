@@ -25,6 +25,8 @@ td, th {
  html, body {
   background-color: #325e7f;
   font-family: 'Bellefair', sans-serif;
+  position: relative;
+  height: 100%;
 }
 
 .thead {
@@ -40,12 +42,6 @@ td, th {
 
 .nav-content-format {
   color: white;
-}
-
-
-html,body{
-  position: relative;
-  height: 100%;
 }
 
 .login-container{

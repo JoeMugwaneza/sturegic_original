@@ -1,208 +1,248 @@
 <script type="text/javascript" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
 
-<div class="container">
-    <!-- <div class="col-md-5 clientes">
-        <div class="clientes-content">
-          <div class="content-title"><span>Registered Students</span></div>
-          <div class="number"><span>23k.4</span></div>
-          <div class="line">
-            <div class="line-1"></div>
-            <div class="line-2"></div>
-        </div>
-        <div class="analysis">
-            <div class="quote"></div>
-            <a href="#" class="see-more">View All<span class="glyphicon glyphicon-circle-arrow-right"></span></a>
-        </div>
-    </div>
-</div> -->
-
-<!-- <div class="col-md-5 concorrentes">
-    <div class="concorrentes-content">
-        <div class="content-title"> -->
-            <!-- <img src="http://i.imgur.com/sB8qSlb.jpg" alt="Potênciais Concorrentes"> -->
-            <!-- <span>Pending Applications</span>
-        </div>
-        <div class="number"><span>150</span></div>
-        <div class="line">
-            <div class="line-1"></div>
-            <div class="line-2"></div>
-        </div>
-        <div class="analysis">
-            <div class="quote"></div>
-            <a href="#" class="see-more">View Profile<span class="glyphicon glyphicon-circle-arrow-right"></span></a>
-        </div>
-
-
-    </div>
-</div> -->
-
-<div class="col-md-12">
-    <div id="admintable">
-    <h2 class="text-center thead">All Students</h2>
-    <table class="table" id="test">
+<div class="container col-md-12">
+  <div class="col-md-8 col-xs-12" id="admintable">
+    <div >
+      <h2 class="text-center thead">All Students</h2>
+      <table class="table" id="test">
         <a class="btn btn-register pull-right" href="/signup">Register a Student</a>     
         <thead class="thead">
-            <tr>
-                <th>N<sup>o</sup></th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Country</th>
-                <th>District</th>
-                <th>Program</th>
-                <th>Course</th>
-                <th>Status</th>
-                <th>Role</th>
-            </tr>
+          <tr>
+            <th>N<sup>o</sup></th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Country</th>
+            <th>District</th>
+            <th>Program</th>
+            <th>Course</th>
+            <th>Status</th>
+            <th>Role</th>
+          </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Peter</td>
-                <td>Mucyo</td>
-                <td>Rwanda</td>
-                <td>Kicukiro</td>
-                <td>Technical Programs</td>
-                <td>Coding</td>
-                <td>Approved</td>
-                <td>Student</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Teo</td>
-                <td>Muhire</td>
-                <td>Kenya</td>
-                <td>Musanze</td>
-                <td>Technical Programs</td>
-                <td>SPSS</td>
-                <td>Pending</td>
-                <td>Student</td>
+          <tr>
+            <td>1</td>
+            <td>Peter</td>
+            <td>Mucyo</td>
+            <td>Rwanda</td>
+            <td>Kicukiro</td>
+            <td>Technical Programs</td>
+            <td>Coding</td>
+            <td>Approved</td>
+            <td>Student</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Teo</td>
+            <td>Muhire</td>
+            <td>Kenya</td>
+            <td>Musanze</td>
+            <td>Technical Programs</td>
+            <td>SPSS</td>
+            <td>Pending</td>
+            <td>Student</td>
 
-            </tr>
-            <tr>
-             <tr>
-                <td>3</td>
-                <td>Jane</td>
-                <td>Rutamu</td>
-                <td>Uganda</td>
-                <td>Kampala</td>
-                <td>Traffic Rules</td>
-                <td>Traffic Rules</td>
-                <td>Approved</td>
-                <td>Student</td>
+          </tr>
+          <tr>
+           <tr>
+            <td>3</td>
+            <td>Jane</td>
+            <td>Rutamu</td>
+            <td>Uganda</td>
+            <td>Kampala</td>
+            <td>Traffic Rules</td>
+            <td>Traffic Rules</td>
+            <td>Approved</td>
+            <td>Student</td>
 
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Andre</td>
-                <td>Kamali</td>
-                <td>Rwanda</td>
-                <td>Nyagatare</td>
-                <td>English </td>
-                <td>Writing and Reading</td>
-                <td>Approved</td>
-                <td>Student</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Andre</td>
+            <td>Kamali</td>
+            <td>Rwanda</td>
+            <td>Nyagatare</td>
+            <td>English </td>
+            <td>Writing and Reading</td>
+            <td>Approved</td>
+            <td>Student</td>
 
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Claire</td>
-                <td>Keza</td>
-                <td>Kenya</td>
-                <td>Nairobi</td>
-                <td>Technical Programs</td>
-                <td>Coding</td>
-                <td>Pending</td>
-                <td>Student</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Claire</td>
+            <td>Keza</td>
+            <td>Kenya</td>
+            <td>Nairobi</td>
+            <td>Technical Programs</td>
+            <td>Coding</td>
+            <td>Pending</td>
+            <td>Student</td>
 
-            </tr>
+          </tr>
         </tbody>
-    </table>
+      </table>
 
-</div>
-</div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+
+    <div class="col-md-12" id="admintable">
+      <h2 class="text-center">Pending Applications</h2>
+      <table class="table sidetable" id="test">
+        <thead class="thead">
+          <tr>      
+            <th>Name</th>
+            <th class="pull-right">view</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>      
+            <td>Joseph Mugwaneza</td>
+            <td><a href="" class="btn btn-register pull-right">View</a></td>
+            
+          </tr>
+          <tr>      
+            <td>Jean Luc</td>
+            <td><a href="" class="btn btn-register pull-right">View</a></td>           
+          </tr>
+           <tr>      
+            <td>Joseph Mugwaneza</td>
+            <td><a href="" class="btn btn-register pull-right">View</a></td>
+            
+          </tr>
+          <tr>      
+            <td>Jean Luc</td>
+            <td><a href="" class="btn btn-register pull-right">View</a></td>
+          </tr>
+           <tr>      
+            <td>Joseph Mugwaneza</td>
+            <td><a href="" class="btn btn-register pull-right">View</a></td>
+            
+          </tr>
+          <tr>      
+            <td>Jean Luc</td>
+            <td><a href="" class="btn btn-register pull-right">View</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
 
-<div class="col-md-5 thumbnail" style="margin-top: 100px; margin-right: 30px;">
-  <h2 class="text-center">Agents</h2>
-  <table class="table table-hover">
-    <thead>
-
-        <tr>
-          <th>Name</th>
-          <th>Country</th>
-          <th>District/City</th>
-          <th>Students</th>
-          <th>Status</th>
-      </tr>
-  </thead>
-  <tbody>
-
-    <tr>
-      <td>Aline Tessy</td>
-      <td>Rwanda</td>
-      <td>Musanze</td>
-      <td>32</td>
-      <td><a class="btn btn-register pull-right" href="#">Remove</a></td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-
-
-
-
-<div class="col-md-5 thumbnail" style="margin-top: 100px; margin-right: 30px;">
-  <h2 class="text-center">Admins</h2>
-  <table class="table table-hover">
-    <thead>
-
-        <tr>
-          <th>Name</th>
-          <th>Country</th>
-          <th>District/City</th>
-          <th>Students</th>
-          <th>Status</th>
-      </tr>
-  </thead>
-  <tbody>
-
-    <tr>
-      <td>Muta Nara</td>
-      <td>Uganda</td>
-      <td>Kampala</td>
-      <td>146</td>
-      <td><a class="btn btn-register pull-right" href="#">Remove</a></td>
-  </tr>
-</tbody>
-</table>
-</div>
-
-<div class="col-md-5 thumbnail">
-
-    <h2 class="text-center">Monthly Commission Summary</h2>
-
-    <table class="table table-hover">
-      <thead>
+    <div class="col-md-12" id="admintable">
+      <h2 class="text-center">Commission Details</h2>
+      <table class="table sidetable" id="test">
+        <thead class="thead">
           <tr>      
             <th>Name</th>
             <th>Commission Received</th>
             <th>Reward</th>
-        </tr>
-    </thead>
-    <tbody>
-      <tr>      
-        <td>Joseph Mugwaneza</td>
-        <td>20000 Rwf</td>
-        <td>No Reward</td>
-    </tr>
-    <tr>      
-        <td>Jean Luc</td>
-        <td>70000 Rwf</td>
-        <td>Scholarship</td>
-    </tr>
-</tbody>
-</table>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>      
+            <td>Joseph Mugwaneza</td>
+            <td>20000 Rwf</td>
+            <td>No Reward</td>
+            <td>July, 2017</td>
+          </tr>
+          <tr>      
+            <td>Jean Luc</td>
+            <td>70000 Rwf</td>
+            <td>Scholarship</td>
+            <td>August, 2017</td>
+          </tr>
+          <tr>      
+            <td>Joseph Mugwaneza</td>
+            <td>20000 Rwf</td>
+            <td>No Reward</td>
+            <td>July, 2017</td>
+          </tr>
+          <tr>      
+            <td>Jean Luc</td>
+            <td>70000 Rwf</td>
+            <td>Scholarship</td>
+            <td>August, 2017</td>
+          </tr>
+          <tr>      
+            <td>Joseph Mugwaneza</td>
+            <td>20000 Rwf</td>
+            <td>No Reward</td>
+            <td>July, 2017</td>
+          </tr>
+          <tr>      
+            <td>Jean Luc</td>
+            <td>70000 Rwf</td>
+            <td>Scholarship</td>
+            <td>August, 2017</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-</div>
+  </div>
+
+
+  <hr>
+
+  <div class="col-md-5 thumbnail" style="margin-top: 30px; margin-right: 30px;">
+    <h2 class="text-center">Agents</h2>
+    <table class="table">
+      <thead>
+
+        <tr>
+          <th>Name</th>
+          <th>Country</th>
+          <th>District/City</th>
+          <th>Students</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td>Aline Tessy</td>
+          <td>Rwanda</td>
+          <td>Musanze</td>
+          <td>32</td>
+          <td><a class="btn btn-register pull-right" href="#">Remove</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+
+
+  <div class="col-md-5 thumbnail" style="margin-top: 30px; margin-right: 30px;">
+    <h2 class="text-center">Admins</h2>
+    <table class="table table-hover">
+      <thead>
+
+        <tr>
+          <th>Name</th>
+          <th>Country</th>
+          <th>District/City</th>
+          <th>Students</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td>Muta Nara</td>
+          <td>Uganda</td>
+          <td>Kampala</td>
+          <td>146</td>
+          <td><a class="btn btn-register pull-right" href="#">Remove</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
 </div>

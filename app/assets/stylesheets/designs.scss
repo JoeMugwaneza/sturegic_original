@@ -58,7 +58,10 @@
 
 /*admindashboard*/
 
-
+.sidetable {
+  height: 100px;
+  overflow: auto;
+}
 
 .texto { background: #2d3b46 }
 .alerta { background: #fff; padding: 10px 0px; text-align: center; color: #565656; font-size: 12px; }
@@ -172,13 +175,9 @@
 /*table*/
 
 #admintable{
-  margin-right: 400px;
   font-size: 17px;
-  margin-top:40px;
-  padding: 10px;
   background-color: white;
-  width: 800px;
-  height: auto;
+
   
 }
 
