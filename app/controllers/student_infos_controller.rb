@@ -59,6 +59,7 @@ class StudentInfosController < ApplicationController
     @program_category = ProgramCategory.find_by(id: params[:program_id])
     @student = User.find_by(id: params[:student_id])
     @student_infos = StudentInfo.new
+    @user = User.friendly.find_by(params[:id])
   end
 
   def create
@@ -67,7 +68,7 @@ class StudentInfosController < ApplicationController
       @student_infos.student.update(application_submission: true)
       # StudentInfoMailer.student_info_approval(@student_infos).deliver_now
      flash[:scuess] = "Student Application Successfully Submited" 
-     redirect_to "/"
+     redirect_to student_path(@user)
     else
       render :new
     end
