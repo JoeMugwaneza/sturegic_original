@@ -13,7 +13,7 @@
              
             <div class="panel panel-info">
               <div class="panel-heading">
-                <h3 class="panel-title"> Student Information </h3>
+                <h3 class="panel-title"> Student Profile</h3>
               </div>
               <div class="panel-body">
                 <div class="row">
@@ -40,44 +40,37 @@
                         <h4> Personal Information </h4> 
                         <tr>
                           <td>Name:</td>
-                          <td><%= current_user.first_name%> <%= current_user.last_name%> </td>
+                          <td><%= @user.first_name%> <%= @user.last_name%> </td>
                         </tr>
                         <tr>
                           <td>Username:</td>
-                          <td> Berry.G</td>
+                          <td><%= @user.username %></td>
                         </tr>
                         <tr>
                           <td>Email Adress</td>
-                          <td><a href="mariebertrande.umuhire@gmail.com"><%=current_user.email %></a></td>
+                          <td><%= @user.email %></td>
                         </tr>
                         <tr>
                           <td>Country:</td>
-                          <td> Rwanda</td>
+                          <td><%= @user.country.name %></td>
                         </tr>
                         <tr>
                           <td>Gender:</td>
-                          <td> Female</td>
+                          <td> <%= @user.sex %></td>
                         </tr>
                         <tr>
                           <td>Marital Status:</td>
-                          <td> Married</td>
+                          <td> <%= @user.martial_status %></td>
                         </tr>
                         
                         <tr>
                           <td>Telephone</td>
-                          <td><%= current_user.tel%></td>
-                        </tr>
-                        
-                        
-                         <!--  <td>Phone Number</td>
-                          <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
-                          </td> -->
-                          
-                          
+                          <td><%= @user.tel%></td>
+                        </tr> 
                         </tbody>
                       </table>
                       
-                      <a href="/studentprofile2" class="btn btn-primary">Next</a>
+                      <a href="profile-two" class="btn btn-primary">Next</a>
                       
                     </div>
                   </div>
@@ -85,7 +78,7 @@
                 <div class="panel-footer">
                   <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
                   <span class="pull-right">
-                    <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="edit" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
                     <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                   </span>
                 </div>

@@ -9,6 +9,7 @@ class User < ApplicationRecord
   end
   
   has_many :studentInfos, foreign_key: :registrar_id
+  has_one :studentInfo, foreign_key: :student_id
 
   belongs_to :country
 

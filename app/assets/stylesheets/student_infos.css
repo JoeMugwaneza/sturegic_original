@@ -1,6 +1,7 @@
 // Place all the styles related to the studentInfos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .table-bordered {
 border: 1px solid #dddddd;
 border-collapse: separate;
@@ -104,51 +105,24 @@ vertical-align: middle;
 
 
 /*dropdown menu*/
-
-.dropdown-submenu {
-    position: relative;
+.check_box input[type="checkbox"] {
+    display: none;
 }
 
-.dropdown-submenu>.dropdown-menu {
-    top: 0;
-    left: 100%;
-    margin-top: -6px;
-    margin-left: -1px;
-    -webkit-border-radius: 0 6px 6px 6px;
-    -moz-border-radius: 0 6px 6px;
-    border-radius: 0 6px 6px 6px;
+.check_box input[type="checkbox"] + .btn-group > label span {
+    width: 20px;
 }
 
-.dropdown-submenu:hover>.dropdown-menu {
-    display: block;
+.check_box input[type="checkbox"] + .btn-group > label span:first-child {
+    display: none;
+}
+.check_box input[type="checkbox"] + .btn-group > label span:last-child {
+    display: inline-block;   
 }
 
-.dropdown-submenu>a:after {
-    display: block;
-    content: " ";
-    float: right;
-    width: 0;
-    height: 0;
-    border-color: transparent;
-    border-style: solid;
-    border-width: 5px 0 5px 5px;
-    border-left-color: #ccc;
-    margin-top: 5px;
-    margin-right: -10px;
+.check_box input[type="checkbox"]:checked + .btn-group > label span:first-child {
+    display: inline-block;
 }
-
-.dropdown-submenu:hover>a:after {
-    border-left-color: #fff;
-}
-
-.dropdown-submenu.pull-left {
-    float: none;
-}
-
-.dropdown-submenu.pull-left>.dropdown-menu {
-    left: -100%;
-    margin-left: 10px;
-    -webkit-border-radius: 6px 0 6px 6px;
-    -moz-border-radius: 6px 0 6px 6px;
-    border-radius: 6px 0 6px 6px;
+.check_box input[type="checkbox"]:checked + .btn-group > label span:last-child {
+    display: none;   
 }
