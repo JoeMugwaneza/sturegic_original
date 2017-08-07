@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
-  # extend FriendlyId
+  extend FriendlyId
 
-  # friendly_id :username, use: :slugged
+   friendly_id :username, use: :slugged
 
   def should_generate_new_friendly_id?
     new_record?
@@ -25,20 +25,20 @@ class User < ApplicationRecord
   #please during deployment remember to change the program_category_id accordingly becuase they may mess up with your database
   def techgroups
     students = []
-    self.studentInfos.where(program_category_id: 1).each do |studentInfo|
+    self.studentInfos.where(program_category_id: 2).each do |studentInfo|
       students.push(studentInfo.student)
     end
-    groups = students.each_slice(5).to_a
+    groups = students.each_slice(1).to_a
 
     return groups
   end
 
   def trafficgroups
     students = []
-    self.studentInfos.where(program_category_id: 2).each do |studentInfo|
+    self.studentInfos.where(program_category_id: 4).each do |studentInfo|
       students.push(studentInfo.student)
     end
-    groups = students.each_slice(5).to_a
+    groups = students.each_slice(2).to_a
 
     return groups
   end

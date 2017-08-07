@@ -6,52 +6,183 @@
     <span class="pull-right">
       <!-- Tabs -->
       <ul class="nav panel-tabs">
-        <li class="active"><a href="#col1" data-toggle="tab">Level 1</a></li>
-        <li><a href="#col2" data-toggle="tab">Level 2</a></li>
-        <li><a href="#col3" data-toggle="tab">Level 3</a></li>
-        <li><a href="#col4" data-toggle="tab">Level 4</a></li>
-        <li><a href="#col5" data-toggle="tab">Level 5</a></li>
+        <li class="active"><a href="#col1FG<%= @user.trafficgroups.index(group) +1 %>" data-toggle="tab">Level 1</a></li>
+        <li><a href="#col2FG<%= @user.trafficgroups.index(group) +1 %>" data-toggle="tab">Level 2</a></li>
+        <li><a href="#col3FG<%= @user.trafficgroups.index(group) +1 %>" data-toggle="tab">Level 3</a></li>
+        <li><a href="#col4FG<%= @user.trafficgroups.index(group) +1 %>" data-toggle="tab">Level 4</a></li>
+        <li><a href="#col5FG<%= @user.trafficgroups.index(group) +1 %>" data-toggle="tab">Level 5</a></li>
       </ul>
     </span>
   </div>
   <div class="panel-body">
     <div class="tab-content">
-      <div class="tab-pane active" id="col1">
-      <%= @user.level_one(@user.trafficgroups.index(group), "Traffic").count %> registered students
-      <hr>
-      <p>Name - Program -School fees -  Bonus - Sponsor - Date 
-        <%= @user.level_one(@user.trafficgroups.index(group), "Traffic").pluck(:first_name) %>
-      </p>
-      </div>
-      <div class="tab-pane" id="col2">
-      <%= @user.level_two(@user.trafficgroups.index(group), "Traffic").count %> registered students
-      <hr>
-      <p>Name - Program - Bonus - Sponsor - Date 
-        <%= @user.level_two(@user.trafficgroups.index(group), "Traffic").pluck(:first_name) %>
-      </p>
-      </div>
-      <div class="tab-pane" id="col3">
-      <%= @user.level_three(@user.trafficgroups.index(group), "Traffic").count %> registered students
-      <hr>
-      <p>Name - Program - Bonus - Sponsor - Date 
-        <%= @user.level_three(@user.trafficgroups.index(group), "Traffic").pluck(:first_name) %>
-      </p>
-      </div>
-      <div class="tab-pane" id="col4">
-      <%= @user.level_four(@user.trafficgroups.index(group), "Traffic").count %> registered students
-      <hr>
-      <p>Name - Program - Bonus - Sponsor - Date 
-        <%= @user.level_four(@user.trafficgroups.index(group), "Traffic").pluck(:first_name) %>
-      </p>
-      </div>
-      <div class="tab-pane" id="col5">
-      <%= @user.level_five(@user.trafficgroups.index(group), "Traffic").count %> registered students
-      <hr>
-      <p>Name - Program - Bonus - Sponsor - Date 
-        <%= @user.level_five(@user.trafficgroups.index(group), "Traffic").pluck(:first_name) %>
-      </p>
+      <div class="tab-pane active" id="col1FG<%= @user.trafficgroups.index(group) +1 %>">
+          students:<%= @user.level_one(@user.trafficgroups.index(group),"Traffic").count %><br>
+          bonus:Rwf 2000<br>
+          total bonus: <%= "#{@user.level_one(@user.trafficgroups.index(group),"Traffic").count * 2000}"%><br>
+          reward:No Reward<br>
+          <h2>List Students</h2>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Program</th>
+                <th>District</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @user.level_one(@user.trafficgroups.index(group), "Traffic").each do |student| %>
+              <tr>
+                <td><%= student.first_name %> <%= student.last_name%></td>
+                <td><%= student.studentInfo.program_category.name%></td>
+                <td><%= student.studentInfo.district.name%></td>
+                <td><%= student.studentInfo.created_at %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+
+        </div>
+
+        <div class="tab-pane" id="col2FG<%= @user.trafficgroups.index(group) +1 %>">
+          students:<%= @user.level_two(@user.trafficgroups.index(group),"Traffic").count %><br>
+          bonus:Rwf 1000<br>
+          total bonus: <%= "#{@user.level_two(@user.trafficgroups.index(group),"Traffic").count * 1000}"%><br>
+          reward:
+          <% if @user.level_two(@user.trafficgroups.index(group),"Traffic").count == 25%>
+            Smart Phone
+          <% else %>
+            No Reward
+          <% end %>
+          <br>
+
+          <h2>List Students</h2>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Program</th>
+                <th>District</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @user.level_two(@user.trafficgroups.index(group), "Traffic").each do |student| %>
+              <tr>
+                <td><%= student.first_name %> <%= student.last_name%></td>
+                <td><%= student.studentInfo.program_category.name%></td>
+                <td><%= student.studentInfo.district.name%></td>
+                <td><%= student.studentInfo.created_at %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+
+        </div>
+        <div class="tab-pane" id="col3FG<%= @user.trafficgroups.index(group) +1 %>">
+          students:<%= @user.level_three(@user.trafficgroups.index(group),"Traffic").count %><br>
+          bonus:Rwf 1000<br>
+          total bonus: <%= "#{@user.level_three(@user.trafficgroups.index(group),"Traffic").count * 1000}"%><br>
+          reward:
+          <% if @user.level_three(@user.trafficgroups.index(group),"Traffic").count == 125%>
+            Laptop
+          <% else %>
+            No Reward
+          <% end %>
+          <br>
+          <h2>List Students</h2>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Program</th>
+                <th>District</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @user.level_three(@user.trafficgroups.index(group), "Traffic").each do |student| %>
+                <tr>
+                  <td><%= student.first_name %> <%= student.last_name%></td>
+                  <td><%= student.studentInfo.program_category.name%></td>
+                  <td><%= student.studentInfo.district.name%></td>
+                  <td><%= student.studentInfo.created_at %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+        </div>
+        <div class="tab-pane" id="col4FG<%= @user.trafficgroups.index(group) +1 %>">
+          students:<%= @user.level_four(@user.trafficgroups.index(group),"Traffic").count %><br>
+          bonus:Rwf 1000<br>
+          total bonus: <%= "#{@user.level_four(@user.trafficgroups.index(group),"Traffic").count * 1000}"%><br>
+          reward:
+          <% if @user.level_four(@user.trafficgroups.index(group),"Traffic").count == 125%>
+            Motorcycle
+          <% else %>
+            No Reward
+          <% end %>
+          <br>
+
+          <h2>List Students</h2>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Program</th>
+                <th>District</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+             <% @user.level_four(@user.trafficgroups.index(group), "Traffic").each do |student| %>
+                <tr>
+                  <td><%= student.first_name %> <%= student.last_name%></td>
+                  <td><%= student.studentInfo.program_category.name%></td>
+                  <td><%= student.studentInfo.district.name%></td>
+                  <td><%= student.studentInfo.created_at %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+        </div>
+        <div class="tab-pane" id="col5FG<%= @user.trafficgroups.index(group) +1 %>">
+          students:<%= @user.level_five(@user.trafficgroups.index(group),"Traffic").count %><br>
+          bonus:Rwf 1000<br>
+          total bonus: <%= "#{@user.level_five(@user.trafficgroups.index(group),"Traffic").count * 1000}"%><br>
+          reward:
+          <% if @user.level_five(@user.trafficgroups.index(group),"Traffic").count == 25%>
+           Land
+          <% else %>
+            No Reward
+          <% end %>
+          <br>
+          <h2>List Students</h2>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Program</th>
+                <th>District</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @user.level_five(@user.trafficgroups.index(group), "Traffic").each do |student| %>
+                <tr>
+                  <td><%= student.first_name %> <%= student.last_name%></td>
+                  <td><%= student.studentInfo.program_category.name%></td>
+                  <td><%= student.studentInfo.district.name%></td>
+                  <td><%= student.studentInfo.created_at %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
 </div>
 <% end %>
