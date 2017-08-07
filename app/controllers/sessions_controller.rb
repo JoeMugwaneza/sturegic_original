@@ -13,13 +13,11 @@ class SessionsController < ApplicationController
         cookies[:auth_token] = user.auth_token
       end
 
-      if user.email_confirmed
+      if user.admin == true || user.agent == true
 
-        redirect_to student_path(user)
+        redirect_to root_path, notice: "Signed in"
       else
-        flash[:info] = "Please activate your account by following the instruction in the account confirmation email you received to proceed"
-    
-        redirect_to login_path
+        redirect_to student_path(user), notice: 'Signed in'
       end
 
     else

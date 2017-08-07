@@ -26,7 +26,7 @@ class UsersController < ApplicationController
         flash[:success] = "You have successfully added a new user"
         redirect_to "/"
       else
-        flash[:success] = "You have successfully complited the first step"
+        flash[:success] = "You have successfully completed the first step"
 
         redirect_to "/student_infos/new?student_id=#{@user.id}"
       end
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
     params[:user].delete(:password) if params[:user][:password].blank?
     if @user.update_attributes(user_params)
       flash[:sucess] = "Profile updated"
-      redirect_to root_path
+      redirect_to @user
     else
       render 'edit'
     end
@@ -92,7 +92,7 @@ class UsersController < ApplicationController
 
   #Confirm that the use who is going to edit the profit is corrent
   def correct_user
-    @user = User.find_by(id: params[:id])
+    @user = User.friendly.find(params[:id])
     redirect_to root_path unless current_user?(@user) || current_user.admin?
   end
 

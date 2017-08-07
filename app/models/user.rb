@@ -2,7 +2,8 @@ class User < ApplicationRecord
   has_secure_password
   extend FriendlyId
 
-   friendly_id :username, use: :slugged
+  friendly_id :username, use: :slugged
+
 
   def should_generate_new_friendly_id?
     new_record?
