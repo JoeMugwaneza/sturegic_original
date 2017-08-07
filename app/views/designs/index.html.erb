@@ -1,10 +1,7 @@
 <div class="container">  
   <div class="row">
     <div class="col-md-12 col-xs-12 thumbnail application-box">
-      <h1 class="text-center application-header"><strong>Bonus Details</strong></h1>
-      <!-- <div class="col-md-12 thumbnail info-box"> -->
-      <!-- <div class="col-md-6 col-xs-12"> -->
-
+      <h1 class="text-center application-header"><strong>Commission Details</strong></h1>
       <a class="btn btn-register pull-right" href="/signup">Register a Student</a>
       <div class="text-center">         
         <hr>
@@ -13,42 +10,27 @@
             <ul class="nav tabs">
               <li class="active"><a href="#tab1" data-toggle="tab">Technical Programs</a></li>
               <li class=""><a href="#tab2" data-toggle="tab">Digital Traffic Rules</a></li>
-              <li class=""><a href="#tab3" data-toggle="tab">English Courses</a></li>                               
+              <li class=""><a href="#tab3" data-toggle="tab">Language Courses</a></li>                               
             </ul>
           </nav>
         </div>
         <!-- tab content -->
         <div class="tab-content">
           <div class="tab-pane active text-style" id="tab1">
-            <h2>Technical Programs</h2>
-            <hr>
-
-            <div class="progress">
-              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-              aria-valuemin="0" aria-valuemax="100" style="width:70%">
-              70% Complete (info)
-            </div>
+            <%= render "bonusTabTech" %>            
           </div>
+          <div class="tab-pane text-style" id="tab2">
+            <%= render "bonusTabDig" %>
+          </div>
+          <div class="tab-pane text-style" id="tab3">
+            <%= render "bonusTabLan" %>
+          </div>
+        </div>
 
-          <%= render "bonusTab" %>
-          
-        </div>
-        <div class="tab-pane text-style" id="tab2">
-          <h2>Digital Traffic Rules</h2>
-          <hr>
-          <%= render "bonusTab" %>
-        </div>
-        <div class="tab-pane text-style" id="tab3">
-          <h2>English Courses</h2>
-          <hr>
-          <%= render "bonusTab" %>
-        </div>
+        <!-- </div> -->
+        <!-- </div> -->
       </div>
-
-      <!-- </div> -->
-      <!-- </div> -->
     </div>
   </div>
-</div>
 </div>
 
