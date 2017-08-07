@@ -29,7 +29,7 @@ class User < ApplicationRecord
     self.studentInfos.where(program_category_id: 2).each do |studentInfo|
       students.push(studentInfo.student)
     end
-    groups = students.each_slice(1).to_a
+    groups = students.each_slice(5).to_a
 
     return groups
   end
@@ -39,7 +39,7 @@ class User < ApplicationRecord
     self.studentInfos.where(program_category_id: 4).each do |studentInfo|
       students.push(studentInfo.student)
     end
-    groups = students.each_slice(2).to_a
+    groups = students.each_slice(5).to_a
 
     return groups
   end
