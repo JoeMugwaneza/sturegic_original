@@ -14,6 +14,13 @@ class User < ApplicationRecord
   belongs_to :country
 
   validates_uniqueness_of :email
+  validates_presence_of :username, :message =>'leaving no space between letters is recommended'
+  validates_presence_of :email, :message => 'Use the valid email; we will use it to send you monthly summary'
+
+  validates_presence_of :sex, :message => 'enter either male or female'
+  validates_presence_of :martial_status, :message => 'Let us know whether you are single, married, ....'
+  validates_presence_of :tel, :message => 'Enter the phone number we can use to reach you '
+  validates_presence_of :identification, :message => "Enter your national ID number, or password"
   validates :password, :presence =>true, :confirmation => true, :length => { :within => 6..40 }, :on => :create
   validates :password, :confirmation => true, :length => { :within => 6..40 }, :on => :update, :unless => lambda{ |user| user.password.blank? } 
 

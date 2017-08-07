@@ -1,5 +1,4 @@
 class Course < ApplicationRecord
-  has_many :student_infos
-  has_many :student
+  has_many :students, class_name: 'StudentInfo'
   belongs_to :program_category
 end
