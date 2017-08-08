@@ -68,7 +68,7 @@ class StudentInfosController < ApplicationController
       @student_infos.student.update(application_submission: true)
       # StudentInfoMailer.student_info_approval(@student_infos).deliver_now
      flash[:scuess] = "Student Application Successfully Submited" 
-     redirect_to student_path(@user)
+     redirect_to "/students/#{@student_infos.student.friendly_id}/profile-one"
     else
       render :new
     end
