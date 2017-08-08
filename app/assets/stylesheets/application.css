@@ -307,3 +307,8 @@ span.tags
   margin-left: -10px;
   z-index: 10;
 }
+
+#agentbox{
+  background-color: white;
+  margin-left: -250px;
+}
