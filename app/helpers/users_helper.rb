@@ -11,7 +11,7 @@ module UsersHelper
         users.push(student)
       end
     else
-      self.englishgroups[n].each do |student|
+      self.languagesgroups[n].each do |student|
         users.push(student)
       end
     end

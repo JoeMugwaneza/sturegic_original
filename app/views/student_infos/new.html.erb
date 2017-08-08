@@ -27,7 +27,7 @@
             <p class="form-control application-input"><%= current_user.tel %></p>
             <p class="form-control application-input"><%=current_user.email %></p>
 
-            <a href="/students/<%= %>/edit">Edit</a>
+            <a href="/students/<%= current_user.friendly_id %>/edit">Edit</a>
             <hr>
             <p>Make sure the information given are right</p>
           </div>
