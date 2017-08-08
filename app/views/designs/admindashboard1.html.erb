@@ -1,41 +1,5 @@
 <script type="text/javascript" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
-
 <div class="container">
-    <!-- <div class="col-md-5 clientes">
-        <div class="clientes-content">
-          <div class="content-title"><span>Registered Students</span></div>
-          <div class="number"><span>23k.4</span></div>
-          <div class="line">
-            <div class="line-1"></div>
-            <div class="line-2"></div>
-        </div>
-        <div class="analysis">
-            <div class="quote"></div>
-            <a href="#" class="see-more">View All<span class="glyphicon glyphicon-circle-arrow-right"></span></a>
-        </div>
-    </div>
-</div> -->
-
-<!-- <div class="col-md-5 concorrentes">
-    <div class="concorrentes-content">
-        <div class="content-title"> -->
-            <!-- <img src="http://i.imgur.com/sB8qSlb.jpg" alt="Potênciais Concorrentes"> -->
-            <!-- <span>Pending Applications</span>
-        </div>
-        <div class="number"><span>150</span></div>
-        <div class="line">
-            <div class="line-1"></div>
-            <div class="line-2"></div>
-        </div>
-        <div class="analysis">
-            <div class="quote"></div>
-            <a href="#" class="see-more">View Profile<span class="glyphicon glyphicon-circle-arrow-right"></span></a>
-        </div>
-
-
-    </div>
-</div> -->
-
 <div class="col-md-12">
     <div id="admintable">
     <h2 class="text-center thead">All Students</h2>
@@ -59,11 +23,17 @@
           <% @table_number += 1 %>
             <tr>
                 <td><%= @table_number %></td>
-                <td><%= student.first_name %></td>
+                <td><a href="/users/<%= student.id %>"><%= student.first_name %></a></td>
                 <td><%= student.last_name %></td>
                 <td><%= student.country.name%></td>
                 <% if student.studentInfo%>
-                <td><%= student.studentInfo.district.name%></td>
+                <td>
+                <% if student.studentInfo.district%>
+                  <%= student.studentInfo.district.name%>
+                <% else %>
+                  <%= student.studentInfo.city%>
+                <% end %> 
+                </td>
                 <td><%= student.studentInfo.program_category.name%></td>
                 <td><%= student.studentInfo.course.name%></td>
                 <% if student.studentInfo.status == true %>
@@ -77,7 +47,7 @@
                 <td>-</td>
                 <td>-</td>
                 <td>-</td>
-                <td>Not Yet</td>
+                <td><a href="/student_infos/new?student_id=<%=student.id%>"><small>Complete Registration</small></a></td>
                 <% end %>
             </tr>
           <% end %>
