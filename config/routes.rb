@@ -38,5 +38,5 @@ Rails.application.routes.draw do
   get "bonus" => "designs#index"
   get "studentprofile" => "designs#studentprofile"
 
-  get "admindashboard1" => "designs#admindashboard1"
+  get "dashboard" => "designs#admindashboard1"
 end

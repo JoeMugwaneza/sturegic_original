@@ -1,8 +1,106 @@
 <% @user.englishgroups.each do |group|%>
-<h2> Group <%= @user.englishgroups.index(group) +1 %></h2>
+<h1 class="text-center"> Group <%= @user.englishgroups.index(group) +1 %></h1>
+<hr>
+
+<div class="col-md-offset-2 panel">
+  <h2 class="text-center">Language Courses | Summary</h2>
+
+  <table class="table table-hover">
+    <thead>
+      <th>Level</th>
+      <th>Students</th>
+      <th>Bonus Unit</th>
+      <th>Total Bonus</th>
+      <th>Reward</th>
+      <th>Time Remaining</th>
+      <th>Progress</th>
+    </thead>
+    <tbody>
+
+      <tr>        
+        <td>1</td>
+        <td><%= @user.level_one(@user.englishgroups.index(group),"English").count %></td>
+        <td>2000</td>
+        <td><%= "#{@user.level_one(@user.englishgroups.index(group),"English").count * 2000}"%></td>
+        <td>No Reward</td>
+        <td> - </td>
+        <td> - </td>
+      </tr>
+      
+      <tr>
+
+        <td>2</td>
+        <td><%= @user.level_two(@user.englishgroups.index(group),"English").count %></td>
+        <td>1000</td>
+        <td><%= "#{@user.level_two(@user.englishgroups.index(group),"English").count * 1000}"%></td>
+        <td>SmartPhone</td>
+        <td>90 days</td>
+        <td>          
+          <div class="progress">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_two(@user.techgroups.index(group),"English").count * 100)/25%>%">
+            <%=(@user.level_two(@user.techgroups.index(group),"English").count * 100)/25%>%</div>
+          </div>
+        </td>
+      </tr>
+
+      <tr>        
+        <td>3</td>
+        <td><%= @user.level_three(@user.englishgroups.index(group),"English").count %></td>
+        <td>1000</td>
+        <td><%= "#{@user.level_three(@user.englishgroups.index(group),"English").count * 1000}"%></td>
+        <td>Laptop</td>
+        <td>180 days</td>
+        <td>          
+          <div class="progress">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_three(@user.techgroups.index(group),"English").count * 100)/125%>%">
+            <%=(@user.level_three(@user.techgroups.index(group),"English").count * 100)/125%>%</div>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>4</td>
+        <td><%= @user.level_four(@user.englishgroups.index(group),"English").count %></td>
+        <td>1000</td>
+        <td><%= "#{@user.level_four(@user.englishgroups.index(group),"English").count * 1000}"%></td>
+        <td>Motorcycle</td>
+        <td>270 days</td>
+        <td>          
+          <div class="progress">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_four(@user.techgroups.index(group),"English").count * 100)/625%>%">
+            <%=(@user.level_four(@user.techgroups.index(group),"English").count * 100)/625%>%</div>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>5</td>
+        <td><%= @user.level_five(@user.englishgroups.index(group),"English").count %></td>
+        <td>1000</td>
+        <td><%= "#{@user.level_five(@user.englishgroups.index(group),"English").count * 1000}"%></td>
+        <td>Land</td>
+        <td>360 days</td>
+        <td>          
+          <div class="progress">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_five(@user.techgroups.index(group),"English").count * 100)/3125%>%">
+            <%=(@user.level_five(@user.techgroups.index(group),"English").count * 100)/3125%>%</div>
+          </div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+
+<h2 class="col-md-offset-2 text-center">Students List</h2>
 <div class="panel col-md-offset-2">
   <div class="panel-heading" style="background-color: #0b56a8;">
-    <h3 class="panel-title" style="color: white;">All Levels</h3>
+    <h3 class="panel-title" style="color: white;">Levels</h3>
     <span class="pull-right">
       <!-- Tabs -->
       <ul class="nav panel-tabs">
@@ -17,16 +115,12 @@
   <div class="panel-body">
     <div class="tab-content">
       <div class="tab-pane active" id="col1EG<%= @user.englishgroups.index(group) +1 %>">
-          students:<%= @user.level_one(@user.englishgroups.index(group),"English").count %><br>
-          bonus:Rwf 2000<br>
-          total bonus: <%= "#{@user.level_one(@user.englishgroups.index(group),"English").count * 2000}"%><br>
-          reward:No Reward<br>
-          <h2>List Students</h2>
           <table class="table table-hover">
             <thead>
               <tr>
+                <th>N<sup>o</sup></th>
                 <th>Full Name</th>
-                <th>Program</th>
+                <th>Course</th>
                 <th>District</th>
                 <th>Date</th>
               </tr>
@@ -34,9 +128,16 @@
             <tbody>
             <% @user.level_one(@user.englishgroups.index(group), "English").each do |student| %>
               <tr>
+                <td>1</td>
                 <td><%= student.first_name %> <%= student.last_name%></td>
                 <td><%= student.studentInfo.program_category.name%></td>
-                <td><%= student.studentInfo.district.name%></td>
+                <td>
+                  <% if student.studentInfo.district%>
+                  <%= student.studentInfo.district.name %>
+                  <% else %>
+                  <%= student.studentInfo.city %>
+                  <% end %>
+                </td>
                 <td><%= student.studentInfo.created_at %></td>
               </tr>
             <% end %>
@@ -46,22 +147,12 @@
         </div>
 
         <div class="tab-pane" id="col2EG<%= @user.englishgroups.index(group) +1 %>">
-          students:<%= @user.level_two(@user.englishgroups.index(group),"English").count %><br>
-          bonus:Rwf 1000<br>
-          total bonus: <%= "#{@user.level_two(@user.englishgroups.index(group),"English").count * 1000}"%><br>
-          reward:
-          <% if @user.level_two(@user.englishgroups.index(group),"English").count == 25%>
-            Smart Phone
-          <% else %>
-            No Reward
-          <% end %>
-          <br>
-          <h2>List Students</h2>
           <table class="table table-hover">
             <thead>
               <tr>
+                <th>N<sup>o</sup></th>
                 <th>Full Name</th>
-                <th>Program</th>
+                <th>Course</th>
                 <th>District</th>
                 <th>Date</th>
               </tr>
@@ -69,9 +160,16 @@
             <tbody>
             <% @user.level_two(@user.englishgroups.index(group), "English").each do |student| %>
               <tr>
+                <td>1</td>
                 <td><%= student.first_name %> <%= student.last_name%></td>
                 <td><%= student.studentInfo.program_category.name%></td>
-                <td><%= student.studentInfo.district.name%></td>
+                <td>
+                  <% if student.studentInfo.district%>
+                  <%= student.studentInfo.district.name %>
+                  <% else %>
+                  <%= student.studentInfo.city %>
+                  <% end %>
+                </td>
                 <td><%= student.studentInfo.created_at %></td>
               </tr>
             <% end %>
@@ -80,22 +178,12 @@
 
         </div>
         <div class="tab-pane" id="col3EG<%= @user.englishgroups.index(group) +1 %>">
-          students:<%= @user.level_three(@user.englishgroups.index(group),"English").count %><br>
-          bonus:Rwf 1000<br>
-          total bonus: <%= "#{@user.level_three(@user.englishgroups.index(group),"English").count * 1000}"%><br>
-          reward:
-          <% if @user.level_three(@user.englishgroups.index(group),"English").count == 125%>
-            Laptop
-          <% else %>
-            No Reward
-          <% end %>
-          <br>
-          <h2>List Students</h2>
           <table class="table table-hover">
             <thead>
               <tr>
+                <th>N<sup>o</sup></th>
                 <th>Full Name</th>
-                <th>Program</th>
+                <th>Course</th>
                 <th>District</th>
                 <th>Date</th>
               </tr>
@@ -105,7 +193,13 @@
                 <tr>
                   <td><%= student.first_name %> <%= student.last_name%></td>
                   <td><%= student.studentInfo.program_category.name%></td>
-                  <td><%= student.studentInfo.district.name%></td>
+                  <td>
+                    <% if student.studentInfo.district%>
+                    <%= student.studentInfo.district.name %>
+                    <% else %>
+                    <%= student.studentInfo.city %>
+                    <% end %>
+                  </td>
                   <td><%= student.studentInfo.created_at %></td>
                 </tr>
               <% end %>
@@ -114,22 +208,12 @@
 
         </div>
         <div class="tab-pane" id="col4EG<%= @user.englishgroups.index(group) +1 %>">
-          students:<%= @user.level_four(@user.englishgroups.index(group),"English").count %><br>
-          bonus:Rwf 1000<br>
-          total bonus: <%= "#{@user.level_four(@user.englishgroups.index(group),"English").count * 1000}"%><br>
-          reward:
-          <% if @user.level_four(@user.englishgroups.index(group),"English").count == 125%>
-            Motorcycle
-          <% else %>
-            No Reward
-          <% end %>
-          <br>
-          <h2>List Students</h2>
           <table class="table table-hover">
             <thead>
               <tr>
+                <th>N<sup>o</sup></th>
                 <th>Full Name</th>
-                <th>Program</th>
+                <th>Course</th>
                 <th>District</th>
                 <th>Date</th>
               </tr>
@@ -137,9 +221,16 @@
             <tbody>
              <% @user.level_four(@user.englishgroups.index(group), "English").each do |student| %>
                 <tr>
+                  <td>1</td>
                   <td><%= student.first_name %> <%= student.last_name%></td>
                   <td><%= student.studentInfo.program_category.name%></td>
-                  <td><%= student.studentInfo.district.name%></td>
+                  <td>
+                    <% if student.studentInfo.district%>
+                    <%= student.studentInfo.district.name %>
+                    <% else %>
+                    <%= student.studentInfo.city %>
+                    <% end %>
+                  </td>
                   <td><%= student.studentInfo.created_at %></td>
                 </tr>
               <% end %>
@@ -148,22 +239,12 @@
 
         </div>
         <div class="tab-pane" id="col5EG<%= @user.englishgroups.index(group) +1 %>">
-          students:<%= @user.level_five(@user.englishgroups.index(group),"English").count %><br>
-          bonus:Rwf 1000<br>
-          total bonus: <%= "#{@user.level_five(@user.englishgroups.index(group),"English").count * 1000}"%><br>
-          reward:
-          <% if @user.level_five(@user.englishgroups.index(group),"English").count == 3125%>
-            Land
-          <% else %>
-            No Reward
-          <% end %>
-          <br>
-          <h2>List Students</h2>
           <table class="table table-hover">
             <thead>
               <tr>
+                <th>N<sup>o</sup></th>
                 <th>Full Name</th>
-                <th>Program</th>
+                <th>Course</th>
                 <th>District</th>
                 <th>Date</th>
               </tr>
@@ -171,9 +252,16 @@
             <tbody>
               <% @user.level_five(@user.englishgroups.index(group), "English").each do |student| %>
                 <tr>
+                  <td>1</td>
                   <td><%= student.first_name %> <%= student.last_name%></td>
                   <td><%= student.studentInfo.program_category.name%></td>
-                  <td><%= student.studentInfo.district.name%></td>
+                  <td>
+                    <% if student.studentInfo.district%>
+                    <%= student.studentInfo.district.name %>
+                    <% else %>
+                    <%= student.studentInfo.city %>
+                    <% end %>
+                  </td>
                   <td><%= student.studentInfo.created_at %></td>
                 </tr>
               <% end %>

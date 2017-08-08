@@ -33,7 +33,7 @@ class User < ApplicationRecord
   #please during deployment remember to change the program_category_id accordingly becuase they may mess up with your database
   def techgroups
     students = []
-    self.studentInfos.where(program_category_id: 2).each do |studentInfo|
+    self.studentInfos.where(program_category_id: 1).each do |studentInfo|
       students.push(studentInfo.student)
     end
     groups = students.each_slice(1).to_a
@@ -43,7 +43,7 @@ class User < ApplicationRecord
 
   def trafficgroups
     students = []
-    self.studentInfos.where(program_category_id: 4).each do |studentInfo|
+    self.studentInfos.where(program_category_id: 2).each do |studentInfo|
       students.push(studentInfo.student)
     end
     groups = students.each_slice(2).to_a
