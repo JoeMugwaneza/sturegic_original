@@ -2,8 +2,8 @@ module UsersHelper
   def level_one(n,p)
     n = n.to_i
     users = []
-    if self.techgroups && p == "Tech"
-      self.techgroups[n].each do |student|
+    if self.technicalgroups && p == "technical"
+      self.technicalgroups[n].each do |student|
         users.push(student)
       end
     elsif self.trafficgroups && p == "Traffic"
