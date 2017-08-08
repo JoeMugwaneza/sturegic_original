@@ -1,8 +1,8 @@
-<% @user.techgroups.each do |group|%>
-<h2> Group <%= @user.techgroups.index(group) +1 %></h2>
+<% @user.technicalgroups.each do |group|%>
+<h2> Group <%= @user.technicalgroups.index(group) +1 %></h2>
 
 <div class="col-md-offset-2 panel">
-  <h2 class="text-center">Technical Programs | Summary</h2>
+  <h2 class="text-center">technicalnical Programs | Summary</h2>
 
   <table class="table table-hover">
     <thead>
@@ -18,9 +18,9 @@
 
       <tr>        
         <td>1</td>
-        <td><%= @user.level_one(@user.techgroups.index(group),"Tech").count %></td>
+        <td><%= @user.level_one(@user.technicalgroups.index(group),"technical").count %></td>
         <td>5000</td>
-        <td><%= "#{@user.level_one(@user.techgroups.index(group),"Tech").count * 5000}"%></td>
+        <td><%= "#{@user.level_one(@user.technicalgroups.index(group),"technical").count * 5000}"%></td>
         <td>No Reward</td>
         <td> - </td>
         <td> - </td>
@@ -29,64 +29,64 @@
       <tr>
 
         <td>2</td>
-        <td><%= @user.level_two(@user.techgroups.index(group),"Tech").count %></td>
+        <td><%= @user.level_two(@user.technicalgroups.index(group),"technical").count %></td>
         <td>4000</td>
-        <td><%= "#{@user.level_two(@user.techgroups.index(group),"Tech").count * 4000}"%></td>
+        <td><%= "#{@user.level_two(@user.technicalgroups.index(group),"technical").count * 4000}"%></td>
         <td>Laptop</td>
         <td>90 days</td>
         <td>          
           <div class="progress">
             <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_two(@user.techgroups.index(group),"Tech").count * 100)/25%>%">
-            <%=(@user.level_two(@user.techgroups.index(group),"Tech").count * 100)/25%>%</div>
+            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_two(@user.technicalgroups.index(group),"technical").count * 100)/25%>%">
+            <%=(@user.level_two(@user.technicalgroups.index(group),"technical").count * 100)/25%>%</div>
           </div>
         </td>
       </tr>
 
       <tr>        
         <td>3</td>
-        <td><%= @user.level_three(@user.techgroups.index(group),"Tech").count %></td>
+        <td><%= @user.level_three(@user.technicalgroups.index(group),"technical").count %></td>
         <td>3000</td>
-        <td><%= "#{@user.level_three(@user.techgroups.index(group),"Tech").count * 3000}"%></td>
+        <td><%= "#{@user.level_three(@user.technicalgroups.index(group),"technical").count * 3000}"%></td>
         <td>Scholarship</td>
         <td>180 days</td>
         <td>          
           <div class="progress">
             <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_three(@user.techgroups.index(group),"Tech").count * 100)/25%>%">
-            <%=(@user.level_three(@user.techgroups.index(group),"Tech").count * 100)/125%>%</div>
+            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_three(@user.technicalgroups.index(group),"technical").count * 100)/25%>%">
+            <%=(@user.level_three(@user.technicalgroups.index(group),"technical").count * 100)/125%>%</div>
           </div>
         </td>
       </tr>
 
       <tr>
         <td>4</td>
-        <td><%= @user.level_four(@user.techgroups.index(group),"Tech").count %></td>
+        <td><%= @user.level_four(@user.technicalgroups.index(group),"technical").count %></td>
         <td>2000</td>
-        <td><%= "#{@user.level_four(@user.techgroups.index(group),"Tech").count * 2000}"%></td>
+        <td><%= "#{@user.level_four(@user.technicalgroups.index(group),"technical").count * 2000}"%></td>
         <td>Car</td>
         <td>270 days</td>
         <td>          
           <div class="progress">
             <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_four(@user.techgroups.index(group),"Tech").count * 100)/125%>%">
-            <%=(@user.level_four(@user.techgroups.index(group),"Tech").count * 100)/625%>%</div>
+            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_four(@user.technicalgroups.index(group),"technical").count * 100)/125%>%">
+            <%=(@user.level_four(@user.technicalgroups.index(group),"technical").count * 100)/625%>%</div>
           </div>
         </td>
       </tr>
 
       <tr>
         <td>5</td>
-        <td><%= @user.level_five(@user.techgroups.index(group),"Tech").count %></td>
+        <td><%= @user.level_five(@user.technicalgroups.index(group),"technical").count %></td>
         <td>1000</td>
-        <td><%= "#{@user.level_five(@user.techgroups.index(group),"Tech").count * 1000}"%></td>
+        <td><%= "#{@user.level_five(@user.technicalgroups.index(group),"technical").count * 1000}"%></td>
         <td>House</td>
         <td>360 days</td>
         <td>          
           <div class="progress">
             <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_five(@user.techgroups.index(group),"Tech").count * 100)/25%>%">
-            <%=(@user.level_five(@user.techgroups.index(group),"Tech").count * 100)/3125%>%</div>
+            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_five(@user.technicalgroups.index(group),"technical").count * 100)/25%>%">
+            <%=(@user.level_five(@user.technicalgroups.index(group),"technical").count * 100)/3125%>%</div>
           </div>
         </td>
       </tr>
@@ -108,17 +108,17 @@
     <span class="pull-right">
       <!-- Tabs -->
       <ul class="nav panel-tabs">
-        <li class="active"><a href="#col1TG<%= @user.techgroups.index(group) +1 %>" data-toggle="tab">Level 1</a></li>
-        <li><a href="#col2TG<%= @user.techgroups.index(group) +1 %>" data-toggle="tab">Level 2</a></li>
-        <li><a href="#col3TG<%= @user.techgroups.index(group) +1 %>" data-toggle="tab">Level 3</a></li>
-        <li><a href="#col4TG<%= @user.techgroups.index(group) +1 %>" data-toggle="tab">Level 4</a></li>
-        <li><a href="#col5TG<%= @user.techgroups.index(group) +1 %>" data-toggle="tab">Level 5</a></li>
+        <li class="active"><a href="#col1TG<%= @user.technicalgroups.index(group) +1 %>" data-toggle="tab">Level 1</a></li>
+        <li><a href="#col2TG<%= @user.technicalgroups.index(group) +1 %>" data-toggle="tab">Level 2</a></li>
+        <li><a href="#col3TG<%= @user.technicalgroups.index(group) +1 %>" data-toggle="tab">Level 3</a></li>
+        <li><a href="#col4TG<%= @user.technicalgroups.index(group) +1 %>" data-toggle="tab">Level 4</a></li>
+        <li><a href="#col5TG<%= @user.technicalgroups.index(group) +1 %>" data-toggle="tab">Level 5</a></li>
       </ul>
     </span>
   </div>
   <div class="panel-body">
     <div class="tab-content">
-      <div class="tab-pane active" id="col1TG<%= @user.techgroups.index(group) +1 %>">
+      <div class="tab-pane active" id="col1TG<%= @user.technicalgroups.index(group) +1 %>">
         <table class="table table-hover">
           <thead>
             <tr>
@@ -129,7 +129,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @user.level_one(@user.techgroups.index(group), "Tech").each do |student| %>
+            <% @user.level_one(@user.technicalgroups.index(group), "technical").each do |student| %>
             <tr>
               <td><%= student.first_name %> <%= student.last_name%></td>
               <td><%= student.studentInfo.program_category.name%></td>
@@ -148,7 +148,7 @@
 
       </div>
 
-      <div class="tab-pane" id="col2TG<%= @user.techgroups.index(group) +1 %>">
+      <div class="tab-pane" id="col2TG<%= @user.technicalgroups.index(group) +1 %>">
         <table class="table table-hover">
           <thead>
             <tr>
@@ -159,7 +159,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @user.level_two(@user.techgroups.index(group), "Tech").each do |student| %>
+            <% @user.level_two(@user.technicalgroups.index(group), "technical").each do |student| %>
             <tr>
               <td><%= student.first_name %> <%= student.last_name%></td>
               <td><%= student.studentInfo.program_category.name%></td>
@@ -177,7 +177,7 @@
         </table>
 
       </div>
-      <div class="tab-pane" id="col3TG<%= @user.techgroups.index(group) +1 %>">
+      <div class="tab-pane" id="col3TG<%= @user.technicalgroups.index(group) +1 %>">
         <table class="table table-hover">
           <thead>
             <tr>
@@ -188,7 +188,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @user.level_three(@user.techgroups.index(group), "Tech").each do |student| %>
+            <% @user.level_three(@user.technicalgroups.index(group), "technical").each do |student| %>
             <tr>
               <td><%= student.first_name %> <%= student.last_name%></td>
               <td><%= student.studentInfo.program_category.name%></td>
@@ -206,7 +206,7 @@
         </table>
 
       </div>
-      <div class="tab-pane" id="col4TG<%= @user.techgroups.index(group) +1 %>">
+      <div class="tab-pane" id="col4TG<%= @user.technicalgroups.index(group) +1 %>">
         <table class="table table-hover">
           <thead>
             <tr>
@@ -217,7 +217,7 @@
             </tr>
           </thead>
           <tbody>
-           <% @user.level_four(@user.techgroups.index(group), "Tech").each do |student| %>
+           <% @user.level_four(@user.technicalgroups.index(group), "technical").each do |student| %>
            <tr>
             <td><%= student.first_name %> <%= student.last_name%></td>
             <td><%= student.studentInfo.program_category.name%></td>
@@ -235,7 +235,7 @@
       </table>
 
     </div>
-    <div class="tab-pane" id="col5TG<%= @user.techgroups.index(group) +1 %>">
+    <div class="tab-pane" id="col5TG<%= @user.technicalgroups.index(group) +1 %>">
       <table class="table table-hover">
         <thead>
           <tr>
@@ -246,7 +246,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @user.level_five(@user.techgroups.index(group), "Tech").each do |student| %>
+          <% @user.level_five(@user.technicalgroups.index(group), "technical").each do |student| %>
           <tr>
             <td><%= student.first_name %> <%= student.last_name%></td>
             <td><%= student.studentInfo.program_category.name%></td>
