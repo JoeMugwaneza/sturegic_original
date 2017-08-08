@@ -2,35 +2,35 @@ class StudentInfosController < ApplicationController
   # before_action :authorize
   def index
     if current_user.admin
-      if params[:district_id]
-        @student_infos = StudentInfo.where(district_id: params[:district_id])
-        @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
+      # if params[:district_id]
+      #   @student_infos = StudentInfo.where(district_id: params[:district_id])
+      #   @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
 
-        render :index
+      #   render :index
         
-      elsif params[:program_id]
-        @student_infos = StudentInfo.where(program_category_id: params[:program_id])
-        @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
+      # elsif params[:program_id]
+      #   @student_infos = StudentInfo.where(program_category_id: params[:program_id])
+      #   @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
 
-        render :index
-      elsif params[:course_id] 
-        @student_infos = StudentInfo.where(course_id: params[:course_id])
-        @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
+      #   render :index
+      # elsif params[:course_id] 
+      #   @student_infos = StudentInfo.where(course_id: params[:course_id])
+      #   @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
 
-        render :index
-      elsif params[:search]
-        @student_infos = StudentInfo.where(country_id: Country.find_by(name: "Rwanda").id)
-        @int_student_infos = StudentInfo.where(city: params[:search])
+      #   render :index
+      # elsif params[:search]
+      #   @student_infos = StudentInfo.where(country_id: Country.find_by(name: "Rwanda").id)
+      #   @int_student_infos = StudentInfo.where(city: params[:search])
 
-        render :index
-      else
+      #   render :index
+      # else
         
-        @student_infos = Country.find_by(name:"Rwanda").student_infos
-        @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
+      #   @student_infos = Country.find_by(name:"Rwanda").student_infos
+      #   @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
 
-        render :index
+      #   render :index
 
-      end
+      # end
 
       #approving the request
       if params[:appr]
@@ -39,10 +39,10 @@ class StudentInfosController < ApplicationController
         if @student_info.save
           # StudentInfoMailer.student_info_approval_notification(@student_info).deliver_now
           flash[:success] = "Student Registration Approved"
-          redirect_to "/student_infos"
+          redirect_to "/"
         else
           flash[:warning] = "Something is wrong, student registration approval failed"
-          redirect_to "/student_info"
+          redirect_to :back
         end
       end
     else
