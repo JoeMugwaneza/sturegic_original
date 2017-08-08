@@ -134,18 +134,12 @@
             </tr>
           </thead>
           <tbody>
-            <% 10.times do || %>
-            <tr>
-              <td>1</td>     
-              <td>Joseph Mugwaneza</td>
-              <td><a href="" class="btn btn-register pull-right">View</a></td>            
-            </tr>
-
-            <tr>
-              <td>2</td>     
-              <td>Jean Luc</td>
-              <td><a href="" class="btn btn-register pull-right">View</a></td>           
-            </tr>
+            <% @studentInfos.each do |studentInfo| %>
+              <tr>
+                <td>1</td>     
+                <td><%= studentInfo.student.first_name %> <%= studentInfo.student.last_name %></td>
+                <td><a href="students/<%= studentInfo.student.friendly_id %>/profile-one" class="btn btn-register pull-right">View</a></td>            
+              </tr>
             <%end%>
           </tbody>
         </table>
@@ -166,42 +160,36 @@
             </tr>
           </thead>
           <tbody>
-            <tr>      
-              <td>Joseph Mugwaneza</td>
-              <td>20000 Rwf</td>
-              <td>No Reward</td>
-              <td>July, 2017</td>
-            </tr>
-            <tr>      
-              <td>Jean Luc</td>
-              <td>70000 Rwf</td>
-              <td>Scholarship</td>
-              <td>August, 2017</td>
-            </tr>
-            <tr>      
-              <td>Joseph Mugwaneza</td>
-              <td>20000 Rwf</td>
-              <td>No Reward</td>
-              <td>July, 2017</td>
-            </tr>
-            <tr>      
-              <td>Jean Luc</td>
-              <td>70000 Rwf</td>
-              <td>Scholarship</td>
-              <td>August, 2017</td>
-            </tr>
-            <tr>      
-              <td>Joseph Mugwaneza</td>
-              <td>20000 Rwf</td>
-              <td>No Reward</td>
-              <td>July, 2017</td>
-            </tr>
-            <tr>      
-              <td>Jean Luc</td>
-              <td>70000 Rwf</td>
-              <td>Scholarship</td>
-              <td>August, 2017</td>
-            </tr>
+          <% @students.each do |student|%>
+            <% if student.studentInfos.any? %>
+              <tr>      
+                <td><%= student.first_name %></td>
+                <td>
+                <% if student.technicalgroups.any? %>
+                  <% tech_sum = 0 %>
+                  <% student.technicalgroups.each do |group|%>
+                    <% tech_sum += ((student.level_one(student.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 5000) + (student.level_two(student.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 4000) + (student.level_three(student.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 3000) + (student.level_four(student.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 2000)+ (student.level_five(student.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000))%>
+                  <% end %>  
+                <% end %>
+                <% if student.languagesgroups.any? %>
+                  <% lang_sum = 0 %>
+                  <% student.languagesgroups.each do |group|%>
+                    <% lang_sum += ((student.level_one(student.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 2000) + (student.level_two(student.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000) + (student.level_three(student.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000) + (student.level_four(student.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000)+ (student.level_five(student.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000))%>
+                  <% end %>  
+                <% end %>
+                <% if student.trafficgroups.any? %>
+                  <% traffic_sum = 0 %>
+                  <% student.trafficgroups.each do |group|%>
+                    <% traffic_sum += ((student.level_one(student.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 2000) + (student.level_two(student.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000) + (student.level_three(student.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000) + (student.level_four(student.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000)+ (student.level_five(student.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000))%>
+                  <% end %>
+                <% end %>
+                  <%= tech_sum.to_i + lang_sum.to_i + traffic_sum.to_i %>
+                </td>
+                <td>No Reward</td>
+                <td><%= student.created_at %></td>
+              </tr>
+            <% end %>
+          <% end %>
           </tbody>
         </table>
       </div>

@@ -7,5 +7,6 @@ class DesignsController < ApplicationController
     @students = User.where("admin = ? AND agent = ?", false, false)
     @agents = User.where(agent: true)
     @admins = User.where(admin: true)
+    @studentInfos = StudentInfo.where(status: false)
   end
 end
