@@ -9,8 +9,8 @@ class User < ApplicationRecord
     new_record?
   end
   
-  has_many :studentInfos, foreign_key: :registrar_id
-  has_one :studentInfo, foreign_key: :student_id
+  has_many :studentInfos, foreign_key: :registrar_id, :dependent => :restrict_with_error
+  has_one :studentInfo, foreign_key: :student_id, dependent: :destroy
 
   belongs_to :country
 
