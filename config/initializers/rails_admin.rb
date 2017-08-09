@@ -1,5 +1,15 @@
 RailsAdmin.config do |config|
+    config.parent_controller = "::ApplicationController"
 
+  config.authorize_with do |controller|
+    unless current_user && current_user.admin?
+      cookies.delete(:auth_token)
+      redirect_to(
+        main_app.login_url,
+        alert: "You don't seem to be admin, you can log in and continue  your work"
+      )
+    end
+  end
   ### Popular gems integration
 
   ## == Devise ==
