@@ -15,10 +15,6 @@
  */
 
 
-
- 
-
-
 td, th {
   font-size: 17px;
 }
@@ -306,4 +302,9 @@ span.tags
   left: 50%;
   margin-left: -10px;
   z-index: 10;
+}
+
+#agentbox{
+  background-color: white;
+  margin-left: -250px;
 }

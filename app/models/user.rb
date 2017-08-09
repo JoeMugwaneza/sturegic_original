@@ -31,9 +31,9 @@ class User < ApplicationRecord
 
 
   #please during deployment remember to change the program_category_id accordingly becuase they may mess up with your database
-  def techgroups
+  def technicalgroups
     students = []
-    self.studentInfos.where(program_category_id: 2).each do |studentInfo|
+    self.studentInfos.where("program_category_id = ? AND status = ?", 1, true).each do |studentInfo|
       students.push(studentInfo.student)
     end
     groups = students.each_slice(5).to_a
@@ -43,7 +43,7 @@ class User < ApplicationRecord
 
   def trafficgroups
     students = []
-    self.studentInfos.where(program_category_id: 4).each do |studentInfo|
+    self.studentInfos.where("program_category_id = ? AND status = ?", 3, true).each do |studentInfo|
       students.push(studentInfo.student)
     end
     groups = students.each_slice(5).to_a
@@ -52,15 +52,17 @@ class User < ApplicationRecord
   end
 
 
-  def englishgroups
+  def languagesgroups
     students = []
-    self.studentInfos.where(program_category_id: 3).each do |studentInfo|
+    self.studentInfos.where("program_category_id = ? AND status = ?", 2, true).each do |studentInfo|
       students.push(studentInfo.student)
     end
     groups = students.each_slice(5).to_a
 
     return groups
   end
+
+  scope :this_month, -> { where(created_at: Time.now.beginning_of_month..Time.now.end_of_month) }
 
   def generate_token(column)
     begin 

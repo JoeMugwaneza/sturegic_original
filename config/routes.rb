@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   default_url_options :host => "stregic.herokuapp.com"
   
-  root 'dashboards#index'
+  root 'designs#admindashboard1'
 
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
@@ -38,5 +38,5 @@ Rails.application.routes.draw do
   get "bonus" => "designs#index"
   get "studentprofile" => "designs#studentprofile"
 
-  get "admindashboard1" => "designs#admindashboard1"
+  get "dashboard" => "designs#admindashboard1"
 end
