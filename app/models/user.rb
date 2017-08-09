@@ -112,4 +112,5 @@ class User < ApplicationRecord
     user == current_user
   end
 
+
 end

@@ -58,3 +58,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'friendly_id', '~> 5.2', '>= 5.2.1'
 gem 'rails_admin', '~> 1.2'
 gem 'client_side_validations'
+gem 'carrierwave', '~> 1.1'
+gem 'mini_magick', '~> 4.8'

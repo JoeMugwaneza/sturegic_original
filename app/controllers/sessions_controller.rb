@@ -3,8 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_email(params[:email])
-
+    user = User.find_by_email(params[:email]) || StudentInfo.find_by(reg_no: params[:reg_no]).student
     if user && user.authenticate(params[:password])
 
       if params[:remember_me]

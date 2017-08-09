@@ -6,11 +6,11 @@ class UsersController < ApplicationController
     before_action :correct_user,   only: [:edit, :update]
   # before_action :authorize
   def show
-    user = User.find_by(id: params[:id])
+    user = User.friendly.find(params[:id])
     if current_user.admin == true || current_user == user
       @user = user
     else
-      redirect_to "/users/#{current_user.id}"
+      redirect_to student_path
     end
   end
 
