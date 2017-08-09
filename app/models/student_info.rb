@@ -5,7 +5,8 @@ class StudentInfo < ApplicationRecord
   belongs_to :program_category
   belongs_to :country
   belongs_to :course
- 
+
+  mount_uploader :bankslip, BankslipUploader
   
   before_create :generate_registration
 

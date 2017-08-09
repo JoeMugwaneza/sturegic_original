@@ -1,13 +1,19 @@
 class ProfilesController < ApplicationController
-
+  before_action :authenticate_user
   def profile_one
     @user = User.friendly.find(params[:id])
     @student = StudentInfo.find_by(student_id: @user.id)
   end
   
   def profile_two
-    @user = User.friendly.find(params[:id])
-    @studentInfo = StudentInfo.find_by(student_id: @user.id)
+    user = User.friendly.find(params[:id])
+    if user.admin != true && user.agent != true
+      @user = user
+      @studentInfo = StudentInfo.find_by(student_id: @user.id)
+    else
+      flash[:warning] = "You don't have registration profile"
+      redirect_to "/"
+    end
   end
 
   def edit

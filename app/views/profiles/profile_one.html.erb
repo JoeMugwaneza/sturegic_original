@@ -67,11 +67,23 @@
                           <td>Telephone</td>
                           <td><%= @user.tel%></td>
                         </tr> 
+                        <tr>
+                          <td>Role</td>
+                          <td>
+                            <% if @user.admin == true%> 
+                              Admin
+                            <% elsif @user.agent == true %> 
+                              Agent
+                            <% else %>
+                              Student
+                            <% end %>
+                          </td>
+                        </tr>
                         </tbody>
                       </table>
-                      
-                      <a href="profile-two" class="btn btn-primary">Next</a>
-                      
+                      <% unless @user.admin == true || @user.agent == true%> 
+                        <a href="profile-two" class="btn btn-primary">Next</a>
+                      <% end %>
                     </div>
                   </div>
                 </div>

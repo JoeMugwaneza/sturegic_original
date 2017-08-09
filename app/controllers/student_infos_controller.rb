@@ -1,53 +1,28 @@
 class StudentInfosController < ApplicationController
-  # before_action :authorize
+   before_action :authenticate_user
   def index
-    if current_user.admin
-      # if params[:district_id]
-      #   @student_infos = StudentInfo.where(district_id: params[:district_id])
-      #   @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
-
-      #   render :index
-        
-      # elsif params[:program_id]
-      #   @student_infos = StudentInfo.where(program_category_id: params[:program_id])
-      #   @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
-
-      #   render :index
-      # elsif params[:course_id] 
-      #   @student_infos = StudentInfo.where(course_id: params[:course_id])
-      #   @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
-
-      #   render :index
-      # elsif params[:search]
-      #   @student_infos = StudentInfo.where(country_id: Country.find_by(name: "Rwanda").id)
-      #   @int_student_infos = StudentInfo.where(city: params[:search])
-
-      #   render :index
-      # else
-        
-      #   @student_infos = Country.find_by(name:"Rwanda").student_infos
-      #   @int_student_infos = StudentInfo.where(country_id: !Country.find_by(name:"Rwanda").id)
-
-      #   render :index
-
-      # end
-
-      #approving the request
-      if params[:appr]
-        @student_info = StudentInfo.find_by(id: params[:appr])
-        @student_info.status = !@student_info.status
-        if @student_info.save
-          # StudentInfoMailer.student_info_approval_notification(@student_info).deliver_now
-          flash[:success] = "Student Registration Approved"
-          redirect_to "/"
-        else
-          flash[:warning] = "Something is wrong, student registration approval failed"
-          redirect_to :back
-        end
+    #approving the request
+    if current_user.admin && params[:appr]
+      @student_info = StudentInfo.find_by(id: params[:appr])
+      @student_info.status = !@student_info.status
+      if @student_info.save
+        # StudentInfoMailer.student_info_approval_notification(@student_info).deliver_now
+        flash[:success] = "Student Registration Approved"
+        redirect_to "/"
+      else
+        flash[:warning] = "Something is wrong, student registration approval failed"
+        redirect_to :back
       end
-    else
-      @pending_student_infos = current_user.students.where(status: false)
-      @approved_student_infos = current_user.students.where(status: true)
+    elsif current_user.admin == true && params[:agent_rm]
+      user = User.find_by(id: params[:agent_rm])
+      user.agent = false
+      if user.save
+        flash[:sucess] = "Agent removed"
+        redirect_to "/"
+      else
+        flash[:warning] = "Removing agent #{user.first_name} failed"
+        redirect_to "/"
+      end
     end
   end
 
@@ -71,7 +46,7 @@ class StudentInfosController < ApplicationController
      flash[:scuess] = "Student Application Successfully Submited" 
      redirect_to "/students/#{@student_infos.student.friendly_id}/profile-one"
     else
-      render :new
+      render 'new'
     end
   end
 
@@ -95,6 +70,6 @@ class StudentInfosController < ApplicationController
     @student_infos = StudentInfo.find_by(id: params[:id])
   end
   def student_infos_params
-    params.require(:student_info).permit(:education_level, :course_id, :program_category_id, :district_id, :registrar_id, :student_id, :country_id, :city, :reg_no)
+    params.require(:student_info).permit(:education_level, :course_id, :program_category_id, :district_id, :registrar_id, :student_id, :country_id, :city, :reg_no, :bankslip)
   end
 end

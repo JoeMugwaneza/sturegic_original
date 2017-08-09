@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  # before_action :authorize
+    before_action :authenticate_user
 
     before_action :logged_in_user, only: [:edit, :update]
     before_action :correct_user,   only: [:edit, :update]
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     if current_user.admin == true || current_user == user
       @user = user
     else
-      redirect_to "/users/#{current_user.id}"
+      redirect_to student_path
     end
   end
 
