@@ -24,7 +24,8 @@ Rails.application.routes.draw do
 
   get 'students/:id/profile-two', to: "profiles#profile_two", as: 'student_profile_two'
 
-  get 'students/:id/edit', to: 'profiles#edit'
+  get 'students/:id/user_edit', to: 'profiles#user_edit'
+  get 'students/:id/student_edit', to: 'profiles#student_edit'
 
 
   get "application1" => "designs#application1" 
