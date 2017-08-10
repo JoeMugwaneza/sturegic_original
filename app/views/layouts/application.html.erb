@@ -22,23 +22,23 @@
 
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <% if log_in? %>
+          <% if log_in? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle nav-content-format" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <div class="glyphicon glyphicon-user">
-            <% if current_user %>
-              </div><%= current_user.username %>
+              <% if current_user %>
+            </div><%= current_user.username %>
             <% end %>
             <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <% if current_user.admin == true %>
 
-                <li><a href="/admins/<%= current_user.friendly_id%>/profile-one">Profile Info</a></li>
-                <li><a href="/users/<%= current_user.friendly_id%>/edit">Settings</a></li>
-                <li><a href="/admin">Admin Panel</a></li>
+              <li><a href="/admins/<%= current_user.friendly_id%>/profile-one">Profile Info</a></li>
+              <li><a href="/users/<%= current_user.friendly_id%>/edit">Settings</a></li>
+              <li><a href="/admin">Admin Panel</a></li>
 
               <% elsif current_user.agent == true %>
-                <li><a href="/students/<%= current_user.friendly_id%>/profile-one">Profile Info</a></li>
-                <li><a href="/users/<%= current_user.friendly_id%>/edit">Settings</a></li>
+              <li><a href="/students/<%= current_user.friendly_id%>/profile-one">Profile Info</a></li>
+              <li><a href="/users/<%= current_user.friendly_id%>/edit">Settings</a></li>
               <% else %>
               <li><a href="/students/<%= current_user.friendly_id%>/profile-one">Profile Info</a></li>
               <li><a href="/students/<%= current_user.friendly_id%>/edit">Settings</a></li>
@@ -47,8 +47,11 @@
             </ul>
             <% end %>
           </li>
+
           <% if current_user %>
-          <li><a class="nav-content-format" href="/logout">Logout</a></li>
+          <li><a class="nav-content-format" href="/signup"><i class="glyphicon glyphicon-plus"></i> User</a></li>
+          <li><a class="nav-content-format" href="/logout">Logout</a></li>          
+
           <% else %>
           <li><a class="nav-content-format" href="/login">Login</a></li>
           <% end %>
@@ -56,20 +59,27 @@
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
-    <p>
-      <% flash.each do |key, value| %>
-      <% alert_class = case key
-      when :notice then "success"
-      when :alert then "danger"
-      else key
-        end %>
-        <%= content_tag :div, class: "alert alert-#{alert_class}" do %>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <%= value %>
-        <% end %>
-        <% end %>
-      </p>
-    </div>
-    <%= yield %>
-  </body>
-  </html>
+  <p>
+    <% flash.each do |key, value| %>
+    <% alert_class = case key
+    when :notice then "success"
+    when :alert then "danger"
+    else key
+      end %>
+      <%= content_tag :div, class: "alert alert-#{alert_class}" do %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= value %>
+      <% end %>
+      <% end %>
+    </p>
+  </div>
+  <%= yield %>
+
+  <footer>
+   <form class="col-md-12">
+     <input class="btn btn-link" type="button" value="Made by Nexpals Ltd" style="color: white; margin-bottom: 10px;" onclick="window.location.href='http://www.nexpals.com'" />
+   </form>
+ </footer>
+
+</body>
+</html>
