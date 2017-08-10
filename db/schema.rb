@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808092457) do
+ActiveRecord::Schema.define(version: 20170810081818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20170808092457) do
     t.boolean "application_submission", default: false
     t.string "identification"
     t.string "slug"
+    t.boolean "enabled", default: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 

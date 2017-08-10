@@ -7,15 +7,24 @@ class UsersController < ApplicationController
   # before_action :authorize
   def show
     user = User.friendly.find(params[:id])
-    if current_user.admin == true || current_user == user
-      @user = user
+    if user && user.enabled == true
+      if current_user.admin == true || current_user == user
+        @user = user
+      else
+        redirect_to student_path
+      end
     else
-      redirect_to student_path
+      flash[:warning] = "You are trying to access payment info a user who is blocked"
+      redirect_to student_profile_one_path(user)
     end
   end
-
   def new
-    @user = User.new
+    if current_user.admin == true || current_user.agent == true || current_user.studentInfo.status == true 
+      @user = User.new
+    else
+      flash[:warning] = "You are not allowed to register a new student!"
+      redirect_to "/students/#{current_user.friendly_id}"
+    end
   end
 
   def create

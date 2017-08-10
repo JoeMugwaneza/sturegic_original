@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
     redirect_to login_url, alert: "Not Authorized" if current_user.nil?
   end
   def authenticate_user
-    redirect_to login_url, alert: "Not Authorized" if current_user.nil?
+    if current_user.nil?
+      redirect_to login_url, alert: "Not Authorized" 
+    elsif current_user.enabled == false
+      redirect_to login_url, alert: "Your account has been disabled"
+    end
   end
 end
