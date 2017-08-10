@@ -33,8 +33,13 @@
                         <td> <%= @studentInfo.student.country.name %></td>
                       </tr>
                       <tr>
+                      <% if @studentInfo.district %>
                         <td>District:</td>
                         <td> <%= @studentInfo.district.name %>name</td>
+                      <% elsif @studentInfo.city %>
+                        <td>City:</td>
+                        <td> <%= @studentInfo.city %>name</td>
+                      <% end %>
                         </tr>
                         <tr>
                         <td>Program Enrolled: </td>
