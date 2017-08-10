@@ -90,7 +90,7 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
   end
 
-  #Confirm that the use who is going to edit the profit is corrent
+  #Confirm that the use who is going to edit the profit is correct
   def correct_user
     @user = User.friendly.find(params[:id])
     redirect_to root_path unless current_user?(@user) || current_user.admin?
