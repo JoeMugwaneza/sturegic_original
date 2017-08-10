@@ -98,9 +98,9 @@ ActiveRecord::Schema.define(version: 20170810081818) do
     t.string "auth_token"
     t.string "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string "identification"
     t.string "registrar_name"
     t.boolean "application_submission", default: false
-    t.string "identification"
     t.string "slug"
     t.boolean "enabled", default: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
