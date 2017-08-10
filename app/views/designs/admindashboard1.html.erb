@@ -28,7 +28,7 @@
           <% @table_number += 1 %>
           <tr>
             <td><%= @table_number %></td>
-            <td><a href="/users/<%= student.id %>"><%= student.first_name %></a></td>
+            <td><a href="/students/<%= student.friendly_id %>"><%= student.first_name %></a></td>
             <td><%= student.last_name %></td>
             <td><%= student.country.name%></td>
             <% if student.studentInfo%>
@@ -189,7 +189,7 @@
                   <td>
                     <%= tech_sum.to_i + lang_sum.to_i + traffic_sum.to_i %>
                   </td>
-                  <td><a href="/students/<%= student.id %>">View Reward</a></td>
+                  <td><a href="/students/<%= student.friendly_id %>">View Reward</a></td>
                   <td><%= student.created_at %></td>
                 </tr>
               <% end %>
@@ -268,7 +268,7 @@
                     <% @student_infos.each do |studentInfo| %>
                     <tr>
                       <td><%= studentInfo.student.first_name %> <%= studentInfo.student.last_name %></td>
-                      <td>He is enrolling in <%= studentInfo.program_category.name %> under <%= studentInfo.course.name %> course</td>
+                      <td>S/he is enrolling in <%= studentInfo.program_category.name %> under <%= studentInfo.course.name %> course</td>
                       <td >
                        <% if studentInfo.status == true%>
                         <i style="color: green;">Arpproved</i>

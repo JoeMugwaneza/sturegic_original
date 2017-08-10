@@ -35,10 +35,10 @@
                       <tr>
                       <% if @studentInfo.district %>
                         <td>District:</td>
-                        <td> <%= @studentInfo.district.name %>name</td>
+                        <td> <%= @studentInfo.district.name %></td>
                       <% elsif @studentInfo.city %>
                         <td>City:</td>
-                        <td> <%= @studentInfo.city %>name</td>
+                        <td> <%= @studentInfo.city %></td>
                       <% end %>
                         </tr>
                         <tr>
@@ -52,6 +52,11 @@
                        <tr>
                         <td>Education Level:</td>
                         <td> <%= @studentInfo.education_level %></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>Bankslip:</td>
+                        <td><img id="img_prev" width=300 height=300 src="<%= @studentInfo.bankslip %>" alt="your image" </td>
                       </tr>
                       
                       <tr>
