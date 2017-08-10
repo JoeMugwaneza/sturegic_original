@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       user = StudentInfo.find_by(reg_no: params[:reg_no]).student
     end
 
-    if user && user.authenticate(params[:password])
+    if user && user.enabled == true && user.authenticate(params[:password])
 
       if params[:remember_me]
         cookies.permanent[:auth_token] = user.auth_token
@@ -24,7 +24,9 @@ class SessionsController < ApplicationController
       else
         redirect_to student_path(user), notice: 'Signed in'
       end
-
+    elsif user && user.enabled == false
+      flash[:warning] = "Your account has be blocked, contact Sturgic admin for more info"
+      redirect_to login_path
     else
       flash[:warning] = "Email or Password is invalid"
       redirect_to login_path

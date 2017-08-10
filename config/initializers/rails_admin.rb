@@ -10,6 +10,16 @@ RailsAdmin.config do |config|
       )
     end
   end
+  config.model 'User' do
+    object_label_method do
+      :custom_label_method
+    end
+  end
+
+  def custom_label_method
+    "#{first_name} #{last_name}"
+  end
+  
   ### Popular gems integration
 
   ## == Devise ==
@@ -38,7 +48,7 @@ RailsAdmin.config do |config|
     index                         # mandatory
     new
     export
-    bulk_delete
+    # bulk_delete
     show
     edit
     delete

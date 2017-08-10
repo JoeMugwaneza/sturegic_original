@@ -10,7 +10,7 @@ class User < ApplicationRecord
   end
   
   has_many :studentInfos, foreign_key: :registrar_id, :dependent => :restrict_with_error
-  has_one :studentInfo, foreign_key: :student_id, dependent: :destroy
+  has_one :studentInfo, foreign_key: :student_id, :dependent => :restrict_with_error
 
   belongs_to :country
 
@@ -29,6 +29,16 @@ class User < ApplicationRecord
   before_create :confirmation_taken
   before_create {generate_token(:auth_token)}
 
+
+
+  rails_admin do
+    edit do
+     exclude_fields :id, :slug, :password_digest, :created_at, :updated_at, :email_confirmed, :confirm_token , :auth_token, :password_reset_token, :password_reset_sent_at, :application_submission, :studentInfos, :registrar_name
+    end
+    list do
+      exclude_fields :id, :slug, :password_digest, :email_confirmed, :confirm_token , :auth_token, :password_reset_token, :password_reset_sent_at, :registrar_name
+    end
+  end
 
   #please during deployment remember to change the program_category_id accordingly becuase they may mess up with your database
   def technicalgroups

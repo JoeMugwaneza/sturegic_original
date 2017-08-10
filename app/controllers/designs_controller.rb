@@ -6,9 +6,9 @@ class DesignsController < ApplicationController
   def admindashboard1
     if current_user.admin == true
     @table_number = 0
-    @students = User.where("admin = ? AND agent = ?", false, false)
-    @agents = User.where(agent: true)
-    @admins = User.where(admin: true)
+    @students = User.where("admin = ? AND agent = ? AND enabled = ?", false, false, true)
+    @agents = User.where("agent = ? AND enabled = ?", true, true)
+    @admins = User.where("admin = ? AND enabled = ?", true, true)
     @studentInfos = StudentInfo.where(status: false)
   elsif current_user.agent == true
     if params[:district_id]

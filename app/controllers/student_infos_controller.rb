@@ -15,7 +15,7 @@ class StudentInfosController < ApplicationController
       end
     elsif current_user.admin == true && params[:agent_rm]
       user = User.find_by(id: params[:agent_rm])
-      user.agent = false
+      user.enabled = false
       if user.save
         flash[:sucess] = "Agent removed"
         redirect_to "/"

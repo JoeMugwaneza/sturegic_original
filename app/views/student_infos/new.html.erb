@@ -17,20 +17,26 @@
           
           <h2 class="text-center application-header">Sponsor's Information</h2>
           <hr>
-
-
+        <% if current_user && current_user.admin || current_user.agent == true%>
+          <p class="form-control application-input">KIAC</p>
+            <p class="form-control application-input">07.....</p>
+            <p class="form-control application-input">.....@gmail.com</p>
+            <p>Make sure the information given are right</p>
+          </div>
+        <% else %>
           <p class="form-control application-input"><%= current_user.first_name %> <%= current_user.last_name %></p>
           <p class="form-control application-input">ID/Passport: <%= current_user.identification %><p>
-            <div class="form-control application-input">
+          <div class="form-control application-input">
               Reg N<span><sup>0</sup>: Rw001/KIAC/2017</span>
             </div>
-            <p class="form-control application-input"><%= current_user.tel %></p>
-            <p class="form-control application-input"><%=current_user.email %></p>
+            <p class="form-control application-input"><%= current_user.tel if current_user.tel %></p>
+            <p class="form-control application-input"><%=current_user.email if current_user.email %></p>
 
             <a href="/students/<%= current_user.friendly_id %>/edit">Edit</a>
             <hr>
             <p>Make sure the information given are right</p>
           </div>
+        <% end %>
         </div>
       </div>
     </div>
