@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'users/:token/confirm_email/', :to => "users#confirm_email", as: 'confirm_email'
 
   get 'students/:id', to: 'users#show', as: 'student'
+  get 'admins/:id', to: 'users#show', as: 'admin'
+  get 'admins/:id/profile-one', to: 'profiles#profile_one', as: 'admin_profile'
 
   get 'students/:id/profile-one', to: 'profiles#profile_one', as: 'student_profile_one'
 
