@@ -111,7 +111,7 @@
             <% @studentInfos.each do |studentInfo| %>
               <tr>
                 <td><%= n %></td>     
-                <td><%= studentInfo.student.first_name %><%= studentInfo.student.last_name %></td>
+                <td><%= studentInfo.student.first_name %> <%= studentInfo.student.last_name %></td>
                 <td><a href="students/<%= studentInfo.student.friendly_id %>/profile-one" class="btn btn-register pull-right">View</a></td> 
                 <% n +=1 %>           
               </tr>
