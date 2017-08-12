@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
+  include Pundit
   protect_from_forgery with: :exception
 
+  rescue_from Pundit::NotAuthorizedError do |exception|
+    redirect_to main_app.root_path, :alert => exception.message
+  end
   include SessionsHelper
 
   private

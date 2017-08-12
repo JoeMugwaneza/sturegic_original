@@ -70,6 +70,6 @@ class StudentInfosController < ApplicationController
     @student_infos = StudentInfo.find_by(id: params[:id])
   end
   def student_infos_params
-    params.require(:student_info).permit(:education_level, :course_id, :program_category_id, :district_id, :registrar_id, :student_id, :country_id, :city, :reg_no, :bankslip)
+    params.require(:student_info).permit(:education_level, :course_id, :program_category_id, :district_id, :registrar_id, :student_id, :country_id, :city, :reg_no, :bankslip, :program_time)
   end
 end

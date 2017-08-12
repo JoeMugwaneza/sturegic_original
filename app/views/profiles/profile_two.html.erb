@@ -2,7 +2,7 @@
 
   <div class="panel panel-info">
     <div class="panel-heading">
-      <h3 class="panel-title"> Student Registration Information </h3>
+      <h3 class="panel-title"> <%= "#{@studentInfo.student.first_name} #{@studentInfo.student.last_name}'s" %> Registration Information </h3>
     </div>
     <!-- <div class="panel-body"> -->
     <div class="row">
@@ -14,8 +14,9 @@
           <tbody>
             <h4> Application Information </h4> 
             <tr>
-              <td>Registrar:</td>
-              <td> <%= @studentInfo.registrar.first_name %> <%= @studentInfo.registrar.last_name %> </td>
+
+              <td>Registration N<sup>0</sup></td>
+              <td><%= @studentInfo.reg_no %></td>
             </tr>
             <tr>
               <td>Country:</td>
@@ -35,6 +36,10 @@
               <td> <%= @studentInfo.program_category.name %></td>
             </tr>
             <tr>
+              <td>Time</td>
+              <td><%= @studentInfo.program_time if @studentInfo.program_time %></td>
+            </tr>
+            <tr>
               <td>Course:</td>
               <td> <%= @studentInfo.course.name %></td>
             </tr>
@@ -42,7 +47,10 @@
               <td>Education Level:</td>
               <td> <%= @studentInfo.education_level %></td>
             </tr>
-
+            <tr>
+              <td>Registrar:</td>
+              <td> <%= @studentInfo.registrar.first_name %> <%= @studentInfo.registrar.last_name %> </td>
+            </tr>
             <tr>
               <td>Bankslip:</td><br>
               <td><a href="<%= @studentInfo.bankslip %>">Display Student Bankslip</a></td>

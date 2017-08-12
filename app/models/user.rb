@@ -28,12 +28,32 @@ class User < ApplicationRecord
 
   before_create :confirmation_taken
   before_create {generate_token(:auth_token)}
+  
+  def role
+    if self.admin == true && self.email == "luc.bayo@gmail.com"
+      return "Superadmin"
+    elsif self.admin == true
+      return "Admin"
+    elsif self.agent == true
+      return "Agent"
+    else
+      return "Student"
+    end
+  end
 
+  def set_password; nil; end
 
+  def set_password=(value)
+    return nil if value.blank?
+    self.password = value
+    self.password_confirmation = value
+  end
 
   rails_admin do
+    configure :set_password
     edit do
      exclude_fields :id, :slug, :password_digest, :created_at, :updated_at, :email_confirmed, :confirm_token , :auth_token, :password_reset_token, :password_reset_sent_at, :application_submission, :studentInfos, :registrar_name
+     include_fields :set_password
     end
     list do
       exclude_fields :id, :slug, :password_digest, :email_confirmed, :confirm_token , :auth_token, :password_reset_token, :password_reset_sent_at, :registrar_name

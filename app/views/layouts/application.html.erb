@@ -48,8 +48,7 @@
 
           <% if current_user %>
           <li><a class="nav-content-format" href="/signup"><i class="glyphicon glyphicon-plus"></i> User</a></li>
-          <li><a class="nav-content-format" href="/logout">Logout</a></li>          
-
+          <li><%= link_to('Logout', '/logout',class:"nav-content-format", method: :delete) %> </li>
           <% else %>
           <li><a class="nav-content-format" href="/login">Login</a></li>
           <% end %>
