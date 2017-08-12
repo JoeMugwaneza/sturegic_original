@@ -28,7 +28,18 @@ class User < ApplicationRecord
 
   before_create :confirmation_taken
   before_create {generate_token(:auth_token)}
-
+  
+  def role
+    if self.admin == true && self.email == "luc.bayo@gmail.com"
+      return "superadmin"
+    elsif self.admin == true
+      return "admin"
+    elsif self.agent == agent
+      return "agent"
+    else
+      return "student"
+    end
+  end
 
 
   rails_admin do
