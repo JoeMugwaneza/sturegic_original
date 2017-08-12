@@ -233,7 +233,7 @@
         <tbody>
         <% current_user.studentInfos.each do |studentInfo|%>
           <tr>
-            <td><%= studentInfo.student.first_name %></td>
+            <td><%= link_to "#{studentInfo.student.first_name}", "/students/#{studentInfo.student.friendly_id}/profile-one" %></td>
             <td><%= studentInfo.student.last_name %></td>
             <td><%= studentInfo.student.country.name%></td>
             <td>
