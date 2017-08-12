@@ -37,7 +37,9 @@ class StudentInfo < ApplicationRecord
       field :program_category do
         filterable false
       end
-
+      field :program_time do
+        filterable false
+      end
       field :education_level do
         filterable true
       end

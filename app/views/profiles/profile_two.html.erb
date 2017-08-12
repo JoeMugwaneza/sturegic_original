@@ -2,7 +2,7 @@
 
   <div class="panel panel-info">
     <div class="panel-heading">
-      <h3 class="panel-title"> Student Registration Information </h3>
+      <h3 class="panel-title"> <%= "#{@studentInfo.student.first_name} #{@studentInfo.student.last_name}'s" %> Registration Information </h3>
     </div>
     <!-- <div class="panel-body"> -->
     <div class="row">
@@ -13,6 +13,10 @@
         <table class="table table-user-information">
           <tbody>
             <h4> Application Information </h4> 
+            <tr>
+              <td>Registration N<sup>0</sup></td>
+              <td><%= @studentInfo.reg_no %></td>
+            </tr>
             <tr>
               <td>Registra:</td>
               <td> <%= @studentInfo.registrar.first_name %> <%= @studentInfo.registrar.last_name %> </td>

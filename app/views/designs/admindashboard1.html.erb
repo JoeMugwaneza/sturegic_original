@@ -81,8 +81,10 @@
             <td><%= agent.first_name %> <%= agent.last_name %></td> 
             <td><%= agent.country.name%></td> 
             <!-- <td>Musanze</td> -->
-            <td><%= agent.studentInfos.count%></td> 
-            <td><a class="btn btn-register pull-right" href="/student_infos?agent_rm=<%= agent.id %>">Remove</a></td>
+            <td><%= agent.studentInfos.count%></td>
+            <% if current_user.role == "Superadmin" %>
+             <td><a class="btn btn-register pull-right" href="/student_infos?agent_rm=<%= agent.id %>">Block</a></td>
+            <% end %>
           </tr>
           <% end %>
         </tbody>

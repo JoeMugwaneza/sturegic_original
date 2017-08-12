@@ -42,15 +42,7 @@
               </tr> 
               <tr>
                 <td>Role</td>
-                <td>
-                  <% if @user.admin == true%> 
-                  Admin
-                  <% elsif @user.agent == true %> 
-                  Agent
-                  <% else %>
-                  Student
-                  <% end %>
-                </td>
+                <td><%= @user.role %></td>
               </tr>
             </tbody>
           </table>
