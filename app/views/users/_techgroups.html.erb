@@ -19,8 +19,8 @@
       <tr>        
         <td>1</td>
         <td><%= @user.level_one(@user.technicalgroups.index(group),"technical").count %></td>
-        <td>5000</td>
-        <td><%= "#{@user.level_one(@user.technicalgroups.index(group),"technical").count * 5000}"%></td>
+        <td>Rwf 5000</td>
+        <td>Rwf <%= "#{@user.level_one(@user.technicalgroups.index(group),"technical").count * 5000}"%></td>
         <td>No Reward</td>
         <td> - </td>
         <td> - </td>
@@ -30,8 +30,8 @@
 
         <td>2</td>
         <td><%= @user.level_two_tech(@user.technicalgroups.index(group),"technical").count %></td>
-        <td>4000</td>
-        <td><%= "#{@user.level_two_tech(@user.technicalgroups.index(group),"technical").count * 4000}"%></td>
+        <td>Rwf 4000</td>
+        <td>Rwf <%= "#{@user.level_two_tech(@user.technicalgroups.index(group),"technical").count * 4000}"%></td>
         <td>Laptop</td>
         <td>
           <% if Time.now - @user.created_at > 90.days && @user.level_two_tech(@user.technicalgroups.index(group),"technical").count < 25 %>
@@ -54,8 +54,8 @@
       <tr>        
         <td>3</td>
         <td><%= @user.level_three_tech(@user.technicalgroups.index(group),"technical").count %></td>
-        <td>3000</td>
-        <td><%= "#{@user.level_three_tech(@user.technicalgroups.index(group),"technical").count * 3000}"%></td>
+        <td>Rwf 3000</td>
+        <td>Rwf <%= "#{@user.level_three_tech(@user.technicalgroups.index(group),"technical").count * 3000}"%></td>
         <td>Scholarship</td>
         <td>
           <% if Time.now - @user.created_at < 90.days && @user.level_three_tech(@user.technicalgroups.index(group),"technical").count < 125%>
@@ -78,8 +78,8 @@
       <tr>
         <td>4</td>
         <td><%= @user.level_four_tech(@user.technicalgroups.index(group),"technical").count %></td>
-        <td>2000</td>
-        <td><%= "#{@user.level_four_tech(@user.technicalgroups.index(group),"technical").count * 2000}"%></td>
+        <td>Rwf 2000</td>
+        <td>Rwf <%= "#{@user.level_four_tech(@user.technicalgroups.index(group),"technical").count * 2000}"%></td>
         <td>Car</td>
         <td>
         <% if Time.now - @user.created_at < 90.days && @user.level_four_tech(@user.technicalgroups.index(group),"technical").count < 625%>
@@ -102,8 +102,8 @@
       <tr>
         <td>5</td>
         <td><%= @user.level_five_tech(@user.technicalgroups.index(group),"technical").count %></td>
-        <td>1000</td>
-        <td><%= "#{@user.level_five_tech(@user.technicalgroups.index(group),"technical").count * 1000}"%></td>
+        <td>Rwf 1000</td>
+        <td>Rwf <%= "#{@user.level_five_tech(@user.technicalgroups.index(group),"technical").count * 1000}"%></td>
         <td>House</td>
         <td>
         <% if Time.now - @user.created_at < 90.days && @user.level_five_tech(@user.technicalgroups.index(group),"technical").count < 3125 %>
