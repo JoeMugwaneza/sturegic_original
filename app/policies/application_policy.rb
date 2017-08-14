@@ -47,11 +47,11 @@ class ApplicationPolicy
         when :show
           user.admin?
         when :new
-          user.admin? && user.role = "Principal"
+          user.admin? && user.role == "Principal"
         when :edit
-          user.admin? && user.role = "Principal"
+          user.admin? && user.role == "Principal"
         when :destroy
-          user.admin? && user.role = "Principal"
+          user.admin? && user.role == "Principal"
         when :export
           user.admin?
         when :history
