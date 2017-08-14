@@ -1,0 +1,41 @@
+<% if @user.country.name = "Rwanda" %>
+  <% if @user.technicalgroups.any? %>
+    <% tech_sum = 0 %>
+    <% @user.technicalgroups.each do |group|%>
+      <% tech_sum += ((@user.level_one(@user.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 5000) + (@user.level_two_tech(@user.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 4000) + (@user.level_three_tech(@user.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 3000) + (@user.level_four_tech(@user.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 2000)+ (@user.level_five_tech(@user.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000))%>
+    <% end %>  
+  <% end %>
+  <% if @user.languagesgroups.any? %>
+    <% lang_sum = 0 %>
+    <% @user.languagesgroups.each do |group|%>
+      <% lang_sum += ((@user.level_one(@user.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 2000) + (@user.level_two_lang(@user.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000) + (@user.level_three_lang(@user.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000) + (@user.level_four_lang(@user.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000)+ (@user.level_five_lang(@user.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000))%>
+    <% end %>  
+  <% end %>
+  <% if @user.trafficgroups.any? %>
+    <% traffic_sum = 0 %>
+    <% @user.trafficgroups.each do |group|%>
+      <% traffic_sum += ((@user.level_one(@user.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 2000) + (@user.level_two_lang(@user.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000) + (@user.level_three_lang(@user.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000) + (@user.level_four_lang(@user.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000)+ (@user.level_five_lang(@user.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000))%>
+    <% end %>
+  <% end %>
+  Rwf <%= tech_sum.to_i + lang_sum.to_i + traffic_sum.to_i %>
+<% else %>
+  <% if @user.technicalgroups.any? %>
+    <% tech_sum = 0 %>
+    <% @user.technicalgroups.each do |group|%>
+      <% tech_sum += ((@user.level_one(@user.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 5) + (@user.level_two_tech(@user.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 4) + (@user.level_three_tech(@user.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 3) + (@user.level_four_tech(@user.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 2)+ (@user.level_five_tech(@user.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1))%>
+    <% end %>  
+  <% end %>
+  <% if @user.languagesgroups.any? %>
+    <% lang_sum = 0 %>
+    <% @user.languagesgroups.each do |group|%>
+      <% lang_sum += ((@user.level_one(@user.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 2) + (@user.level_two_lang(@user.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1) + (@user.level_three_lang(@user.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1) + (@user.level_four_lang(@user.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1)+ (@user.level_five_lang(@user.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1))%>
+    <% end %>  
+  <% end %>
+  <% if @user.trafficgroups.any? %>
+    <% traffic_sum = 0 %>
+    <% @user.trafficgroups.each do |group|%>
+      <% traffic_sum += ((@user.level_one(@user.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 2) + (@user.level_two_lang(@user.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1) + (@user.level_three_lang(@user.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1) + (@user.level_four_lang(@user.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1)+ (@user.level_five_lang(@user.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1))%>
+    <% end %>
+  <% end %>
+  $<%= tech_sum.to_i + lang_sum.to_i + traffic_sum.to_i %>
+<% end %>

@@ -10,6 +10,10 @@ class StudentInfo < ApplicationRecord
   
   before_create :generate_registration
 
+  def created_date
+   self.created_at.strftime("%d %b. %Y")
+  end
+
   rails_admin do
     edit do
       exclude_fields :id, :student_id, :registrar_id,:created_at, :updated_at, :bankslip

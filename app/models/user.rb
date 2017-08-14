@@ -28,7 +28,9 @@ class User < ApplicationRecord
 
   before_create :confirmation_taken
   before_create {generate_token(:auth_token)}
-  
+  def created_date
+   self.created_at.strftime("%d %b. %Y")
+  end
   def role
     if self.admin == true && self.email == "luc.bayo@gmail.com"
       return "Superadmin"
