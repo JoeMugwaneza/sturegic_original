@@ -33,7 +33,7 @@ class User < ApplicationRecord
   end
   def role
     if self.admin == true && self.email == "luc.bayo@gmail.com"
-      return "Superadmin"
+      return "Principal"
     elsif self.admin == true
       return "Admin"
     elsif self.agent == true
