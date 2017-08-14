@@ -58,7 +58,7 @@ class User < ApplicationRecord
      include_fields :set_password
     end
     list do
-      include_fields :first_name, :last_name, :country, :district, :email, :sex, :martial_status, :tel, :identification, :created_at, :admin, :agent, :username
+      include_fields :first_name, :last_name, :country, :district, :email, :sex, :martial_status, :tel, :identification, :created_at, :admin, :agent, :username, :registarr_name
     end
   end
 
