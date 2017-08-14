@@ -35,8 +35,10 @@
           <td><%= "#{@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 1000}"%></td>
           <td>SmartPhone </td>
           <td>
-          <% unless Time.now - @user.created_at > 90.days %>
+          <% if Time.now - @user.created_at < 90.days && @user.level_two_lang(@user.languagesgroups.index(group),"languages").count <25 %>
           <%= distance_of_time_in_words(Time.now, @user.created_at + 90.days)%>
+          <% elsif @user.level_two_lang(@user.languagesgroups.index(group),"languages").count == 0 %>
+          <small style="color: green;">You Won SmarthPhone</small>
           <% else %>
           <small style="color: red;">Reward Missed!</small>
           <% end %>
@@ -58,12 +60,13 @@
           <td><%= "#{@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 1000}"%></td>
           <td>Laptop</td>
           <td>
-          <% unless Time.now - @user.created_at > 180.days %>
-          <%= distance_of_time_in_words(Time.now, @user.created_at + 180.days)%>
-          <% else %>
-          <small style="color: red;">Reward Missed!</small>
-          <% end %>
-            
+            <% if Time.now - @user.created_at < 180.days && @user.level_three_lang(@user.languagesgroups.index(group),"languages").count < 125 %>
+            <%= distance_of_time_in_words(Time.now, @user.created_at + 180.days)%>
+            <% elsif @user.level_three_lang(@user.languagesgroups.index(group),"languages").count == 125%>
+            <small style="color: green;">You Won Laptop</small>
+            <% else %>
+            <small style="color: red;">Reward Missed!</small>
+            <% end %> 
           </td>
           <td>          
             <div class="progress">
@@ -81,12 +84,13 @@
           <td><%= "#{@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 1000}"%></td>
           <td>Motorcycle</td>
           <td>
-          <% unless Time.now - @user.created_at > 270.days %>
-          <%= distance_of_time_in_words(Time.now, @user.created_at + 270.days)%>
-          <% else %>
-          <small style="color: red;">Reward Missed!</small>
-          <% end %>
-            
+            <% if Time.now - @user.created_at < 270.days && @user.level_four_lang(@user.languagesgroups.index(group),"languages").count < 625%>
+            <%= distance_of_time_in_words(Time.now, @user.created_at + 270.days)%>
+            <% elsif @user.level_four_lang(@user.languagesgroups.index(group),"languages").count == 625%>
+            <small style="color: green;">You won a Motorcycle</small>
+            <% else %>
+            <small style="color: red;">Reward Missed!</small>
+            <% end %>  
           </td>
           <td>          
             <div class="progress">
@@ -104,12 +108,13 @@
           <td><%= "#{@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 1000}"%></td>
           <td>Land</td>
           <td>
-          <% unless Time.now - @user.created_at > 360.days %>
-          <%= distance_of_time_in_words(Time.now, @user.created_at + 360.days)%>
-          <% else %>
-          <small style="color: red;">Reward Missed!</small>
-          <% end %>
-            
+            <% if Time.now - @user.created_at < 360.days && @user.level_five_lang(@user.languagesgroups.index(group),"languages").count < 3125 %>
+            <%= distance_of_time_in_words(Time.now, @user.created_at + 360.days)%>
+            <% elsif @user.level_five_lang(@user.languagesgroups.index(group),"languages").count == 3125 %>
+            <small style="color: green;">You won Land</small>
+            <% else %>
+            <small style="color: red;">Reward Missed!</small>
+            <% end %>
           </td>
           <td>          
             <div class="progress">
@@ -144,12 +149,13 @@
           <td>$<%= "#{@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 1}"%></td>
           <td>SmartPhone </td>
           <td>
-          <% unless Time.now - @user.created_at > 90.days %>
-          <%= distance_of_time_in_words(Time.now, @user.created_at + 90.days)%>
-          <% else %>
-          <small style="color: red;">Reward Missed!</small>
-          <% end %>
-            
+            <% if Time.now - @user.created_at < 90.days && @user.level_two_lang(@user.languagesgroups.index(group),"languages").count <25 %>
+            <%= distance_of_time_in_words(Time.now, @user.created_at + 90.days)%>
+            <% elsif @user.level_two_lang(@user.languagesgroups.index(group),"languages").count == 0 %>
+            <small style="color: green;">You Won SmarthPhone</small>
+            <% else %>
+            <small style="color: red;">Reward Missed!</small>
+            <% end %> 
           </td>
           <td>          
             <div class="progress">
@@ -167,12 +173,13 @@
           <td><%= "#{@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 1}"%></td>
           <td>Laptop</td>
           <td>
-          <% unless Time.now - @user.created_at > 180.days %>
-          <%= distance_of_time_in_words(Time.now, @user.created_at + 180.days)%>
-          <% else %>
-          <small style="color: red;">Reward Missed!</small>
-          <% end %>
-            
+            <% if Time.now - @user.created_at < 180.days && @user.level_three_lang(@user.languagesgroups.index(group),"languages").count < 125 %>
+            <%= distance_of_time_in_words(Time.now, @user.created_at + 180.days)%>
+            <% elsif @user.level_three_lang(@user.languagesgroups.index(group),"languages").count == 125%>
+            <small style="color: green;">You Won Laptop</small>
+            <% else %>
+            <small style="color: red;">Reward Missed!</small>
+            <% end %>
           </td>
           <td>          
             <div class="progress">
@@ -190,12 +197,13 @@
           <td>$<%= "#{@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 1}"%></td>
           <td>Motorcycle</td>
           <td>
-          <% unless Time.now - @user.created_at > 270.days %>
-          <%= distance_of_time_in_words(Time.now, @user.created_at + 270.days)%>
-          <% else %>
-          <small style="color: red;">Reward Missed!</small>
-          <% end %>
-            
+            <% if Time.now - @user.created_at < 270.days && @user.level_four_lang(@user.languagesgroups.index(group),"languages").count < 625%>
+            <%= distance_of_time_in_words(Time.now, @user.created_at + 270.days)%>
+            <% elsif @user.level_four_lang(@user.languagesgroups.index(group),"languages").count == 625%>
+            <small style="color: green;">You won a Motorcycle</small>
+            <% else %>
+            <small style="color: red;">Reward Missed!</small>
+            <% end %>  
           </td>
           <td>          
             <div class="progress">
@@ -213,12 +221,13 @@
           <td>$<%= "#{@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 1}"%></td>
           <td>Land</td>
           <td>
-          <% unless Time.now - @user.created_at > 360.days %>
-          <%= distance_of_time_in_words(Time.now, @user.created_at + 360.days)%>
-          <% else %>
-          <small style="color: red;">Reward Missed!</small>
-          <% end %>
-            
+            <% if Time.now - @user.created_at < 360.days && @user.level_five_lang(@user.languagesgroups.index(group),"languages").count < 3125 %>
+            <%= distance_of_time_in_words(Time.now, @user.created_at + 360.days)%>
+            <% elsif @user.level_five_lang(@user.languagesgroups.index(group),"languages").count == 3125 %>
+            <small style="color: green;">You won Land</small>
+            <% else %>
+            <small style="color: red;">Reward Missed!</small>
+            <% end %>
           </td>
           <td>          
             <div class="progress">
