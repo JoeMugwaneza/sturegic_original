@@ -26,32 +26,32 @@ class StudentInfo < ApplicationRecord
         filterable false
       end
 
-      field :registrar do
+      field :country do
         filterable false
+        sortable false
       end
 
       field :district do
         filterable false
-      end
-
-      field :country do
-        filterable false
+        sortable false
       end
 
       field :program_category do
         filterable false
       end
-      field :program_time do
-        filterable false
-      end
-      field :education_level do
-        filterable true
-      end
-
+      
       field :course do
         filterable false
       end
 
+      field :program_time do
+        filterable true
+      end
+
+      field :education_level do
+        filterable true
+      end
+      
       field :city do
         filterable true
       end
@@ -60,10 +60,6 @@ class StudentInfo < ApplicationRecord
         filterable true
       end
 
-      field :status do
-        filterable true
-      end 
-
       field :reg_no do
         filterable true
       end
@@ -71,6 +67,16 @@ class StudentInfo < ApplicationRecord
       field :bankslip do
         filterable false
       end
+
+      field :status do
+        filterable true
+      end 
+
+      field :registrar do
+        filterable false
+      end
+
+
     end
   end
 

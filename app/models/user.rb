@@ -58,7 +58,7 @@ class User < ApplicationRecord
      include_fields :set_password
     end
     list do
-      exclude_fields :id, :slug, :password_digest, :email_confirmed, :confirm_token , :auth_token, :password_reset_token, :password_reset_sent_at, :registrar_name
+      include_fields :first_name, :last_name, :country, :district, :email, :sex, :martial_status, :tel, :identification, :created_at, :admin, :agent, :username
     end
   end
 
