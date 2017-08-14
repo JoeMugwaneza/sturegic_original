@@ -32,7 +32,7 @@ class User < ApplicationRecord
    self.created_at.strftime("%d %b. %Y")
   end
   def role
-    if self.admin == true && self.email == "luc.bayo@gmail.com"
+    if self.admin == true && self.email == "info@kiac.ac.rw" || self.email == "luc.bayo@gmail.com" 
       return "Principal"
     elsif self.admin == true
       return "Admin"
