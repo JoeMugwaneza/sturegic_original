@@ -9,8 +9,8 @@ class User < ApplicationRecord
     new_record?
   end
   
-  has_many :studentInfos, foreign_key: :registrar_id
-  has_one :studentInfo, foreign_key: :student_id
+  has_many :studentInfos, foreign_key: :registrar_id, :dependent => :restrict_with_error
+  has_one :studentInfo, foreign_key: :student_id, :dependent => :restrict_with_error
 
   belongs_to :country
 
@@ -28,12 +28,42 @@ class User < ApplicationRecord
 
   before_create :confirmation_taken
   before_create {generate_token(:auth_token)}
+  
+  def role
+    if self.admin == true && self.email == "luc.bayo@gmail.com"
+      return "Superadmin"
+    elsif self.admin == true
+      return "Admin"
+    elsif self.agent == true
+      return "Agent"
+    else
+      return "Student"
+    end
+  end
 
+  def set_password; nil; end
+
+  def set_password=(value)
+    return nil if value.blank?
+    self.password = value
+    self.password_confirmation = value
+  end
+
+  rails_admin do
+    configure :set_password
+    edit do
+     exclude_fields :id, :slug, :password_digest, :created_at, :updated_at, :email_confirmed, :confirm_token , :auth_token, :password_reset_token, :password_reset_sent_at, :application_submission, :studentInfos, :registrar_name
+     include_fields :set_password
+    end
+    list do
+      exclude_fields :id, :slug, :password_digest, :email_confirmed, :confirm_token , :auth_token, :password_reset_token, :password_reset_sent_at, :registrar_name
+    end
+  end
 
   #please during deployment remember to change the program_category_id accordingly becuase they may mess up with your database
   def technicalgroups
     students = []
-    self.studentInfos.where(program_category_id: 1).each do |studentInfo|
+    self.studentInfos.where("program_category_id = ? AND status = ?", 1, true).each do |studentInfo|
       students.push(studentInfo.student)
     end
     groups = students.each_slice(5).to_a
@@ -43,7 +73,7 @@ class User < ApplicationRecord
 
   def trafficgroups
     students = []
-    self.studentInfos.where(program_category_id: 3).each do |studentInfo|
+    self.studentInfos.where("program_category_id = ? AND status = ?", 3, true).each do |studentInfo|
       students.push(studentInfo.student)
     end
     groups = students.each_slice(5).to_a
@@ -54,13 +84,15 @@ class User < ApplicationRecord
 
   def languagesgroups
     students = []
-    self.studentInfos.where(program_category_id: 2).each do |studentInfo|
+    self.studentInfos.where("program_category_id = ? AND status = ?", 2, true).each do |studentInfo|
       students.push(studentInfo.student)
     end
     groups = students.each_slice(5).to_a
 
     return groups
   end
+
+  scope :this_month, -> { where(created_at: Time.now.beginning_of_month..Time.now.end_of_month) }
 
   def generate_token(column)
     begin 
@@ -111,5 +143,6 @@ class User < ApplicationRecord
   def current_user?(user)
     user == current_user
   end
+
 
 end

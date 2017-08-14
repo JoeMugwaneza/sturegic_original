@@ -22,6 +22,8 @@
       <%= f.label :city %>
       <%= f.text_field :city %>
     <% end %>
+    <%= f.label :Bankslip%>
+    <%=f.file_field :bankslip, {class: "form-control", required: "required"}%>
     <%= f.label :program_category_id %>
     <%= f.select :program_category_id,  ProgramCategory.all.collect {|c| [ c.name , c.id.to_i ] }, {include_blank: 'None'}, {class: "form-control", required: "required"} %><br>
   <%= f.submit value:"Save Application" %>

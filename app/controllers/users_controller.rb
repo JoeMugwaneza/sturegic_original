@@ -1,21 +1,30 @@
 class UsersController < ApplicationController
 
-  # before_action :authorize
+    before_action :authenticate_user
 
     before_action :logged_in_user, only: [:edit, :update]
     before_action :correct_user,   only: [:edit, :update]
   # before_action :authorize
   def show
-    user = User.find_by(id: params[:id])
-    if current_user.admin == true || current_user == user
-      @user = user
+    user = User.friendly.find(params[:id])
+    if user && user.enabled == true
+      if current_user.admin == true || current_user == user
+        @user = user
+      else
+        redirect_to student_path
+      end
     else
-      redirect_to "/users/#{current_user.id}"
+      flash[:warning] = "You are trying to access payment info a user who is blocked"
+      redirect_to student_profile_one_path(user)
     end
   end
-
   def new
-    @user = User.new
+    if current_user.admin == true || current_user.agent == true || current_user.studentInfo.status == true 
+      @user = User.new
+    else
+      flash[:warning] = "You are not allowed to register a new student!"
+      redirect_to "/students/#{current_user.friendly_id}"
+    end
   end
 
   def create
@@ -83,14 +92,14 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :email, :admin, :agent, :country_id, :sex, :martial_status, :tel, :password, :password_confirmation, :identification, :agent)
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :admin, :agent, :country_id, :sex, :martial_status, :tel, :password, :password_confirmation, :identification, :agent, :district)
   end
 
   def find_user
     @user = User.friendly.find(params[:id])
   end
 
-  #Confirm that the use who is going to edit the profit is corrent
+  #Confirm that the use who is going to edit the profit is correct
   def correct_user
     @user = User.friendly.find(params[:id])
     redirect_to root_path unless current_user?(@user) || current_user.admin?

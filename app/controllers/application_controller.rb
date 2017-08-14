@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
+  include Pundit
   protect_from_forgery with: :exception
 
+  rescue_from Pundit::NotAuthorizedError do |exception|
+    redirect_to main_app.root_path, :alert => exception.message
+  end
   include SessionsHelper
 
   private
@@ -16,5 +20,12 @@ class ApplicationController < ActionController::Base
 
   def authorize
     redirect_to login_url, alert: "Not Authorized" if current_user.nil?
+  end
+  def authenticate_user
+    if current_user.nil?
+      redirect_to login_url, alert: "Not Authorized" 
+    elsif current_user.enabled == false
+      redirect_to login_url, alert: "Your account has been disabled"
+    end
   end
 end

@@ -57,4 +57,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'friendly_id', '~> 5.2', '>= 5.2.1'
 gem 'rails_admin', '~> 1.2'
+gem "rails_admin_pundit", :github => "sudosu/rails_admin_pundit"
+gem "pundit"
 gem 'client_side_validations'
+gem 'carrierwave', '~> 1.1'
+gem 'mini_magick', '~> 4.8'
