@@ -1,6 +1,6 @@
 <%= form_for @student_infos do |f| %>
 <br>
-<%= f.select :program_time, [["Day Program", "Day Program"], ["Enining Program", "Enining Program"], ["Weekend Program", "Weekend Program"]], {include_blank: "Select Program Time"}, {class: "form-control", required: "required"}%>
+<%= f.select :program_time, [["Day Program", "Day Program"], ["Evening Program", "Evening Program"], ["Weekend Program", "Weekend Program"]], {include_blank: "Select Program Time"}, {class: "form-control", required: "required"}%>
 <br>
 <%= f.select :course_id ,  @program_category.courses.all.collect {|c| [ c.name , c.id.to_i ] }, {include_blank: "Choose #{@program_category.name} Course "}, {class: "form-control", required: "required"} %><br>
 
