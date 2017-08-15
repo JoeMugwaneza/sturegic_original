@@ -16,82 +16,234 @@
       <th>Progress</th>
     </thead>
     <tbody>
+      <% if @user.country.name == "Rwanda" %>
+        <tr>        
+          <td>1</td>
+          <td><%= @user.level_one(@user.languagesgroups.index(group),"languages").count %></td>
+          <td>2000</td>
+          <td><%= "#{@user.level_one(@user.languagesgroups.index(group),"languages").count * 2000}"%></td>
+          <td>No Reward</td>
+          <td> - </td>
+          <td> - </td>
+        </tr>
+        
+        <tr>
 
-      <tr>        
-        <td>1</td>
-        <td><%= @user.level_one(@user.languagesgroups.index(group),"languages").count %></td>
-        <td>2000</td>
-        <td><%= "#{@user.level_one(@user.languagesgroups.index(group),"languages").count * 2000}"%></td>
-        <td>No Reward</td>
-        <td> - </td>
-        <td> - </td>
-      </tr>
-      
-      <tr>
+          <td>2</td>
+          <td><%= @user.level_two_lang(@user.languagesgroups.index(group),"languages").count %></td>
+          <td>1000</td>
+          <td><%= "#{@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 1000}"%></td>
+          <td>SmartPhone </td>
+          <td>
+          <% if Time.now - @user.created_at < 90.days && @user.level_two_lang(@user.languagesgroups.index(group),"languages").count <25 %>
+          <%= distance_of_time_in_words(Time.now, @user.created_at + 90.days)%>
+          <% elsif @user.level_two_lang(@user.languagesgroups.index(group),"languages").count == 0 %>
+          <small style="color: green;">You Won SmarthPhone</small>
+          <% else %>
+          <small style="color: red;">Reward Missed!</small>
+          <% end %>
+            
+          </td>
+          <td>          
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+              aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 100)/25%>%">
+              <%=(@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 100)/25%>%</div>
+            </div>
+          </td>
+        </tr>
 
-        <td>2</td>
-        <td><%= @user.level_two(@user.languagesgroups.index(group),"languages").count %></td>
-        <td>1000</td>
-        <td><%= "#{@user.level_two(@user.languagesgroups.index(group),"languages").count * 1000}"%></td>
-        <td>SmartPhone</td>
-        <td>90 days</td>
-        <td>          
-          <div class="progress">
-            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_two(@user.languagesgroups.index(group),"languages").count * 100)/25%>%">
-            <%=(@user.level_two(@user.languagesgroups.index(group),"languages").count * 100)/25%>%</div>
-          </div>
-        </td>
-      </tr>
+        <tr>        
+          <td>3</td>
+          <td><%= @user.level_three_lang(@user.languagesgroups.index(group),"languages").count %></td>
+          <td>1000</td>
+          <td><%= "#{@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 1000}"%></td>
+          <td>Laptop</td>
+          <td>
+            <% if Time.now - @user.created_at < 180.days && @user.level_three_lang(@user.languagesgroups.index(group),"languages").count < 125 %>
+            <%= distance_of_time_in_words(Time.now, @user.created_at + 180.days)%>
+            <% elsif @user.level_three_lang(@user.languagesgroups.index(group),"languages").count == 125%>
+            <small style="color: green;">You Won Laptop</small>
+            <% else %>
+            <small style="color: red;">Reward Missed!</small>
+            <% end %> 
+          </td>
+          <td>          
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+              aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 100)/125%>%">
+              <%=(@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 100)/125%>%</div>
+            </div>
+          </td>
+        </tr>
 
-      <tr>        
-        <td>3</td>
-        <td><%= @user.level_three(@user.languagesgroups.index(group),"languages").count %></td>
-        <td>1000</td>
-        <td><%= "#{@user.level_three(@user.languagesgroups.index(group),"languages").count * 1000}"%></td>
-        <td>Laptop</td>
-        <td>180 days</td>
-        <td>          
-          <div class="progress">
-            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_three(@user.languagesgroups.index(group),"languages").count * 100)/125%>%">
-            <%=(@user.level_three(@user.languagesgroups.index(group),"languages").count * 100)/125%>%</div>
-          </div>
-        </td>
-      </tr>
+        <tr>
+          <td>4</td>
+          <td><%= @user.level_four_lang(@user.languagesgroups.index(group),"languages").count %></td>
+          <td>1000</td>
+          <td><%= "#{@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 1000}"%></td>
+          <td>Motorcycle</td>
+          <td>
+            <% if Time.now - @user.created_at < 270.days && @user.level_four_lang(@user.languagesgroups.index(group),"languages").count < 625%>
+            <%= distance_of_time_in_words(Time.now, @user.created_at + 270.days)%>
+            <% elsif @user.level_four_lang(@user.languagesgroups.index(group),"languages").count == 625%>
+            <small style="color: green;">You won a Motorcycle</small>
+            <% else %>
+            <small style="color: red;">Reward Missed!</small>
+            <% end %>  
+          </td>
+          <td>          
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+              aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 100)/625%>%">
+              <%=(@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 100)/625%>%</div>
+            </div>
+          </td>
+        </tr>
 
-      <tr>
-        <td>4</td>
-        <td><%= @user.level_four(@user.languagesgroups.index(group),"languages").count %></td>
-        <td>1000</td>
-        <td><%= "#{@user.level_four(@user.languagesgroups.index(group),"languages").count * 1000}"%></td>
-        <td>Motorcycle</td>
-        <td>270 days</td>
-        <td>          
-          <div class="progress">
-            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_four(@user.languagesgroups.index(group),"languages").count * 100)/625%>%">
-            <%=(@user.level_four(@user.languagesgroups.index(group),"languages").count * 100)/625%>%</div>
-          </div>
-        </td>
-      </tr>
+        <tr>
+          <td>5</td>
+          <td><%= @user.level_five_lang(@user.languagesgroups.index(group),"languages").count %></td>
+          <td>1000</td>
+          <td><%= "#{@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 1000}"%></td>
+          <td>Land</td>
+          <td>
+            <% if Time.now - @user.created_at < 360.days && @user.level_five_lang(@user.languagesgroups.index(group),"languages").count < 3125 %>
+            <%= distance_of_time_in_words(Time.now, @user.created_at + 360.days)%>
+            <% elsif @user.level_five_lang(@user.languagesgroups.index(group),"languages").count == 3125 %>
+            <small style="color: green;">You won Land</small>
+            <% else %>
+            <small style="color: red;">Reward Missed!</small>
+            <% end %>
+          </td>
+          <td>          
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+              aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 100)/3125%>%">
+              <%=(@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 100)/3125%>%</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Total</b></td>
+          <td><%= "#{@user.level_one(@user.languagesgroups.index(group),"languages").count + @user.level_two_lang(@user.languagesgroups.index(group),"languages").count + @user.level_three_lang(@user.languagesgroups.index(group),"languages").count + @user.level_four_lang(@user.languagesgroups.index(group),"languages").count + @user.level_five_lang(@user.languagesgroups.index(group),"languages").count}" %></td>
+          <td>-</td>
+          <td><b>Rwf <%="#{(@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 1000)+ (@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 1000) + (@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 1000) + (@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 1000) + (@user.level_one(@user.languagesgroups.index(group),"languages").count * 2000)}"%></b></td>
+        </tr>
+      <% else %>
+        <tr>        
+          <td>1</td>
+          <td><%= @user.level_one(@user.languagesgroups.index(group),"languages").count %></td>
+          <td>$2</td>
+          <td>$<%= "#{@user.level_one(@user.languagesgroups.index(group),"languages").count * 2}"%></td>
+          <td>No Reward</td>
+          <td> - </td>
+          <td> - </td>
+        </tr>
+        
+        <tr>
 
-      <tr>
-        <td>5</td>
-        <td><%= @user.level_five(@user.languagesgroups.index(group),"languages").count %></td>
-        <td>1000</td>
-        <td><%= "#{@user.level_five(@user.languagesgroups.index(group),"languages").count * 1000}"%></td>
-        <td>Land</td>
-        <td>360 days</td>
-        <td>          
-          <div class="progress">
-            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_five(@user.languagesgroups.index(group),"languages").count * 100)/3125%>%">
-            <%=(@user.level_five(@user.languagesgroups.index(group),"languages").count * 100)/3125%>%</div>
-          </div>
-        </td>
-      </tr>
+          <td>2</td>
+          <td><%= @user.level_two_lang(@user.languagesgroups.index(group),"languages").count %></td>
+          <td>$1</td>
+          <td>$<%= "#{@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 1}"%></td>
+          <td>SmartPhone </td>
+          <td>
+            <% if Time.now - @user.created_at < 90.days && @user.level_two_lang(@user.languagesgroups.index(group),"languages").count <25 %>
+            <%= distance_of_time_in_words(Time.now, @user.created_at + 90.days)%>
+            <% elsif @user.level_two_lang(@user.languagesgroups.index(group),"languages").count == 0 %>
+            <small style="color: green;">You Won SmarthPhone</small>
+            <% else %>
+            <small style="color: red;">Reward Missed!</small>
+            <% end %> 
+          </td>
+          <td>          
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+              aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 100)/25%>%">
+              <%=(@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 100)/25%>%</div>
+            </div>
+          </td>
+        </tr>
 
+        <tr>        
+          <td>3</td>
+          <td><%= @user.level_three_lang(@user.languagesgroups.index(group),"languages").count %></td>
+          <td>$1</td>
+          <td><%= "#{@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 1}"%></td>
+          <td>Laptop</td>
+          <td>
+            <% if Time.now - @user.created_at < 180.days && @user.level_three_lang(@user.languagesgroups.index(group),"languages").count < 125 %>
+            <%= distance_of_time_in_words(Time.now, @user.created_at + 180.days)%>
+            <% elsif @user.level_three_lang(@user.languagesgroups.index(group),"languages").count == 125%>
+            <small style="color: green;">You Won Laptop</small>
+            <% else %>
+            <small style="color: red;">Reward Missed!</small>
+            <% end %>
+          </td>
+          <td>          
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+              aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 100)/125%>%">
+              <%=(@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 100)/125%>%</div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>4</td>
+          <td><%= @user.level_four_lang(@user.languagesgroups.index(group),"languages").count %></td>
+          <td>$1</td>
+          <td>$<%= "#{@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 1}"%></td>
+          <td>Motorcycle</td>
+          <td>
+            <% if Time.now - @user.created_at < 270.days && @user.level_four_lang(@user.languagesgroups.index(group),"languages").count < 625%>
+            <%= distance_of_time_in_words(Time.now, @user.created_at + 270.days)%>
+            <% elsif @user.level_four_lang(@user.languagesgroups.index(group),"languages").count == 625%>
+            <small style="color: green;">You won a Motorcycle</small>
+            <% else %>
+            <small style="color: red;">Reward Missed!</small>
+            <% end %>  
+          </td>
+          <td>          
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+              aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 100)/625%>%">
+              <%=(@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 100)/625%>%</div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>5</td>
+          <td><%= @user.level_five_lang(@user.languagesgroups.index(group),"languages").count %></td>
+          <td>$1</td>
+          <td>$<%= "#{@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 1}"%></td>
+          <td>Land</td>
+          <td>
+            <% if Time.now - @user.created_at < 360.days && @user.level_five_lang(@user.languagesgroups.index(group),"languages").count < 3125 %>
+            <%= distance_of_time_in_words(Time.now, @user.created_at + 360.days)%>
+            <% elsif @user.level_five_lang(@user.languagesgroups.index(group),"languages").count == 3125 %>
+            <small style="color: green;">You won Land</small>
+            <% else %>
+            <small style="color: red;">Reward Missed!</small>
+            <% end %>
+          </td>
+          <td>          
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+              aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 100)/3125%>%">
+              <%=(@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 100)/3125%>%</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Total</b></td>
+          <td><%= "#{@user.level_one(@user.languagesgroups.index(group),"languages").count + @user.level_two_lang(@user.languagesgroups.index(group),"languages").count + @user.level_three_lang(@user.languagesgroups.index(group),"languages").count + @user.level_four_lang(@user.languagesgroups.index(group),"languages").count + @user.level_five_lang(@user.languagesgroups.index(group),"languages").count}" %></td>
+          <td>-</td>
+          <td><b>$ <%="#{(@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 1)+ (@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 1) + (@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 1) + (@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 1) + (@user.level_one(@user.languagesgroups.index(group),"languages").count * 2)}"%></b></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
@@ -138,7 +290,7 @@
                   <%= student.studentInfo.city %>
                   <% end %>
                 </td>
-                <td><%= student.studentInfo.created_at %></td>
+                <td><%= student.studentInfo.created_date %></td>
               </tr>
             <% end %>
             </tbody>
@@ -158,7 +310,7 @@
               </tr>
             </thead>
             <tbody>
-            <% @user.level_two(@user.languagesgroups.index(group), "languages").each do |student| %>
+            <% @user.level_two_lang(@user.languagesgroups.index(group), "languages").each do |student| %>
               <tr>
                 <td>1</td>
                 <td><%= student.first_name %> <%= student.last_name%></td>
@@ -170,7 +322,7 @@
                   <%= student.studentInfo.city %>
                   <% end %>
                 </td>
-                <td><%= student.studentInfo.created_at %></td>
+                <td><%= student.studentInfo.created_date %></td>
               </tr>
             <% end %>
             </tbody>
@@ -189,7 +341,7 @@
               </tr>
             </thead>
             <tbody>
-              <% @user.level_three(@user.languagesgroups.index(group), "languages").each do |student| %>
+              <% @user.level_three_lang(@user.languagesgroups.index(group), "languages").each do |student| %>
                 <tr>
                   <td><%= student.first_name %> <%= student.last_name%></td>
                   <td><%= student.studentInfo.program_category.name%></td>
@@ -200,7 +352,7 @@
                     <%= student.studentInfo.city %>
                     <% end %>
                   </td>
-                  <td><%= student.studentInfo.created_at %></td>
+                  <td><%= student.studentInfo.created_date %></td>
                 </tr>
               <% end %>
             </tbody>
@@ -219,7 +371,7 @@
               </tr>
             </thead>
             <tbody>
-             <% @user.level_four(@user.languagesgroups.index(group), "languages").each do |student| %>
+             <% @user.level_four_lang(@user.languagesgroups.index(group), "languages").each do |student| %>
                 <tr>
                   <td>1</td>
                   <td><%= student.first_name %> <%= student.last_name%></td>
@@ -231,7 +383,7 @@
                     <%= student.studentInfo.city %>
                     <% end %>
                   </td>
-                  <td><%= student.studentInfo.created_at %></td>
+                  <td><%= student.studentInfo.created_date %></td>
                 </tr>
               <% end %>
             </tbody>
@@ -250,7 +402,7 @@
               </tr>
             </thead>
             <tbody>
-              <% @user.level_five(@user.languagesgroups.index(group), "languages").each do |student| %>
+              <% @user.level_five_lang(@user.languagesgroups.index(group), "languages").each do |student| %>
                 <tr>
                   <td>1</td>
                   <td><%= student.first_name %> <%= student.last_name%></td>
@@ -262,7 +414,7 @@
                     <%= student.studentInfo.city %>
                     <% end %>
                   </td>
-                  <td><%= student.studentInfo.created_at %></td>
+                  <td><%= student.studentInfo.created_date %></td>
                 </tr>
               <% end %>
             </tbody>
