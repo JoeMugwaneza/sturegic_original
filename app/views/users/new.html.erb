@@ -52,6 +52,15 @@
           <dir class="field select-form-input">
             <%= f.collection_select(:district, District.all, :name, :name, :include_blank => "Select District")%><br>
           </dir>
+
+          <div class="field">
+            <%= f.text_field :bank, class:"form-control application-input", placeholder:"Bank (e.g: Bk)...", title:"Bank", required: "required" %>
+          </div>
+
+          <div class="field">
+            <%= f.text_field :bank_account, class:"form-control application-input", placeholder:"Bank Account Number...", title:"Your Bank Account Number", required: "required"  %>
+          </div>
+
           <div class="field">
             <%= f.email_field :email, class:"form-control application-input", placeholder:"Email ...", title:"Email" %>
           </div>

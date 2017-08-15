@@ -87,7 +87,7 @@
             <!-- <td>Musanze</td> -->
             <td><%= agent.studentInfos.count%></td>
             <% if current_user.role == "Superadmin" %>
-             <td><a class="btn btn-register pull-right" href="/student_infos?agent_rm=<%= agent.id %>">Block</a></td>
+             <td><a class="btn btn-register pull-right" href="/student_infos?agent_rm=<%= agent.id %>">Disable</a></td>
             <% end %>
           </tr>
           <% end %>
