@@ -126,3 +126,14 @@ vertical-align: middle;
 .check_box input[type="checkbox"]:checked + .btn-group > label span:last-child {
     display: none;   
 }
+
+
+.program-box {
+  margin-right: 0px;
+}
+
+.program-img {
+  width: 90%;
+  border-radius: 50%;
+  margin-bottom: 30px;
+}
