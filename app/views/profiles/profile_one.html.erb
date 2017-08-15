@@ -20,12 +20,12 @@
                 <td><%= @user.username %></td>
               </tr>
               <tr>
-                <td>Email Adress</td>
-                <td><%= @user.email %></td>
-              </tr>
-              <tr>
                 <td>Country:</td>
                 <td><%= @user.country.name %></td>
+              </tr>
+              <tr>
+                <td>Email Adress</td>
+                <td><%= @user.email %></td>
               </tr>
               <tr>
                 <td>Gender:</td>
@@ -35,7 +35,14 @@
                 <td>Marital Status:</td>
                 <td> <%= @user.martial_status %></td>
               </tr>
-
+              <tr>
+                <td>Bank</td>
+                <td><%= @user.bank if @user.bank %></td>
+              </tr>
+              <tr>
+                <td>Account N<sup>0</sup>:</td>
+                <td><%= @user.bank_account if @user.bank_account %>
+              </tr>
               <tr>
                 <td>Telephone</td>
                 <td><%= @user.tel%></td>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170812100527) do
+ActiveRecord::Schema.define(version: 20170815134025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,12 @@ ActiveRecord::Schema.define(version: 20170812100527) do
     t.string "reg_no"
     t.string "bankslip"
     t.string "program_time"
+    t.string "district_1"
+    t.string "country_1"
+    t.string "student_1"
+    t.string "registrar_1"
+    t.string "program"
+    t.string "course_1"
   end
 
   create_table "users", force: :cascade do |t|
@@ -105,6 +111,8 @@ ActiveRecord::Schema.define(version: 20170812100527) do
     t.string "slug"
     t.boolean "enabled", default: true
     t.string "district"
+    t.string "bank"
+    t.string "bank_account"
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 

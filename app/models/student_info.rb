@@ -13,50 +13,53 @@ class StudentInfo < ApplicationRecord
   def created_date
    self.created_at.strftime("%d %b. %Y")
   end
-
+  def fill_missing
+    self.update(student_1: "#{self.student.first_name} #{self.student.last_name}", country_1: self.country.name,district_1: self.district.name, registrar_1: "#{self.registrar.first_name} #{self.registrar.first_name}", program: self.program_category.name, course_1: self.course.name)
+  end
   rails_admin do
     edit do
       exclude_fields :id, :student_id, :registrar_id,:created_at, :updated_at, :bankslip
     end
-
+    show do
+      include_fields :student, :district, :city, :country, :program_category, :program_time, :course, :education_level, :city, :status, :reg_no, :bankslip, :registrar, :created_at
+    end
     list do
       # filters [:education_level, :city, :created_at, :status, :reg_no]
       # Manually enable/disable per field
-      field :student do
-        filterable false
+      field :student_1 do
+        label 'Student'
+        filterable true
       end
 
-      field :registrar do
-        filterable false
+      field :district_1 do
+        label 'District'
+        filterable true
       end
 
-      field :district do
-        filterable false
+      field :country_1 do
+        label 'Country'
+        filterable true
       end
 
-      field :country do
-        filterable false
-      end
-
-      field :program_category do
-        filterable false
+      field :program do
+        label 'Country'
+        filterable true
       end
       field :program_time do
-        filterable false
+        filterable true
       end
+
+      field :course_1 do
+        label 'Course'
+        filterable true
+      end
+
       field :education_level do
         filterable true
       end
 
-      field :course do
-        filterable false
-      end
 
       field :city do
-        filterable true
-      end
-
-      field :created_at do
         filterable true
       end
 
@@ -69,7 +72,16 @@ class StudentInfo < ApplicationRecord
       end
 
       field :bankslip do
-        filterable false
+        filterable true
+      end
+
+      field :created_at do
+        filterable true
+      end
+
+      field :registrar_1 do
+        label 'Registrar'
+        filterable true
       end
     end
   end
