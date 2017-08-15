@@ -1,4 +1,4 @@
-<% if @user.country.name = "Rwanda" %>
+<% if @user.country.name == "Rwanda" %>
   <% if @user.technicalgroups.any? %>
     <% tech_sum = 0 %>
     <% @user.technicalgroups.each do |group|%>

@@ -15,7 +15,7 @@
       <th>Progress</th>
     </thead>
     <tbody>
-      <% if @user.country.name == "Rwanda" %>
+      <% if @user.country.name =="Rwanda" %>
       <tr>        
         <td>1</td>
         <td><%= @user.level_one(@user.technicalgroups.index(group),"technical").count %></td>
@@ -34,7 +34,7 @@
         <td>Rwf <%= "#{@user.level_two_tech(@user.technicalgroups.index(group),"technical").count * 4000}"%></td>
         <td>Laptop</td>
         <td>
-          <% if Time.now - @user.created_at > 90.days && @user.level_two_tech(@user.technicalgroups.index(group),"technical").count < 25 %>
+          <% if Time.now - @user.created_at < 90.days && @user.level_two_tech(@user.technicalgroups.index(group),"technical").count < 25 %>
           <%= distance_of_time_in_words(Time.now, @user.created_at + 90.days)%>
           <% elsif @user.level_two_tech(@user.technicalgroups.index(group),"technical").count == 25%>
           <small style="color: green;">You won a Laptop</small>
@@ -148,8 +148,8 @@
           <td><%= "#{@user.level_two_tech(@user.technicalgroups.index(group),"technical").count * 4}"%></td>
           <td>Laptop</td>
           <td>
-            <% if Time.now - @user.created_at > 90.days && @user.level_two_tech(@user.technicalgroups.index(group),"technical").count < 25 %>
-            <%= distance_of_time_in_words(Time.now, @user.created_at + 90.days)%>
+            <% if Time.now - @user.created_at < 90.days && @user.level_two_tech(@user.technicalgroups.index(group),"technical").count < 25 %>
+            <%= distance_of_time_in_words(Time.now, @user.created_at + 7.days)%>
             <% elsif @user.level_two_tech(@user.technicalgroups.index(group),"technical").count == 25%>
             <small style="color: green;">You won a Laptop</small>
             <% else %>
