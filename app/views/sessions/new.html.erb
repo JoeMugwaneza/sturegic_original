@@ -1,33 +1,32 @@
 <div class="container">
   <div class="login-container">
-            <div id="output"></div>
-            <div class="avatar"></div>
-            <div class="form-box">
-<%= form_tag sessions_path do %>
-  <div class="field" name="user" type="text" placeholder="username">
-  
-    <%= text_field_tag :reg_no, nil, placeholder: 'Registration No...' %>
-  </div>
-  <div class="field" type="password" placeholder="password">
-  
-    <%= password_field_tag :password, nil, placeholder: 'password...'%>
-    
-  </div>
-  <p><%= link_to "forgotten password?", new_password_reset_path %></p>
-  <div class="field">
-    <%= label_tag :remember_me %>
-    <%= check_box_tag :remember_me, 1, params[:remember_me] %>
-  </div>
-  <div class="actions"><%= submit_tag "Login", class: "btn btn-info btn-block login" %></div>
-<% end %>
 
+    <div class="col-md-4">
+      <figure>
+        <img class="imagelogo" src="https://9sbrqw-dm2306.files.1drv.com/y4mmyZiNwE0GNwhhOD2u4zy0w3wZRGy1vgf4Hn1tsk8Q_lXQCAiWVpPYjsuIY-a-1VziDLwRbOCfOuH7jUVwHhshfX2HlFGXQwOBrMfQ5Rj4ITMqAFmV5UjB--onMWUTV5LFn4BNM5U53Mr05aRtxqdIgrX5-f2NjFRzZC5YxxTXlWChnxm3IaLv4I379R5Ak5KCu2imUOYj0HFO3N95RgW7w?width=244&height=120&cropmode=none" alt="" style="margin-left: -20px; margin-bottom: 20px;">
+      </figure>
+    </div>
 
-               <!--  <form action="" method="">
-                    <input name="user" type="text" placeholder="username">
-                    <input type="password" placeholder="password">
-                    <button class="btn btn-info btn-block login" type="submit">Login</button>
-                </form> -->
+    <div class="form-box">
+      <%= form_tag sessions_path do %>
+      <div class="field" name="user" type="text" placeholder="username">
+
+        <%= text_field_tag :reg_no, nil, placeholder: 'Reg no or email...' %>
+      </div>
+      <div class="field" type="password" placeholder="password">
+
+        <%= password_field_tag :password, nil, placeholder: 'password...'%>
+
+      </div>
+      <p><%= link_to "forgotten password?", new_password_reset_path %></p>
+      <div class="field">
+        <%= label_tag :remember_me %>
+        <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+      </div>
+      <div class="actions"><%= submit_tag "Login", class: "btn btn-info btn-block login" %></div>
+      <% end %>
+
+                </div>
+              </div>
+
             </div>
-        </div>
-        
-</div>

@@ -39,7 +39,7 @@
                 <li><a href="/users/<%= current_user.friendly_id%>/edit">Settings</a></li>
               <% else %>
                 <li><a href="/students/<%= current_user.friendly_id%>/profile-one">Profile Info</a></li>
-                <li><a href="/students/<%= current_user.friendly_id%>/edit">Settings</a></li>
+                <li><a href="/users/<%= current_user.friendly_id%>/edit">Settings</a></li>
                 <li><a href="/students/<%= current_user.friendly_id %>">Bonus Status</a></li>
               <% end %>
             </ul>

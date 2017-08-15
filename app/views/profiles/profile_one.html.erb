@@ -5,7 +5,7 @@
     </div>
     <div class="panel-body">
       <div class="row">
-        <div class="col-md-3 col-lg-3 " align="center"> <img alt="Country Icon" src="https://mqfoia-dm2306.files.1drv.com/y4mc3V1ptDTgeUQhugNej_qsif32FDGjbuBqVP2u6KfUKDE8ElCUopAx_IxkZc9WQ8c_FhD0aOT9a0IGAY1_zbijb3tJ-h9tx93MIIDeVhZr9Dq-AYcbdb7QeeLPaS4LE51Sf1wCo4fCW4aGSpMIc1OYXut21xncOPL5PcEUU00KECgXebdxmuFtMyp0GLAzC3qTBPmcmuTpr-hfqtFCidalA?width=225&height=225&cropmode=none" class="img-circle img-responsive"> </div>
+        <div class="col-md-3 col-lg-3 " align="center"> <img alt="Country Icon" src="https://9sbrqw-dm2306.files.1drv.com/y4mmyZiNwE0GNwhhOD2u4zy0w3wZRGy1vgf4Hn1tsk8Q_lXQCAiWVpPYjsuIY-a-1VziDLwRbOCfOuH7jUVwHhshfX2HlFGXQwOBrMfQ5Rj4ITMqAFmV5UjB--onMWUTV5LFn4BNM5U53Mr05aRtxqdIgrX5-f2NjFRzZC5YxxTXlWChnxm3IaLv4I379R5Ak5KCu2imUOYj0HFO3N95RgW7w?width=244&height=120&cropmode=none" class="img-responsive"> </div>
 
         <div class=" col-md-9 col-lg-9 "> 
           <table class="table table-user-information">
@@ -20,12 +20,12 @@
                 <td><%= @user.username %></td>
               </tr>
               <tr>
-                <td>Email Adress</td>
-                <td><%= @user.email %></td>
-              </tr>
-              <tr>
                 <td>Country:</td>
                 <td><%= @user.country.name %></td>
+              </tr>
+              <tr>
+                <td>Email Adress</td>
+                <td><%= @user.email %></td>
               </tr>
               <tr>
                 <td>Gender:</td>
@@ -35,7 +35,14 @@
                 <td>Marital Status:</td>
                 <td> <%= @user.martial_status %></td>
               </tr>
-
+              <tr>
+                <td>Bank</td>
+                <td><%= @user.bank if @user.bank %></td>
+              </tr>
+              <tr>
+                <td>Account N<sup>0</sup>:</td>
+                <td><%= @user.bank_account if @user.bank_account %>
+              </tr>
               <tr>
                 <td>Telephone</td>
                 <td><%= @user.tel%></td>

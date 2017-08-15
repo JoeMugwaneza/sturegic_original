@@ -28,11 +28,12 @@ class User < ApplicationRecord
 
   before_create :confirmation_taken
   before_create {generate_token(:auth_token)}
+
   def created_date
    self.created_at.strftime("%d %b. %Y")
   end
   def role
-    if self.admin == true && self.email == "info@kiac.ac.rw" 
+    if self.admin == true && self.email == "principal@kiac.ac.rw" 
       return "Principal"
     elsif self.admin == true
       return "Admin"
@@ -43,22 +44,29 @@ class User < ApplicationRecord
     end
   end
 
-  def set_password; nil; end
+  def reset_password; nil; end
 
-  def set_password=(value)
+  def reset_password=(value)
     return nil if value.blank?
     self.password = value
     self.password_confirmation = value
   end
 
   rails_admin do
-    configure :set_password
+    configure :reset_password
+    list do
+      include_fields :first_name, :last_name, :country, :district, :bank_account, :bank, :email, :identification, :tel, :sex, :martial_status, :application_submission, :admin, :agent
+    end
     edit do
      exclude_fields :id, :slug, :password_digest, :created_at, :updated_at, :email_confirmed, :confirm_token , :auth_token, :password_reset_token, :password_reset_sent_at, :application_submission, :studentInfos, :registrar_name
+<<<<<<< HEAD
      include_fields :set_password
     end
     list do
       include_fields :first_name, :last_name, :country, :district, :email, :sex, :martial_status, :tel, :identification, :created_at, :admin, :agent, :username, :registarr_name
+=======
+     include_fields :reset_password
+>>>>>>> 04d358703fb6b2a2d33fa05ecd6bcab74ef13ad9
     end
   end
 

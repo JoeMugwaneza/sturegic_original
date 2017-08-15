@@ -41,6 +41,7 @@ class StudentInfosController < ApplicationController
     @user = current_user
     @student_infos = StudentInfo.new(student_infos_params)
     if @student_infos.save
+      @student_infos.fill_missing
       @student_infos.student.update(application_submission: true)
       # StudentInfoMailer.student_info_approval(@student_infos).deliver_now
      flash[:scuess] = "Student Application Successfully Submited" 
