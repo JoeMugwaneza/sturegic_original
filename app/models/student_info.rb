@@ -14,14 +14,14 @@ class StudentInfo < ApplicationRecord
    self.created_at.strftime("%d %b. %Y")
   end
   def fill_missing
-    self.update(student_1: "#{self.student.first_name} #{self.student.last_name}", country_1: self.country.name,district_1: self.district.name, registrar_1: "#{self.registrar.first_name} #{self.registrar.first_name}", program: self.program_category.name, course_1: self.course.name)
+    self.update(student_1: "#{self.student.first_name} #{self.student.last_name}", country_1: self.country.name,district_1: self.district.name || self.city, registrar_1: "#{self.registrar.first_name} #{self.registrar.first_name}", program: self.program_category.name, course_1: self.course.name)
   end
   rails_admin do
     edit do
       exclude_fields :id, :student_id, :registrar_id,:created_at, :updated_at, :bankslip
     end
     show do
-      include_fields :student, :district, :city, :country, :program_category, :program_time, :course, :education_level, :city, :status, :reg_no, :bankslip, :registrar, :created_at
+      include_fields :student,:country, :district, :city,  :program_category, :program_time, :course, :education_level, :city, :status, :reg_no, :bankslip, :registrar, :created_at
     end
     list do
       # filters [:education_level, :city, :created_at, :status, :reg_no]
@@ -30,16 +30,16 @@ class StudentInfo < ApplicationRecord
         label 'Student'
         filterable true
       end
+      field :country_1 do
+        label 'Country'
+        filterable true
+      end
 
       field :district_1 do
         label 'District'
         filterable true
       end
 
-      field :country_1 do
-        label 'Country'
-        filterable true
-      end
       
       field :program_time do
         filterable true
