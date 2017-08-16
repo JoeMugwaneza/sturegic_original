@@ -42,4 +42,5 @@ Rails.application.routes.draw do
   get "studentprofile" => "designs#studentprofile"
 
   get "dashboard" => "designs#admindashboard1"
+  get "/paymentarchive" => "designs#paymentarchive"
 end
