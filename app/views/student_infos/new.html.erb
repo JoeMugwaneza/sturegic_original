@@ -1,11 +1,30 @@
 <div class="row">
-  <div class="col-md-6 col-xs-12 col-md-offset-3 thumbnail application-box">
+  <div class="col-md-6 col-xs-10 col-md-offset-3 col-xs-offset-1 thumbnail application-box">
     <h1 class="text-center application-header"><strong>Application Form: Final Step</strong></h1>
     <div class="col-md-12 thumbnail info-box">
       <div class="text-center">
-
         <h2 class="text-center application-header">Program Preference</h2>
         <hr>
+        
+        <div class="col-md-12 col-xs-12">
+
+          <div class="col-md-4 col-xs-12 program-box">
+            <img src="http://www.thehindubusinessline.com/multimedia/dynamic/03015/electronics_3015803f.jpg" class="program-img">
+            <p class="text-center">TECHNICAL PROGRAMS</p>
+          </div>
+
+          <div class="col-md-4 col-xs-12 program-box">
+            <img src="http://www.prestigenetwork.com/wp-content/uploads/2015/10/beeplugin_languages.png" class="program-img">
+            <p class="text-center">LANGUAGES</p>
+          </div>
+
+          <div class="col-md-4 col-xs-12 program-box">
+            <img src="https://thedailyaloy.files.wordpress.com/2015/02/trafficlight.png?w=500&h=317" class="program-img">
+            <p class="text-center">TRAFFIC RULES</p>
+          </div>
+          
+        </div>
+
         <% ProgramCategory.all.each do |program_category| %>
         <%= link_to "#{program_category.name}", "/student_infos/new?student_id=#{@student.id}&program_id=#{program_category.id}", class:"btn btn-program" %>
         <% end %>
@@ -17,28 +36,28 @@
           
           <h2 class="text-center application-header">Registrar's Information</h2>
           <hr>
-        <% if current_user && current_user.admin || current_user.agent == true%>
+          <% if current_user && current_user.admin || current_user.agent == true%>
           <p class="form-control application-input">KIAC</p>
-            <p class="form-control application-input">07.....</p>
-            <p class="form-control application-input">.....@gmail.com</p>
-            <p>Make sure the information given are right</p>
-          </div>
-        <% else %>
-          <p class="form-control application-input"><%= current_user.first_name %> <%= current_user.last_name %></p>
-          <p class="form-control application-input">ID/Passport: <%= current_user.identification %><p>
-          <div class="form-control application-input">
-              Reg N<span><sup>0</sup>: Rw001/KIAC/2017</span>
-            </div>
-            <p class="form-control application-input"><%= current_user.tel if current_user.tel %></p>
-            <p class="form-control application-input"><%=current_user.email if current_user.email %></p>
+          <hr>
 
-            <a href="/students/<%= current_user.friendly_id %>/edit">Edit</a>
-            <hr>
-            <p>Make sure the information given are right</p>
-          </div>
-        <% end %>
+          <p>Make sure the information given are right</p>
         </div>
+        <% else %>
+        <p class="form-control application-input"><%= current_user.first_name %> <%= current_user.last_name %></p>
+        <p class="form-control application-input">ID/Passport: <%= current_user.identification %><p>
+          <div class="form-control application-input">
+            Reg N<span><sup>0</sup><%= current_user.studentInfo.reg_no %></span>
+          </div>
+          <p class="form-control application-input"><%= current_user.tel if current_user.tel %></p>
+          <p class="form-control application-input"><%= current_user.email if current_user.email %></p>
+
+          <a href="/students/<%= current_user.friendly_id %>/edit">Edit</a>
+          <hr>
+          <p>Make sure the information given are right</p>
+        </div>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
 
