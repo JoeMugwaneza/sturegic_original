@@ -14,7 +14,7 @@ class StudentInfo < ApplicationRecord
    self.created_at.strftime("%d %b. %Y")
   end
   def fill_missing
-    self.update(student_1: "#{self.student.first_name} #{self.student.last_name}", country_1: self.country.name,district_1: self.district.name, registrar_1: "#{self.registrar.first_name} #{self.registrar.first_name}", program: self.program_category.name, course_1: self.course.name)
+    self.update(student_1: "#{self.student.first_name} #{self.student.last_name}", country_1: self.country.name,district_1: self.district.name, registrar_1: "#{self.registrar.first_name} #{self.registrar.first_name}", program_1: self.program_category.name, course_1: self.course.name)
   end
   rails_admin do
     edit do
@@ -41,8 +41,8 @@ class StudentInfo < ApplicationRecord
         filterable true
       end
 
-      field :program do
-        label 'Country'
+      field :program_1 do
+        label 'Program'
         filterable true
       end
       field :program_time do

@@ -141,6 +141,8 @@
             </tr>
           </thead>
           <tbody>
+          <% payments_rw = [] %>
+          <% payments_$ = [] %>
           <% @students.each do |student|%>
             <% if student.studentInfos.any? %>
               <% if student.technicalgroups.any? %>
@@ -165,7 +167,8 @@
                 <tr>
                   <td><%= student.first_name %></td>
                   <td>
-                    <%= tech_sum.to_i + lang_sum.to_i + traffic_sum.to_i %>
+                    Rwf <%= tech_sum.to_i + lang_sum.to_i + traffic_sum.to_i %>
+                    <% payments.push(tech_sum.to_i + lang_sum.to_i + traffic_sum.to_i)%>
                   </td>
                   <td><a href="/students/<%= student.id %>">View Reward</a></td>
                   <td><%= student.created_at %></td>
@@ -173,6 +176,18 @@
               <% end %>
             <% end %>
           <% end %>
+          <tr>
+            <td><b>Total</b></td>
+            <td>
+            <% payments_sum = 0 %>
+            <% payments.each do |payment| %>
+              <% payments_sum += payment %>
+            <% end %>
+            Rwf <%= payments_sum %>
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
           </tbody>
         </table>
       </div>
