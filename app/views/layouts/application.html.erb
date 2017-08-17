@@ -41,6 +41,7 @@
               <% elsif current_user.agent == true %>
                 <li><a href="/students/<%= current_user.friendly_id%>/profile-one">Profile Info</a></li>
                 <li><a href="/users/<%= current_user.friendly_id%>/edit">Settings</a></li>
+                <li><a href="/paymentarchive">Payment Archive</a></li>
               <% else %>
                 <li><a href="/students/<%= current_user.friendly_id%>/profile-one">Profile Info</a></li>
                 <li><a href="/users/<%= current_user.friendly_id%>/edit">Settings</a></li>

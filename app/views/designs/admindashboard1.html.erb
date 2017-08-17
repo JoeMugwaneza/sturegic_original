@@ -129,7 +129,7 @@
 
     <!-- monthly commission details -->
     <div class="col-md-12" id="admintable">
-      <h2 class="text-center">Monthly Commission Details</h2>
+      <h2 class="text-center"><%= Date.today.strftime("%B %Y")%> Commission Details</h2>
       <div class="tbody">
         <table class="table sidetable" id="test">
           <thead class="thead">
@@ -137,7 +137,7 @@
               <th>Name</th>
               <th>Commission Received</th>
               <th>Reward</th>
-              <th>Date</th>
+              <th>Started Date</th>
             </tr>
           </thead>
           <tbody>
@@ -236,5 +236,4 @@
 
 </div>
 </div>
-
 <% end %>

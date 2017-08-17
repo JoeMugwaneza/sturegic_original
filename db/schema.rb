@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20170815134025) do
     t.string "country_1"
     t.string "student_1"
     t.string "registrar_1"
-    t.string "program"
+    t.string "program_1"
     t.string "course_1"
   end
 

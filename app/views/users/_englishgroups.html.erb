@@ -20,8 +20,8 @@
         <tr>        
           <td>1</td>
           <td><%= @user.level_one(@user.languagesgroups.index(group),"languages").count %></td>
-          <td>Rwf 2000</td>
-          <td>Rwf <%= "#{@user.level_one(@user.languagesgroups.index(group),"languages").count * 2000}"%></td>
+          <td>Rwf 2,000</td>
+          <td><%= number_to_currency("#{@user.level_one(@user.languagesgroups.index(group),"languages").count * 2000}", precision: false, unit: "Rwf ")%></td>
           <td>No Reward</td>
           <td> - </td>
           <td> - </td>
@@ -31,8 +31,8 @@
 
           <td>2</td>
           <td><%= @user.level_two_lang(@user.languagesgroups.index(group),"languages").count %></td>
-          <td>Rwf 1000</td>
-          <td>Rwf <%= "#{@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 1000}"%></td>
+          <td>Rwf 1,000</td>
+          <td><%= number_to_currency("#{@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 1000}", precision: false, unit: "Rwf ")%></td>
           <td>SmartPhone </td>
           <td>
           <% if Time.now - @user.created_at < 90.days && @user.level_two_lang(@user.languagesgroups.index(group),"languages").count <25 %>
@@ -56,8 +56,8 @@
         <tr>        
           <td>3</td>
           <td><%= @user.level_three_lang(@user.languagesgroups.index(group),"languages").count %></td>
-          <td>Rwf 1000</td>
-          <td>Rwf <%= "#{@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 1000}"%></td>
+          <td>Rwf 1,000</td>
+          <td><%= number_to_currency("#{@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 1000}", precision: false, unit: "Rwf ")%></td>
           <td>Laptop</td>
           <td>
             <% if Time.now - @user.created_at < 180.days && @user.level_three_lang(@user.languagesgroups.index(group),"languages").count < 125 %>
@@ -80,8 +80,8 @@
         <tr>
           <td>4</td>
           <td><%= @user.level_four_lang(@user.languagesgroups.index(group),"languages").count %></td>
-          <td>Rwf 1000</td>
-          <td>Rwf <%= "#{@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 1000}"%></td>
+          <td>Rwf 1,000</td>
+          <td><%= number_to_currency("#{@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 1000}", precision: false, unit: "Rwf ")%></td>
           <td>Motorcycle</td>
           <td>
             <% if Time.now - @user.created_at < 270.days && @user.level_four_lang(@user.languagesgroups.index(group),"languages").count < 625%>
@@ -104,8 +104,8 @@
         <tr>
           <td>5</td>
           <td><%= @user.level_five_lang(@user.languagesgroups.index(group),"languages").count %></td>
-          <td>Rwf 1000</td>
-          <td>Rwf <%= "#{@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 1000}"%></td>
+          <td>Rwf 1,000</td>
+          <td>Rwf <%= number_to_currency("#{@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 1000}", precision: false, unit: "Rwf ")%></td>
           <td>Land</td>
           <td>
             <% if Time.now - @user.created_at < 360.days && @user.level_five_lang(@user.languagesgroups.index(group),"languages").count < 3125 %>
@@ -128,14 +128,14 @@
           <td><b>Total</b></td>
           <td><%= "#{@user.level_one(@user.languagesgroups.index(group),"languages").count + @user.level_two_lang(@user.languagesgroups.index(group),"languages").count + @user.level_three_lang(@user.languagesgroups.index(group),"languages").count + @user.level_four_lang(@user.languagesgroups.index(group),"languages").count + @user.level_five_lang(@user.languagesgroups.index(group),"languages").count}" %></td>
           <td>-</td>
-          <td><b>Rwf <%="#{(@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 1000)+ (@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 1000) + (@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 1000) + (@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 1000) + (@user.level_one(@user.languagesgroups.index(group),"languages").count * 2000)}"%></b></td>
+          <td><b><%=number_to_currency("#{(@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 1000)+ (@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 1000) + (@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 1000) + (@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 1000) + (@user.level_one(@user.languagesgroups.index(group),"languages").count * 2000)}", precision: false, unit: "Rwf ")%></b></td>
         </tr>
       <% else %>
         <tr>        
           <td>1</td>
           <td><%= @user.level_one(@user.languagesgroups.index(group),"languages").count %></td>
           <td>$2</td>
-          <td>$<%= "#{@user.level_one(@user.languagesgroups.index(group),"languages").count * 2}"%></td>
+          <td>$<%= number_to_currency("#{@user.level_one(@user.languagesgroups.index(group),"languages").count * 2}")%></td>
           <td>No Reward</td>
           <td> - </td>
           <td> - </td>
@@ -146,7 +146,7 @@
           <td>2</td>
           <td><%= @user.level_two_lang(@user.languagesgroups.index(group),"languages").count %></td>
           <td>$1</td>
-          <td>$<%= "#{@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 1}"%></td>
+          <td>$<%= number_to_currency("#{@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 1}")%></td>
           <td>SmartPhone </td>
           <td>
             <% if Time.now - @user.created_at < 90.days && @user.level_two_lang(@user.languagesgroups.index(group),"languages").count <25 %>
@@ -170,7 +170,7 @@
           <td>3</td>
           <td><%= @user.level_three_lang(@user.languagesgroups.index(group),"languages").count %></td>
           <td>$1</td>
-          <td><%= "#{@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 1}"%></td>
+          <td><%= number_to_currency("#{@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 1}")%></td>
           <td>Laptop</td>
           <td>
             <% if Time.now - @user.created_at < 180.days && @user.level_three_lang(@user.languagesgroups.index(group),"languages").count < 125 %>
@@ -194,7 +194,7 @@
           <td>4</td>
           <td><%= @user.level_four_lang(@user.languagesgroups.index(group),"languages").count %></td>
           <td>$1</td>
-          <td>$<%= "#{@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 1}"%></td>
+          <td>$<%= number_to_currency("#{@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 1}")%></td>
           <td>Motorcycle</td>
           <td>
             <% if Time.now - @user.created_at < 270.days && @user.level_four_lang(@user.languagesgroups.index(group),"languages").count < 625%>
@@ -218,7 +218,7 @@
           <td>5</td>
           <td><%= @user.level_five_lang(@user.languagesgroups.index(group),"languages").count %></td>
           <td>$1</td>
-          <td>$<%= "#{@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 1}"%></td>
+          <td>$<%= number_to_currency("#{@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 1}")%></td>
           <td>Land</td>
           <td>
             <% if Time.now - @user.created_at < 360.days && @user.level_five_lang(@user.languagesgroups.index(group),"languages").count < 3125 %>
@@ -241,7 +241,7 @@
           <td><b>Total</b></td>
           <td><%= "#{@user.level_one(@user.languagesgroups.index(group),"languages").count + @user.level_two_lang(@user.languagesgroups.index(group),"languages").count + @user.level_three_lang(@user.languagesgroups.index(group),"languages").count + @user.level_four_lang(@user.languagesgroups.index(group),"languages").count + @user.level_five_lang(@user.languagesgroups.index(group),"languages").count}" %></td>
           <td>-</td>
-          <td><b>$ <%="#{(@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 1)+ (@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 1) + (@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 1) + (@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 1) + (@user.level_one(@user.languagesgroups.index(group),"languages").count * 2)}"%></b></td>
+          <td><b>$ <%=number_to_currency("#{(@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 1)+ (@user.level_four_lang(@user.languagesgroups.index(group),"languages").count * 1) + (@user.level_three_lang(@user.languagesgroups.index(group),"languages").count * 1) + (@user.level_two_lang(@user.languagesgroups.index(group),"languages").count * 1) + (@user.level_one(@user.languagesgroups.index(group),"languages").count * 2)}")%></b></td>
         </tr>
       <% end %>
     </tbody>
