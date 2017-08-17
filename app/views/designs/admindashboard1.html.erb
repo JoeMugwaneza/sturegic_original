@@ -26,7 +26,7 @@
         </thead>
         <tbody>
           <% @students.each do |student| %>
-            <% if student.studentInfo.status?%>
+            <% if student.studentInfo && student.studentInfo.status?%>
             <% @table_number += 1 %>
               <tr>
                 <td><%= @table_number %></td>
@@ -75,7 +75,7 @@
           <tr>
             <th>Name</th>
             <th>Country</th>
-            <!-- <th>District/City</th> -->
+            <th>District/City</th>
             <th>Students</th>
           </tr>
         </thead>
@@ -84,7 +84,7 @@
           <tr>
             <td><%= agent.first_name %> <%= agent.last_name %></td> 
             <td><%= agent.country.name%></td> 
-            <!-- <td>Musanze</td> -->
+            <td>Musanze</td>
             <td><%= agent.studentInfos.count%></td>
             <% if current_user.role == "Superadmin" %>
              <td><a class="btn btn-register pull-right" href="/student_infos?agent_rm=<%= agent.id %>">Disable</a></td>
@@ -158,6 +158,7 @@
                 <h2><%= current_user.first_name%> <%= current_user.last_name%></h2>
                 <h4>Post Occupied: KIAC Agent </h4>
                 <h4>Country: <%= current_user.country.name%></h4>
+                <h4>District: </h4>
             </div>             
             <div class="col-xs-12 col-sm-4 text-center">
                 <figure>
@@ -215,7 +216,7 @@
               <%end %>
             </td>
             <td><%= studentInfo.program_category.name %> </td>
-            <td><%= studentInfo.course.name %>/td>
+            <td><%= studentInfo.course.name %></td>
             <td>
               <% if studentInfo.status == false %>
               Pending
