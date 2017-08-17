@@ -3,6 +3,19 @@ class DesignsController < ApplicationController
   def index
    @user = current_user
   end
+  def paymentarchive
+    if current_user.admin == true
+      @students = User.where("admin = ? AND agent = ? AND enabled = ?", false, false, true)
+    elsif current_user.agent == true && current_user.studentInfos.any?
+      @students = []
+      current_user.studentInfos.each do |studentInfo|
+        @students.push(studentInfo.student)
+      end
+    else
+      flash[:success] = "No archive payment to veiw"
+      redirect_to "/"
+    end 
+  end
   def admindashboard1
     if current_user.admin == true
     @table_number = 0

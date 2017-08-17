@@ -15,12 +15,12 @@
       <th>Progress</th>
     </thead>
     <tbody>
-      <% if @user.country.name == "Rwanda" %>
+      <% if @user.country.name =="Rwanda" %>
       <tr>        
         <td>1</td>
         <td><%= @user.level_one(@user.technicalgroups.index(group),"technical").count %></td>
-        <td>5000</td>
-        <td><%= "#{@user.level_one(@user.technicalgroups.index(group),"technical").count * 5000}"%></td>
+        <td>Rwf 5,000</td>
+        <td>Rwf <%= number_to_currency("#{@user.level_one(@user.technicalgroups.index(group),"technical").count * 5000}", precision: false, unit: "Rwf ")%></td>
         <td>No Reward</td>
         <td> - </td>
         <td> - </td>
@@ -30,11 +30,11 @@
 
         <td>2</td>
         <td><%= @user.level_two_tech(@user.technicalgroups.index(group),"technical").count %></td>
-        <td>4000</td>
-        <td><%= "#{@user.level_two_tech(@user.technicalgroups.index(group),"technical").count * 4000}"%></td>
+        <td>Rwf 4,000</td>
+        <td>Rwf <%= number_to_currency("#{@user.level_two_tech(@user.technicalgroups.index(group),"technical").count * 4000}", precision: false, unit: "Rwf ")%></td>
         <td>Laptop</td>
         <td>
-          <% if Time.now - @user.created_at > 90.days && @user.level_two_tech(@user.technicalgroups.index(group),"technical").count < 25 %>
+          <% if Time.now - @user.created_at < 90.days && @user.level_two_tech(@user.technicalgroups.index(group),"technical").count < 25 %>
           <%= distance_of_time_in_words(Time.now, @user.created_at + 90.days)%>
           <% elsif @user.level_two_tech(@user.technicalgroups.index(group),"technical").count == 25%>
           <small style="color: green;">You won a Laptop</small>
@@ -54,8 +54,8 @@
       <tr>        
         <td>3</td>
         <td><%= @user.level_three_tech(@user.technicalgroups.index(group),"technical").count %></td>
-        <td>3000</td>
-        <td><%= "#{@user.level_three_tech(@user.technicalgroups.index(group),"technical").count * 3000}"%></td>
+        <td>Rwf 3,000</td>
+        <td>Rwf <%= number_to_currency("#{@user.level_three_tech(@user.technicalgroups.index(group),"technical").count * 3000}", precision: false, unit: "Rwf ")%></td>
         <td>Scholarship</td>
         <td>
           <% if Time.now - @user.created_at < 90.days && @user.level_three_tech(@user.technicalgroups.index(group),"technical").count < 125%>
@@ -78,8 +78,8 @@
       <tr>
         <td>4</td>
         <td><%= @user.level_four_tech(@user.technicalgroups.index(group),"technical").count %></td>
-        <td>2000</td>
-        <td><%= "#{@user.level_four_tech(@user.technicalgroups.index(group),"technical").count * 2000}"%></td>
+        <td>Rwf 2,000</td>
+        <td>Rwf <%= number_to_currency("#{@user.level_four_tech(@user.technicalgroups.index(group),"technical").count * 2000}", precision: false, unit: "Rwf ")%></td>
         <td>Car</td>
         <td>
         <% if Time.now - @user.created_at < 90.days && @user.level_four_tech(@user.technicalgroups.index(group),"technical").count < 625%>
@@ -102,8 +102,8 @@
       <tr>
         <td>5</td>
         <td><%= @user.level_five_tech(@user.technicalgroups.index(group),"technical").count %></td>
-        <td>1000</td>
-        <td><%= "#{@user.level_five_tech(@user.technicalgroups.index(group),"technical").count * 1000}"%></td>
+        <td>Rwf 1,000</td>
+        <td>Rwf <%= number_to_currency("#{@user.level_five_tech(@user.technicalgroups.index(group),"technical").count * 1000}", precision: false , unit: "Rwf ")%></td>
         <td>House</td>
         <td>
         <% if Time.now - @user.created_at < 90.days && @user.level_five_tech(@user.technicalgroups.index(group),"technical").count < 3125 %>
@@ -127,14 +127,14 @@
         <td><b>Total</b></td>
         <td><%= "#{@user.level_one(@user.technicalgroups.index(group),"technical").count + @user.level_two_lang(@user.technicalgroups.index(group),"technical").count + @user.level_three_lang(@user.technicalgroups.index(group),"technical").count + @user.level_four_lang(@user.technicalgroups.index(group),"technical").count + @user.level_five_lang(@user.technicalgroups.index(group),"technical").count}" %></td>
         <td>-</td>
-        <td><b>Rwf&nbsp<%="#{(@user.level_five_lang(@user.technicalgroups.index(group),"technical").count * 1000)+ (@user.level_four_lang(@user.technicalgroups.index(group),"technical").count * 2000) + (@user.level_three_lang(@user.technicalgroups.index(group),"technical").count * 3000) + (@user.level_two_lang(@user.technicalgroups.index(group),"technical").count * 4000) + (@user.level_one(@user.technicalgroups.index(group),"technical").count * 5000)}"%></b></td>
+        <td><b><%=number_to_currency("#{(@user.level_five_lang(@user.technicalgroups.index(group),"technical").count * 1000)+ (@user.level_four_lang(@user.technicalgroups.index(group),"technical").count * 2000) + (@user.level_three_lang(@user.technicalgroups.index(group),"technical").count * 3000) + (@user.level_two_lang(@user.technicalgroups.index(group),"technical").count * 4000) + (@user.level_one(@user.technicalgroups.index(group),"technical").count * 5000)}", precision: false, unit: "Rwf ")%></b></td>
       </tr>
       <% else %>
         <tr>        
           <td>1</td>
           <td><%= @user.level_one(@user.technicalgroups.index(group),"technical").count %></td>
           <td>$5</td>
-          <td><%= "#{@user.level_one(@user.technicalgroups.index(group),"technical").count * 5}"%></td>
+          <td><%= number_to_currency("#{@user.level_one(@user.technicalgroups.index(group),"technical").count * 5}")%></td>
           <td>No Reward</td>
           <td> - </td>
           <td> - </td>
@@ -145,11 +145,11 @@
           <td>2</td>
           <td><%= @user.level_two_tech(@user.technicalgroups.index(group),"technical").count %></td>
           <td>$4</td>
-          <td><%= "#{@user.level_two_tech(@user.technicalgroups.index(group),"technical").count * 4}"%></td>
+          <td><%= number_to_currency("#{@user.level_two_tech(@user.technicalgroups.index(group),"technical").count * 4}")%></td>
           <td>Laptop</td>
           <td>
-            <% if Time.now - @user.created_at > 90.days && @user.level_two_tech(@user.technicalgroups.index(group),"technical").count < 25 %>
-            <%= distance_of_time_in_words(Time.now, @user.created_at + 90.days)%>
+            <% if Time.now - @user.created_at < 90.days && @user.level_two_tech(@user.technicalgroups.index(group),"technical").count < 25 %>
+            <%= distance_of_time_in_words(Time.now, @user.created_at + 7.days)%>
             <% elsif @user.level_two_tech(@user.technicalgroups.index(group),"technical").count == 25%>
             <small style="color: green;">You won a Laptop</small>
             <% else %>
@@ -169,7 +169,7 @@
           <td>3</td>
           <td><%= @user.level_three_tech(@user.technicalgroups.index(group),"technical").count %></td>
           <td>$3</td>
-          <td><%= "#{@user.level_three_tech(@user.technicalgroups.index(group),"technical").count * 3}"%></td>
+          <td><%= number_to_currency("#{@user.level_three_tech(@user.technicalgroups.index(group),"technical").count * 3}")%></td>
           <td>Scholarship</td>
           <td>
             <% if Time.now - @user.created_at < 90.days && @user.level_three_tech(@user.technicalgroups.index(group),"technical").count < 125%>
@@ -193,7 +193,7 @@
           <td>4</td>
           <td><%= @user.level_four_tech(@user.technicalgroups.index(group),"technical").count %></td>
           <td>$2</td>
-          <td><%= "#{@user.level_four_tech(@user.technicalgroups.index(group),"technical").count * 2}"%></td>
+          <td><%= number_to_currency("#{@user.level_four_tech(@user.technicalgroups.index(group),"technical").count * 2}")%></td>
           <td>Car</td>
           <td>
             <% if Time.now - @user.created_at < 90.days && @user.level_four_tech(@user.technicalgroups.index(group),"technical").count < 625%>
@@ -217,7 +217,7 @@
           <td>5</td>
           <td><%= @user.level_five_tech(@user.technicalgroups.index(group),"technical").count %></td>
           <td>$1</td>
-          <td><%= "#{@user.level_five_tech(@user.technicalgroups.index(group),"technical").count * 1}"%></td>
+          <td><%= number_to_currency("#{@user.level_five_tech(@user.technicalgroups.index(group),"technical").count * 1}")%></td>
           <td>House</td>
           <td>
             <% if Time.now - @user.created_at < 90.days && @user.level_five_tech(@user.technicalgroups.index(group),"technical").count < 3125 %>
@@ -241,7 +241,7 @@
           <td><b>Total</b></td>
           <td><%= "#{@user.level_one(@user.technicalgroups.index(group),"technical").count + @user.level_two_lang(@user.technicalgroups.index(group),"technical").count + @user.level_three_lang(@user.technicalgroups.index(group),"technical").count + @user.level_four_lang(@user.technicalgroups.index(group),"technical").count + @user.level_five_lang(@user.technicalgroups.index(group),"technical").count}" %></td>
           <td>-</td>
-          <td><b>$<%="#{(@user.level_five_lang(@user.technicalgroups.index(group),"technical").count * 1)+ (@user.level_four_lang(@user.technicalgroups.index(group),"technical").count * 2) + (@user.level_three_lang(@user.technicalgroups.index(group),"technical").count * 3) + (@user.level_two_lang(@user.technicalgroups.index(group),"technical").count * 4) + (@user.level_one(@user.technicalgroups.index(group),"technical").count * 5)}"%></b></td>
+          <td><b>$<%=number_to_currency("#{(@user.level_five_lang(@user.technicalgroups.index(group),"technical").count * 1)+ (@user.level_four_lang(@user.technicalgroups.index(group),"technical").count * 2) + (@user.level_three_lang(@user.technicalgroups.index(group),"technical").count * 3) + (@user.level_two_lang(@user.technicalgroups.index(group),"technical").count * 4) + (@user.level_one(@user.technicalgroups.index(group),"technical").count * 5)}")%></b></td>
         </tr>
 
       <% end %>

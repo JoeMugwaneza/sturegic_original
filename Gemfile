@@ -56,7 +56,8 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'friendly_id', '~> 5.2', '>= 5.2.1'
-gem 'rails_admin', '~> 1.2'
+gem 'rails_admin_rollincode', '~> 1.0'
+gem 'rails_admin', git: 'https://github.com/sferik/rails_admin.git'
 gem "rails_admin_pundit", :github => "sudosu/rails_admin_pundit"
 gem "pundit"
 gem 'client_side_validations'
