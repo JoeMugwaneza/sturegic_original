@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SturegicOriginal</title>
+  <title>Sturegic</title>
   <%= csrf_meta_tags %>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' "rails.validations" %>
   <link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+  <%= favicon_link_tag 'http://www.kiac.ac.rw/images/logo.png' %>
 </head>
 
 <body>
+
+ <% if current_user %>
   <nav class="navbar navbar-light myNavbar">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -34,6 +37,7 @@
                 <li><a href="/admins/<%= current_user.friendly_id%>/profile-one">Profile Info</a></li>
                 <li><a href="/users/<%= current_user.friendly_id%>/edit">Settings</a></li>
                 <li><a href="/admin">Admin Panel</a></li>
+                <li><a href="/paymentarchive">Payment Archive</a></li>
               <% elsif current_user.agent == true %>
                 <li><a href="/students/<%= current_user.friendly_id%>/profile-one">Profile Info</a></li>
                 <li><a href="/users/<%= current_user.friendly_id%>/edit">Settings</a></li>
@@ -56,6 +60,7 @@
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
+<% end %>
   <p>
     <% flash.each do |key, value| %>
     <% alert_class = case key
@@ -72,11 +77,11 @@
   </div>
   <%= yield %>
 
-  <footer>
-   <form class="col-md-12">
-     <input class="btn btn-link" type="button" value="Made by NexPals Ltd" style="color: white; margin-bottom: 10px;" onclick="window.location.href='http://www.nexpals.com'" />
-   </form>
- </footer>
+<footer>
+ <div class="col-md-12">   
+ <a href="https://www.nexpals.com" target="_blank" style="color: white; margin: 40px;">Developed by Nexpals Ltd </a> 
+ </div>  
+</footer>
 
 </body>
 </html>

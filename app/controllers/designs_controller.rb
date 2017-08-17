@@ -3,6 +3,9 @@ class DesignsController < ApplicationController
   def index
    @user = current_user
   end
+  def paymentarchive
+    
+  end
   def admindashboard1
     if current_user.admin == true
     @table_number = 0

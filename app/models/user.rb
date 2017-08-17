@@ -52,17 +52,16 @@ class User < ApplicationRecord
     self.password_confirmation = value
   end
 
-  rails_admin do
-    configure :reset_password
-    list do
-      include_fields :first_name, :last_name, :country, :district, :bank_account, :bank, :email, :identification, :tel, :sex, :martial_status, :application_submission, :admin, :agent
-    end
-    edit do
-     exclude_fields :id, :slug, :password_digest, :created_at, :updated_at, :email_confirmed, :confirm_token , :auth_token, :password_reset_token, :password_reset_sent_at, :application_submission, :studentInfos, :registrar_name
-     include_fields :reset_password
-    end
+   rails_admin do
+      configure :reset_password
+      list do
+        include_fields :first_name, :last_name, :country, :district, :bank_account, :bank, :email, :identification, :tel, :sex, :martial_status, :application_submission, :admin, :agent
+      end
+      edit do
+       exclude_fields :id, :slug, :password_digest, :created_at, :updated_at, :email_confirmed, :confirm_token , :auth_token, :password_reset_token, :password_reset_sent_at, :application_submission, :studentInfos, :registrar_name
+       include_fields :reset_password
+      end
   end
-
   #please during deployment remember to change the program_category_id accordingly becuase they may mess up with your database
   def technicalgroups
     students = []

@@ -20,8 +20,8 @@
           <tr>        
             <td>1</td>
             <td><%= @user.level_one(@user.trafficgroups.index(group),"Traffic").count %></td>
-            <td>2000</td>
-            <td><%= "#{@user.level_one(@user.trafficgroups.index(group),"Traffic").count * 2000}"%></td>
+            <td>Rwf 2000</td>
+            <td>Rwf <%= "#{@user.level_one(@user.trafficgroups.index(group),"Traffic").count * 2000}"%></td>
             <td>No Reward</td>
             <td> - </td>
             <td> - </td>
@@ -30,8 +30,8 @@
           <tr>
             <td>2</td>
             <td><%= @user.level_two_traffic(@user.trafficgroups.index(group),"Traffic").count %></td>
-            <td>1000</td>
-            <td><%= "#{@user.level_two_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}"%></td>
+            <td>Rwf 1000</td>
+            <td>Rwf <%= "#{@user.level_two_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}"%></td>
             <td>SmartPhone</td>
             <td>
               <% if Time.now - @user.created_at < 90.days  && @user.level_two_traffic(@user.trafficgroups.index(group),"Traffic").count < 25%>
@@ -54,8 +54,8 @@
           <tr>        
             <td>3</td>
             <td><%= @user.level_three_traffic(@user.trafficgroups.index(group),"Traffic").count %></td>
-            <td>1000</td>
-            <td><%= "#{@user.level_three_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}"%></td>
+            <td>Rwf 1000</td>
+            <td>Rwf <%= "#{@user.level_three_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}"%></td>
             <td>Laptop</td>
             <td>
               <% if Time.now - @user.created_at < 90.days && @user.level_three_traffic(@user.trafficgroups.index(group),"Traffic").count < 125%>
@@ -78,8 +78,8 @@
           <tr>
             <td>4</td>
             <td><%= @user.level_four_traffic(@user.trafficgroups.index(group),"Traffic").count %></td>
-            <td>1000</td>
-            <td><%= "#{@user.level_four_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}"%></td>
+            <td>Rwf 1000</td>
+            <td>Rwf <%= "#{@user.level_four_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}"%></td>
             <td>Motorcycle</td>
             <td>
               <% if Time.now - @user.created_at < 90.days && @user.level_four_traffic(@user.trafficgroups.index(group),"Traffic").count <625 %>
@@ -102,8 +102,8 @@
           <tr>
             <td>5</td>
             <td><%= @user.level_five_traffic(@user.trafficgroups.index(group),"Traffic").count %></td>
-            <td>1000</td>
-            <td><%= "#{@user.level_five_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}"%></td>
+            <td>Rwf 1000</td>
+            <td>Rwf <%= "#{@user.level_five_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}"%></td>
             <td>Land</td>
             <td>
               <% if Time.now - @user.created_at < 90.days && @user.level_five_traffic(@user.trafficgroups.index(group),"Traffic").count < 3125%>
