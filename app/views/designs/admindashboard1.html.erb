@@ -129,7 +129,7 @@
 
     <!-- monthly commission details -->
     <div class="col-md-12" id="admintable">
-      <h2 class="text-center">Monthly Commission Details</h2>
+      <h2 class="text-center"><%= Date.today.strftime("%B %Y")%> Commission Details</h2>
       <div class="tbody">
         <table class="table sidetable" id="test">
           <thead class="thead">
@@ -137,61 +137,11 @@
               <th>Name</th>
               <th>Commission Received</th>
               <th>Reward</th>
-              <th>Date</th>
+              <th>Started Date</th>
             </tr>
           </thead>
           <tbody>
-<<<<<<< HEAD
-          <% payments_rw = [] %>
-          <% payments_$ = [] %>
-          <% @students.each do |student|%>
-            <% if student.studentInfos.any? %>
-              <% if student.technicalgroups.any? %>
-                <% tech_sum = 0 %>
-                <% student.technicalgroups.each do |group|%>
-                  <% tech_sum += ((student.level_one(student.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 5000) + (student.level_two_tech(student.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 4000) + (student.level_three_tech(student.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 3000) + (student.level_four_tech(student.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 2000)+ (student.level_five_tech(student.technicalgroups.index(group),"technical").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000))%>
-                <% end %>  
-              <% end %>
-              <% if student.languagesgroups.any? %>
-                <% lang_sum = 0 %>
-                <% student.languagesgroups.each do |group|%>
-                  <% lang_sum += ((student.level_one(student.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 2000) + (student.level_two_lang(student.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000) + (student.level_three_lang(student.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000) + (student.level_four_lang(student.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000)+ (student.level_five_lang(student.languagesgroups.index(group),"languages").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000))%>
-                <% end %>  
-              <% end %>
-              <% if student.trafficgroups.any? %>
-                <% traffic_sum = 0 %>
-                <% student.trafficgroups.each do |group|%>
-                  <% traffic_sum += ((student.level_one(student.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 2000) + (student.level_two_traffic(student.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000) + (student.level_three_traffic(student.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000) + (student.level_four_traffic(student.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000)+ (student.level_five_traffic(student.trafficgroups.index(group),"Traffic").select{|student| Time.now.beginning_of_month <= student.created_at && Time.now.end_of_month >= student.created_at}.count * 1000))%>
-                <% end %>
-              <% end %>
-              <% if (tech_sum.to_i + lang_sum.to_i + traffic_sum.to_i) != 0 %>      
-                <tr>
-                  <td><%= student.first_name %></td>
-                  <td>
-                    Rwf <%= tech_sum.to_i + lang_sum.to_i + traffic_sum.to_i %>
-                    <% payments.push(tech_sum.to_i + lang_sum.to_i + traffic_sum.to_i)%>
-                  </td>
-                  <td><a href="/students/<%= student.id %>">View Reward</a></td>
-                  <td><%= student.created_at %></td>
-                </tr>
-              <% end %>
-            <% end %>
-          <% end %>
-          <tr>
-            <td><b>Total</b></td>
-            <td>
-            <% payments_sum = 0 %>
-            <% payments.each do |payment| %>
-              <% payments_sum += payment %>
-            <% end %>
-            Rwf <%= payments_sum %>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-=======
             <%= render "monthlypayment" %>
->>>>>>> 178611c7f1b6571badd68e62496798e772468ff0
           </tbody>
         </table>
       </div>

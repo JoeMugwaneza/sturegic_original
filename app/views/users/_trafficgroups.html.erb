@@ -20,8 +20,8 @@
           <tr>        
             <td>1</td>
             <td><%= @user.level_one(@user.trafficgroups.index(group),"Traffic").count %></td>
-            <td>Rwf 2000</td>
-            <td>Rwf <%= "#{@user.level_one(@user.trafficgroups.index(group),"Traffic").count * 2000}"%></td>
+            <td>Rwf 2,000</td>
+            <td><%= number_to_currency("#{@user.level_one(@user.trafficgroups.index(group),"Traffic").count * 2000}", precision: false, unit: "Rwf ")%></td>
             <td>No Reward</td>
             <td> - </td>
             <td> - </td>
@@ -30,8 +30,8 @@
           <tr>
             <td>2</td>
             <td><%= @user.level_two_traffic(@user.trafficgroups.index(group),"Traffic").count %></td>
-            <td>Rwf 1000</td>
-            <td>Rwf <%= "#{@user.level_two_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}"%></td>
+            <td>Rwf 1,000</td>
+            <td><%= number_to_currency("#{@user.level_two_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}", precision: false, unit: "Rwf ")%></td>
             <td>SmartPhone</td>
             <td>
               <% if Time.now - @user.created_at < 90.days  && @user.level_two_traffic(@user.trafficgroups.index(group),"Traffic").count < 25%>
@@ -54,8 +54,8 @@
           <tr>        
             <td>3</td>
             <td><%= @user.level_three_traffic(@user.trafficgroups.index(group),"Traffic").count %></td>
-            <td>Rwf 1000</td>
-            <td>Rwf <%= "#{@user.level_three_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}"%></td>
+            <td>Rwf 1,000</td>
+            <td><%= number_to_currency("#{@user.level_three_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}", precision: false, unit: "Rwf ")%></td>
             <td>Laptop</td>
             <td>
               <% if Time.now - @user.created_at < 90.days && @user.level_three_traffic(@user.trafficgroups.index(group),"Traffic").count < 125%>
@@ -78,8 +78,8 @@
           <tr>
             <td>4</td>
             <td><%= @user.level_four_traffic(@user.trafficgroups.index(group),"Traffic").count %></td>
-            <td>Rwf 1000</td>
-            <td>Rwf <%= "#{@user.level_four_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}"%></td>
+            <td>Rwf 1,000</td>
+            <td><%= number_to_currency("#{@user.level_four_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}", precision: false, unit: "Rwf ")%></td>
             <td>Motorcycle</td>
             <td>
               <% if Time.now - @user.created_at < 90.days && @user.level_four_traffic(@user.trafficgroups.index(group),"Traffic").count <625 %>
@@ -102,8 +102,8 @@
           <tr>
             <td>5</td>
             <td><%= @user.level_five_traffic(@user.trafficgroups.index(group),"Traffic").count %></td>
-            <td>Rwf 1000</td>
-            <td>Rwf <%= "#{@user.level_five_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}"%></td>
+            <td>Rwf 1,000</td>
+            <td><%= number_to_currency("#{@user.level_five_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}", precision: true, unit: "Rwf ")%></td>
             <td>Land</td>
             <td>
               <% if Time.now - @user.created_at < 90.days && @user.level_five_traffic(@user.trafficgroups.index(group),"Traffic").count < 3125%>
@@ -127,14 +127,14 @@
             <td><b>Total</b></td>
             <td><%= "#{@user.level_one(@user.trafficgroups.index(group),"Traffic").count + @user.level_two_lang(@user.trafficgroups.index(group),"Traffic").count + @user.level_three_lang(@user.trafficgroups.index(group),"Traffic").count + @user.level_four_lang(@user.trafficgroups.index(group),"Traffic").count + @user.level_five_lang(@user.trafficgroups.index(group),"Traffic").count}" %></td>
             <td>-</td>
-            <td><b>Rwf <%="#{(@user.level_five_lang(@user.trafficgroups.index(group),"Traffic").count * 1000)+ (@user.level_four_lang(@user.trafficgroups.index(group),"Traffic").count * 1000) + (@user.level_three_lang(@user.trafficgroups.index(group),"Traffic").count * 1000) + (@user.level_two_lang(@user.trafficgroups.index(group),"Traffic").count * 1000) + (@user.level_one(@user.trafficgroups.index(group),"Traffic").count * 2000)}"%></b></td>
+            <td><b><%=number_to_currency("#{(@user.level_five_lang(@user.trafficgroups.index(group),"Traffic").count * 1000)+ (@user.level_four_lang(@user.trafficgroups.index(group),"Traffic").count * 1000) + (@user.level_three_lang(@user.trafficgroups.index(group),"Traffic").count * 1000) + (@user.level_two_lang(@user.trafficgroups.index(group),"Traffic").count * 1000) + (@user.level_one(@user.trafficgroups.index(group),"Traffic").count * 2000)}", precision: true, unit: "Rwf ")%></b></td>
           </tr>
         <% else %>
           <tr>        
             <td>1</td>
             <td><%= @user.level_one(@user.trafficgroups.index(group),"Traffic").count %></td>
             <td>$2</td>
-            <td><%= "#{@user.level_one(@user.trafficgroups.index(group),"Traffic").count * 2}"%></td>
+            <td><%= number_to_currency("#{@user.level_one(@user.trafficgroups.index(group),"Traffic").count * 2}")%></td>
             <td>No Reward</td>
             <td> - </td>
             <td> - </td>
@@ -144,7 +144,7 @@
             <td>2</td>
             <td><%= @user.level_two_traffic(@user.trafficgroups.index(group),"Traffic").count %></td>
             <td>$1</td>
-            <td><%= "#{@user.level_two_traffic(@user.trafficgroups.index(group),"Traffic").count * 1}"%></td>
+            <td><%= number_to_currency("#{@user.level_two_traffic(@user.trafficgroups.index(group),"Traffic").count * 1}")%></td>
             <td>SmartPhone</td>
             <td>
               <% if Time.now - @user.created_at < 90.days  && @user.level_two_traffic(@user.trafficgroups.index(group),"Traffic").count < 25%>
@@ -168,7 +168,7 @@
             <td>3</td>
             <td><%= @user.level_three_traffic(@user.trafficgroups.index(group),"Traffic").count %></td>
             <td>$1</td>
-            <td><%= "#{@user.level_three_traffic(@user.trafficgroups.index(group),"Traffic").count * 1}"%></td>
+            <td><%= number_to_currency("#{@user.level_three_traffic(@user.trafficgroups.index(group),"Traffic").count * 1}")%></td>
             <td>Laptop</td>
             <td>
               <% if Time.now - @user.created_at < 90.days && @user.level_three_traffic(@user.trafficgroups.index(group),"Traffic").count < 125%>
@@ -192,7 +192,7 @@
             <td>4</td>
             <td><%= @user.level_four_traffic(@user.trafficgroups.index(group),"Traffic").count %></td>
             <td>$1</td>
-            <td><%= "#{@user.level_four_traffic(@user.trafficgroups.index(group),"Traffic").count * 1}"%></td>
+            <td><%= number_to_currency("#{@user.level_four_traffic(@user.trafficgroups.index(group),"Traffic").count * 1}")%></td>
             <td>Motorcycle</td>
             <td>
               <% if Time.now - @user.created_at < 90.days && @user.level_four_traffic(@user.trafficgroups.index(group),"Traffic").count <625 %>
@@ -216,7 +216,7 @@
             <td>5</td>
             <td><%= @user.level_five_traffic(@user.trafficgroups.index(group),"Traffic").count %></td>
             <td>$1</td>
-            <td><%= "#{@user.level_five_traffic(@user.trafficgroups.index(group),"Traffic").count * 1}"%></td>
+            <td><%= number_to_currency("#{@user.level_five_traffic(@user.trafficgroups.index(group),"Traffic").count * 1}")%></td>
             <td>Land</td>
             <td>
               <% if Time.now - @user.created_at < 90.days && @user.level_five_traffic(@user.trafficgroups.index(group),"Traffic").count < 3125%>
@@ -240,7 +240,7 @@
             <td><b>Total</b></td>
             <td><%= "#{@user.level_one(@user.trafficgroups.index(group),"Traffic").count + @user.level_two_lang(@user.trafficgroups.index(group),"Traffic").count + @user.level_three_lang(@user.trafficgroups.index(group),"Traffic").count + @user.level_four_lang(@user.trafficgroups.index(group),"Traffic").count + @user.level_five_lang(@user.trafficgroups.index(group),"Traffic").count}" %></td>
             <td>-</td>
-            <td><b>Rwf <%="#{(@user.level_five_lang(@user.trafficgroups.index(group),"Traffic").count * 1)+ (@user.level_four_lang(@user.trafficgroups.index(group),"Traffic").count * 1) + (@user.level_three_lang(@user.trafficgroups.index(group),"Traffic").count * 1) + (@user.level_two_lang(@user.trafficgroups.index(group),"Traffic").count * 1) + (@user.level_one(@user.trafficgroups.index(group),"Traffic").count * 2)}"%></b></td>
+            <td><b><%=number_to_currency("#{(@user.level_five_lang(@user.trafficgroups.index(group),"Traffic").count * 1)+ (@user.level_four_lang(@user.trafficgroups.index(group),"Traffic").count * 1) + (@user.level_three_lang(@user.trafficgroups.index(group),"Traffic").count * 1) + (@user.level_two_lang(@user.trafficgroups.index(group),"Traffic").count * 1) + (@user.level_one(@user.trafficgroups.index(group),"Traffic").count * 2)}")%></b></td>
           </tr>
 
         <% end %>
