@@ -9,12 +9,14 @@ class StudentInfo < ApplicationRecord
   mount_uploader :bankslip, BankslipUploader
   
   before_create :generate_registration
+  validates_uniqueness_of :student_id
 
   def created_date
    self.created_at.strftime("%d %b. %Y")
   end
   def fill_missing
-    self.update(student_1: "#{self.student.first_name} #{self.student.last_name}", country_1: self.country.name,registrar_1: "#{self.registrar.first_name} #{self.registrar.first_name}", program: self.program_category.name, course_1: self.course.name)
+
+    self.update(student_1: "#{self.student.first_name} #{self.student.last_name}", country_1: self.country.name,registrar_1: "#{self.registrar.first_name} #{self.registrar.first_name}", program_1: self.program_category.name, course_1: self.course.name)
     if self.district 
       self.update(district_1: self.district.name)
     end
@@ -38,6 +40,11 @@ class StudentInfo < ApplicationRecord
         filterable true
       end
 
+
+      field :program_1 do
+        label 'Program'
+        filterable true
+      end
       field :district_1 do
         label 'District'
         filterable true

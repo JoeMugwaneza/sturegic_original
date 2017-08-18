@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-12 col-xs-12 thumbnail application-box">
       <h1 class="text-center application-header"><strong><%= "#{@user.first_name} #{@user.last_name}"%> Commission Details</strong></h1>
-      <h1><%= Date.today.strftime("%B %Y")%> Payment: <%= render "monthpay" %></h1>
+      <h1><span style="color: green"><%= Date.today.strftime("%B %Y")%> Payment:</span><u><%= render "monthpay" %></u></h1>
       <a class="btn btn-register pull-right" href="/signup">Register a Student</a>
       <div class="text-center">
 

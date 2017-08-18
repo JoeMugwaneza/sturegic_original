@@ -1,3 +1,5 @@
+<% payments_rw = [] %>
+<% payments_dollar = [] %>
 <% @students.each do |student|%>
   <% if student.studentInfos.any? && student.country.name == "Rwanda" %>
     <% if student.technicalgroups.any? %>
@@ -22,7 +24,9 @@
       <tr>
         <td><%= student.first_name %></td>
         <td>
-          Rwf <%= tech_sum.to_i + lang_sum.to_i + traffic_sum.to_i %>
+          <% this_sum = tech_sum.to_i + lang_sum.to_i + traffic_sum.to_i %>
+          <%= number_to_currency(this_sum, unit: "Rwf ", precision: false)%>
+          <% payments_rw.push(tech_sum.to_i + lang_sum.to_i + traffic_sum.to_i)%>
         </td>
         <td><a href="/students/<%= student.id %>">View Reward</a></td>
         <td><%= student.created_at %></td>
@@ -51,7 +55,9 @@
       <tr>
         <td><%= student.first_name %></td>
         <td>
-          $<%= tech_sum.to_i + lang_sum.to_i + traffic_sum.to_i %>
+          <% this_sum_1 = tech_sum.to_i + lang_sum.to_i + traffic_sum.to_i %>
+          <%= number_to_currency(this_sum_1, precision: 2)%>
+          <% payments_dollar.push(tech_sum.to_i + lang_sum.to_i + traffic_sum.to_i)%>
         </td>
         <td><a href="/students/<%= student.id %>">View Reward</a></td>
         <td><%= student.created_at %></td>
@@ -59,3 +65,26 @@
     <% end %>
   <% end %>
 <% end %>
+<tr style="color: green">
+  <td><b>Total</b></td>
+  <td>
+    <% payments_sum_rw = 0 %>
+    <% payments_rw.each do |payment| %>
+      <% payments_sum_rw += payment %>
+    <% end %>
+    <% payments_sum_dollar = 0 %>
+    <% payments_dollar.each do |payment| %>
+      <% payments_sum_dollar += payment %>
+    <% end %>
+    <small>
+      <b>Rwanda:</b><br>
+        <u style="color: black"><%= number_to_currency(payments_sum_rw, precision: false, unit: "Rwf ")%></u><br>
+      <b>Other Countries:</b><br>
+        <u style="color: black"><%= number_to_currency(payments_sum_dollar, precision: 2) %></u>
+    </small>
+  </td>
+  <td>
+
+  </td>
+  <td></td>
+</tr>
