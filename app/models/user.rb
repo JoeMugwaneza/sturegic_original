@@ -9,6 +9,9 @@ class User < ApplicationRecord
     new_record?
   end
   
+  def update_bank
+    self.update(bank: "Bk", bank_account: "007-344-678")
+  end
   has_many :studentInfos, foreign_key: :registrar_id, :dependent => :restrict_with_error
   has_one :studentInfo, foreign_key: :student_id, :dependent => :restrict_with_error
 
