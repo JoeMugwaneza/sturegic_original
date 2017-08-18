@@ -158,8 +158,8 @@
                 <h2><%= current_user.first_name%> <%= current_user.last_name%></h2>
                 <h4>Post Occupied: KIAC Agent </h4>
                 <h4>Country: <%= current_user.country.name%></h4>
-                <% if current_user.country == "Rwanda" %>
-                  <h4>District: <%= current_user.district %></h4>
+                <% if current_user.country.name == "Rwanda" %>
+                  <h4>District: <%= current_user.district if current_user.district %></h4>
                 <% end %>
             </div>             
             <div class="col-xs-12 col-sm-4 text-center">
