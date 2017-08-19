@@ -141,7 +141,46 @@
             </tr>
           </thead>
           <tbody>
-            <%= render "monthlypayment" %>
+          <% payments_rw = [] %>
+          <% payments_dollar = [] %>
+            <% @students.each do |student| %>
+              <% unless student.this_month_payments == 0 %>
+                <tr>
+                  <td><%= student.first_name %></td>
+                  <td>
+                    <%= number_to_currency(student.this_month_payments, precision: false, unit: "Rwf ") if student.country.name == "Rwanda" %>
+                    <%= number_to_currency(student.this_month_payments)  unless student.country.name == "Rwanda" %>
+                  </td>
+                  <td><a href="/students/<%= student.id %>">View Reward</a></td>
+                  <td><%= student.created_at %></td>
+                  <% payments_rw.push(student.this_month_payments) if student.country.name == "Rwanda" %>
+                  <% payments_dollar.push(student.this_month_payments) if student.country.name != "Rwanda" %>
+                </tr>
+              <% end %>
+            <% end %>
+            <tr style="color: green">
+              <td><b>Total</b></td>
+              <td>
+                <% payments_sum_rw = 0 %>
+                <% payments_rw.each do |payment| %>
+                  <% payments_sum_rw += payment %>
+                <% end %>
+                <% payments_sum_dollar = 0 %>
+                <% payments_dollar.each do |payment| %>
+                  <% payments_sum_dollar += payment %>
+                <% end %>
+                <small>
+                  <b>Rwanda:</b><br>
+                    <u style="color: black"><%= number_to_currency(payments_sum_rw, precision: false, unit: "Rwf ")%></u><br>
+                  <b>Other Countries:</b><br>
+                    <u style="color: black"><%= number_to_currency(payments_sum_dollar, precision: 2) %></u>
+                </small>
+              </td>
+              <td>
+
+              </td>
+              <td></td>
+            </tr>
           </tbody>
         </table>
       </div>

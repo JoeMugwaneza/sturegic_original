@@ -97,7 +97,7 @@ class User < ApplicationRecord
     return groups
   end
 
-  scope :this_month, -> { where(created_at: Time.now.beginning_of_month..Time.now.end_of_month) }
+ 
 
   def generate_token(column)
     begin 
@@ -112,8 +112,14 @@ class User < ApplicationRecord
     UserMailer.password_reset(self).deliver
   end
 
+  def this_month
+    where(created_at: Time.now.beginning_of_month..Time.now.end_of_month)
+  end
+
+
   include UsersHelper
   
+
   private
 
   def confirmation_taken
