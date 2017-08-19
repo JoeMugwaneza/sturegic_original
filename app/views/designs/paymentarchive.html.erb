@@ -21,7 +21,27 @@
             </tr>
         </thead>
         <tbody>
-          <%= render "archivepayment" %>
+        <% @students.each do |student|%>
+            <% if student.studentInfos.any? %>
+                <% student.archive_payments.each do |month, value|%>
+                    <tr>
+                      <td><%= "#{student.first_name} #{student.last_name}" %></td>
+                      <td><%= student.country.name %></td>
+                      <th><%= student.studentInfo.district.name if student.studentInfo.district %> <%=student.studentInfo.city if student.studentInfo.city %></th>
+                      <td><%= student.tel %></td>
+                      <td><small><%= student.studentInfo.reg_no %></small></td>
+                      <td><%= student.bank if student.bank %></td>
+                      <td><small><%= student.bank_account if student.bank_account %></small></td>
+                      <td>
+                        <%= number_to_currency(value, precision: false, unit: "Rwf ") if student.country.name == "Rwanda" %>
+                        <%= number_to_currency(value/1000, precision: false, unity: "Rwf ") if student.country.name != "Rwanda" %>  
+                      </td>
+                      <td><small><%= month %></small></td>
+                      <td><small><%= student.studentInfo.registrar.first_name%><small></td>
+                    </tr>
+                <% end %>
+            <% end %>
+        <% end %>
         </tbody>
     </table>
 
