@@ -235,6 +235,5 @@ module UsersHelper
        end 
      end 
     return (tech_sum.to_i + lang_sum.to_i + traffic_sum.to_i)
-    
   end
 end
