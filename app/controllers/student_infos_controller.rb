@@ -47,6 +47,8 @@ class StudentInfosController < ApplicationController
      flash[:scuess] = "Student Application Successfully Submited" 
      redirect_to "/students/#{@student_infos.student.friendly_id}/profile-one"
     else
+      @student = @student_infos.student
+      @program_category = @student_infos.program_category
       render 'new'
     end
   end
