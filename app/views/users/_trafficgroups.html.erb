@@ -103,7 +103,7 @@
             <td>5</td>
             <td><%= @user.level_five_traffic(@user.trafficgroups.index(group),"Traffic").count %></td>
             <td>Rwf 1,000</td>
-            <td><%= number_to_currency("#{@user.level_five_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}", precision: true, unit: "Rwf ")%></td>
+            <td><%= number_to_currency("#{@user.level_five_traffic(@user.trafficgroups.index(group),"Traffic").count * 1000}", precision: false, unit: "Rwf ")%></td>
             <td>Land</td>
             <td>
               <% if Time.now - @user.created_at < 90.days && @user.level_five_traffic(@user.trafficgroups.index(group),"Traffic").count < 3125%>
@@ -127,7 +127,7 @@
             <td><b>Total</b></td>
             <td><%= "#{@user.level_one(@user.trafficgroups.index(group),"Traffic").count + @user.level_two_lang(@user.trafficgroups.index(group),"Traffic").count + @user.level_three_lang(@user.trafficgroups.index(group),"Traffic").count + @user.level_four_lang(@user.trafficgroups.index(group),"Traffic").count + @user.level_five_lang(@user.trafficgroups.index(group),"Traffic").count}" %></td>
             <td>-</td>
-            <td><b><%=number_to_currency("#{(@user.level_five_lang(@user.trafficgroups.index(group),"Traffic").count * 1000)+ (@user.level_four_lang(@user.trafficgroups.index(group),"Traffic").count * 1000) + (@user.level_three_lang(@user.trafficgroups.index(group),"Traffic").count * 1000) + (@user.level_two_lang(@user.trafficgroups.index(group),"Traffic").count * 1000) + (@user.level_one(@user.trafficgroups.index(group),"Traffic").count * 2000)}", precision: true, unit: "Rwf ")%></b></td>
+            <td><b><%=number_to_currency("#{(@user.level_five_lang(@user.trafficgroups.index(group),"Traffic").count * 1000)+ (@user.level_four_lang(@user.trafficgroups.index(group),"Traffic").count * 1000) + (@user.level_three_lang(@user.trafficgroups.index(group),"Traffic").count * 1000) + (@user.level_two_lang(@user.trafficgroups.index(group),"Traffic").count * 1000) + (@user.level_one(@user.trafficgroups.index(group),"Traffic").count * 2000)}", precision: false, unit: "Rwf ")%></b></td>
           </tr>
         <% else %>
           <tr>        
