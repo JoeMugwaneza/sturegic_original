@@ -1,11 +1,14 @@
 class StudentInfosController < ApplicationController
    before_action :authenticate_user
+
   def index
     #approving the request
     if current_user.admin && params[:appr]
       @student_info = StudentInfo.find_by(id: params[:appr])
       @student_info.status = !@student_info.status
+      @student_info.generate_registration
       if @student_info.save
+
         # StudentInfoMailer.student_info_approval_notification(@student_info).deliver_now
         flash[:success] = "Student Registration Approved"
         redirect_to "/"

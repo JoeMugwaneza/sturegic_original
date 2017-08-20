@@ -8,8 +8,11 @@ class StudentInfo < ApplicationRecord
 
   mount_uploader :bankslip, BankslipUploader
   
-  before_create :generate_registration
   # validates_uniqueness_of :student_id
+  validates_presence_of :bankslip, :message => 'Please provide you valid bankslip'
+  def generate_registration
+    self.update(reg_no: "#{self.country.abbreviation}" + "00" + "#{StudentInfo.where(status: true).count + 1 }" + "/KIAC/#{Time.now.year}")
+  end
 
   def created_date
    self.created_at.strftime("%d %b. %Y")
@@ -99,7 +102,4 @@ class StudentInfo < ApplicationRecord
 
 
 
-  def generate_registration
-    self.reg_no = self.country.abbreviation + "00" + self.student.id.to_s + "/KIAC/#{Time.now.year}" 
-  end
 end
