@@ -62,21 +62,22 @@
     </div><!-- /.container-fluid -->
   </nav>
 <% end %>
+ <section class="" >
   <p>
     <% flash.each do |key, value| %>
     <% alert_class = case key
     when :notice then "success"
     when :alert then "danger"
     else key
-      end %>
-      <%= content_tag :div, class: "alert alert-#{alert_class}" do %>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <%= value %>
-      <% end %>
-      <% end %>
-    </p>
-  </div>
-  <%= yield %>
+     end %>
+     <%= content_tag :div, class: "alert alert-#{alert_class}" do %>
+     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+     <%= value %>
+     <% end %>
+     <% end %>
+   </p>
+   <%= yield %>
+ </section>
 
 <footer>
  <div class="col-md-12">   
