@@ -153,66 +153,87 @@ module UsersHelper
       students.push(studentInfo.student)
     end
 
-    students_by_month = students.group_by { |student| student.created_at.strftime("%B") }
+    students_by_month = students.group_by { |student| student.created_at.strftime("%B %y") }
 
   end
 
   def archive_payments
     the_sum = Hash.new
+    self.archive.each do |month, student|
+      the_sum[month] = []
+    end
     the_day = []
     if self.languagesgroups.any?
       self.languagesgroups.each do |languagesgroup|
         student_by_month = languagesgroup.group_by { |student| student.created_at.strftime("%B %y") }
+
+        month_sum = 0
+
         student_by_month.each do |month, students|
-          the_day.push(month)
           level_one_students = self.level_one(self.languagesgroups.index(languagesgroup), "Languages") & students
-          the_sum[month]=(level_one_students.count * 2000) if level_one_students.count != 0
-          level_two_students = self.level_two_lang(self.languagesgroups.index(languagesgroup), "Languages") & students
-          the_sum[month]=(level_two_students.count * 1000) if level_two_students.count != 0
-          level_three_students = self.level_three_lang(self.languagesgroups.index(languagesgroup), "Languages") & students
-          the_sum[month]=(level_three_students.count * 1000) if level_three_students.count != 0
-          level_four_students = self.level_four_lang(self.languagesgroups.index(languagesgroup), "Languages") & students
-          the_sum[month]=(level_four_students.count * 1000) if level_four_students.count != 0
-          level_five_students = self.level_five_lang(self.languagesgroups.index(languagesgroup), "Languages") & students
-          the_sum[month]=(level_five_students.count * 1000) if level_five_students.count != 0
+          month_sum +=(level_one_students.count * 2000) if level_one_students.count != 0
+          level_two_students = self.level_two_lang(self.languagesgroups.index(languagesgroup), "Languages").select{|student| student.created_at.strftime("%B %y") == month} 
+          month_sum +=(level_two_students.count * 1000) if level_two_students.count != 0
+          level_three_students = self.level_three_lang(self.languagesgroups.index(languagesgroup), "Languages").select{|student| student.created_at.strftime("%B %y") == month} 
+          month_sum +=(level_three_students.count * 1000) if level_three_students.count != 0
+          level_four_students = self.level_four_lang(self.languagesgroups.index(languagesgroup), "Languages").select{|student| student.created_at.strftime("%B %y") == month} 
+          month_sum +=(level_four_students.count * 1000) if level_four_students.count != 0
+          level_five_students = self.level_five_lang(self.languagesgroups.index(languagesgroup), "Languages").select{|student| student.created_at.strftime("%B %y") == month} 
+          month_sum +=(level_five_students.count * 1000) if level_five_students.count != 0
+          the_sum[month].push(month_sum)
         end
       end
     end
     if self.technicalgroups.any?
       self.technicalgroups.each do |technicalgroup|
         student_by_month = technicalgroup.group_by { |student| student.created_at.strftime("%B %y") }
+
+        month_sum = 0
         student_by_month.each do |month, students|
           level_one_students = self.level_one(self.technicalgroups.index(technicalgroup), "technical") & students
-          the_sum[month]=(level_one_students.count * 5000) if level_one_students.count != 0
-          level_two_students = self.level_two_lang(self.technicalgroups.index(technicalgroup), "technical") & students
-          the_sum[month]=(level_two_students.count * 4000) if level_two_students.count != 0
-          level_three_students = self.level_three_lang(self.technicalgroups.index(technicalgroup), "technical") & students
-          the_sum[month]=(level_three_students.count * 3000) if level_three_students.count != 0
-          level_four_students = self.level_four_lang(self.technicalgroups.index(technicalgroup), "technical") & students
-          the_sum[month]=(level_four_students.count * 2000) if level_four_students.count != 0
-          level_five_students = self.level_five_lang(self.technicalgroups.index(technicalgroup), "technical") & students
-          the_sum[month]=(level_five_students.count * 1000) if level_five_students.count != 0
+          month_sum +=(level_one_students.count * 5000) if level_one_students.count != 0
+          level_two_students = self.level_two_tech(self.technicalgroups.index(technicalgroup), "technical").select{|student| student.created_at.strftime("%B %y") == month} 
+          month_sum +=(level_two_students.count * 4000) if level_two_students.count != 0
+          level_three_students = self.level_three_tech(self.technicalgroups.index(technicalgroup), "technical").select{|student| student.created_at.strftime("%B %y") == month} 
+          month_sum +=(level_three_students.count * 3000) if level_three_students.count != 0
+          level_four_students = self.level_four_tech(self.technicalgroups.index(technicalgroup), "technical").select{|student| student.created_at.strftime("%B %y") == month} 
+          month_sum +=(level_four_students.count * 2000) if level_four_students != 0
+          level_five_students = self.level_five_tech(self.technicalgroups.index(technicalgroup), "technical").select{|student| student.created_at.strftime("%B %y") == month} 
+          month_sum +=(level_five_students.count * 1000) if level_five_students.count != 0
+          the_sum[month].push(month_sum) 
+
         end
       end
     end
     if self.trafficgroups.any?
       self.trafficgroups.each do |trafficgroup|
         student_by_month = trafficgroup.group_by { |student| student.created_at.strftime("%B %y") }
+
+        month_sum = 0
         student_by_month.each do |month, students|
           level_one_students = self.level_one(self.trafficgroups.index(trafficgroup), "Traffic") & students
-          the_sum[month]=(level_one_students.count * 2000) if level_one_students.count != 0
-          level_two_students = self.level_two_tech(self.trafficgroups.index(trafficgroup), "Traffic") & students
-          the_sum[month]=(level_two_students.count * 1000) if level_two_students.count != 0
-          level_three_students = self.level_three_tech(self.trafficgroups.index(trafficgroup), "Traffic") & students
-          the_sum[month]=(level_three_students.count * 1000) if level_three_students.count != 0
-          level_four_students = self.level_four_tech(self.trafficgroups.index(trafficgroup), "Traffic") & students 
-          the_sum[month]=(level_four_students.count * 1000) if level_four_students.count != 0
-          level_five_students = self.level_five_tech(self.trafficgroups.index(trafficgroup), "Traffic") & students 
-          the_sum[month]=(level_five_students.count * 1000) if level_five_students.count != 0
+          month_sum +=(level_one_students.count * 2000) if level_one_students.count != 0
+          level_two_students = self.level_two_tech(self.trafficgroups.index(trafficgroup), "Traffic").select{|student| student.created_at.strftime("%B %y") == month} 
+          month_sum +=(level_two_students.count * 1000) if level_two_students.count != 0
+          level_three_students = self.level_three_tech(self.trafficgroups.index(trafficgroup), "Traffic").select{|student| student.created_at.strftime("%B %y") == month} 
+          month_sum +=(level_three_students.count * 1000) if level_three_students.count != 0
+          level_four_students = self.level_four_tech(self.trafficgroups.index(trafficgroup), "Traffic").select{|student| student.created_at.strftime("%B %y") == month} 
+          month_sum +=(level_four_students.count * 1000) if level_four_students.count != 0
+          level_five_students = self.level_five_tech(self.trafficgroups.index(trafficgroup), "Traffic").select{|student| student.created_at.strftime("%B %y") == month} 
+          month_sum +=(level_five_students.count * 1000) if level_five_students.count != 0
+          the_sum[month].push(month_sum)
         end
       end
     end
-    return the_sum
+    overall_sum = Hash.new
+    the_sum.each do |month, payments|
+      payments_sum = 0
+      payments.each do |payment|
+        payments_sum += payment
+      end
+      overall_sum[month] = payments_sum
+    end
+    return overall_sum
   end
 
   def this_month_payments 

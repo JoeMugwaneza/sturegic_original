@@ -18,7 +18,7 @@
 <%= f.text_field :city, class: "form-control", placeholder:"City (Domicile) ..." %>
 <% end %>
 <%= f.label :Bankslip%>
-<%=f.file_field :bankslip, {class: "form-control", required: "required"}%>
+<%=f.file_field :bankslip, onchange: "validateFiles(this);", data: { max_file_size: 1.megabytes }%>
 <%= f.hidden_field :country_id, value:"#{@student.country.id}" %>
 <%= f.hidden_field :program_category_id, value:"#{@program_category.id}" %>
 <%= f.hidden_field :registrar_id , value: "#{current_user.id}" %>
