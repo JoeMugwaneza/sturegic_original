@@ -149,12 +149,12 @@
                   <td><%= student.first_name %></td>
                   <td>
                     <%= number_to_currency(student.this_month_payments, precision: false, unit: "Rwf ") if student.country.name == "Rwanda" %>
-                    <%= number_to_currency(student.this_month_payments)  unless student.country.name == "Rwanda" %>
+                    <%= number_to_currency(student.this_month_payments/1000)  unless student.country.name == "Rwanda" %>
                   </td>
                   <td><a href="/students/<%= student.id %>">View Reward</a></td>
                   <td><%= student.created_at %></td>
                   <% payments_rw.push(student.this_month_payments) if student.country.name == "Rwanda" %>
-                  <% payments_dollar.push(student.this_month_payments) if student.country.name != "Rwanda" %>
+                  <% payments_dollar.push(student.this_month_payments/1000) if student.country.name != "Rwanda" %>
                 </tr>
               <% end %>
             <% end %>
@@ -197,7 +197,9 @@
                 <h2><%= current_user.first_name%> <%= current_user.last_name%></h2>
                 <h4>Post Occupied: KIAC Agent </h4>
                 <h4>Country: <%= current_user.country.name%></h4>
-                <h4>District: </h4>
+                <% if current_user.country.name == "Rwanda" %>
+                  <h4>District: <%= current_user.district if current_user.district %></h4>
+                <% end %>
             </div>             
             <div class="col-xs-12 col-sm-4 text-center">
                 <figure>
