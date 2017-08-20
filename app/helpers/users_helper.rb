@@ -162,7 +162,7 @@ module UsersHelper
     the_day = []
     if self.languagesgroups.any?
       self.languagesgroups.each do |languagesgroup|
-        student_by_month = languagesgroup.group_by { |student| student.created_at.strftime("%d %B %y") }
+        student_by_month = languagesgroup.group_by { |student| student.created_at.strftime("%B %y") }
         student_by_month.each do |month, students|
           the_day.push(month)
           level_one_students = self.level_one(self.languagesgroups.index(languagesgroup), "Languages") & students
@@ -180,7 +180,7 @@ module UsersHelper
     end
     if self.technicalgroups.any?
       self.technicalgroups.each do |technicalgroup|
-        student_by_month = technicalgroup.group_by { |student| student.created_at.strftime("%d %B %y") }
+        student_by_month = technicalgroup.group_by { |student| student.created_at.strftime("%B %y") }
         student_by_month.each do |month, students|
           level_one_students = self.level_one(self.technicalgroups.index(technicalgroup), "technical") & students
           the_sum[month]=(level_one_students.count * 5000) if level_one_students.count != 0
@@ -197,7 +197,7 @@ module UsersHelper
     end
     if self.trafficgroups.any?
       self.trafficgroups.each do |trafficgroup|
-        student_by_month = trafficgroup.group_by { |student| student.created_at.strftime("%d %B %y") }
+        student_by_month = trafficgroup.group_by { |student| student.created_at.strftime("%B %y") }
         student_by_month.each do |month, students|
           level_one_students = self.level_one(self.trafficgroups.index(trafficgroup), "Traffic") & students
           the_sum[month]=(level_one_students.count * 2000) if level_one_students.count != 0
