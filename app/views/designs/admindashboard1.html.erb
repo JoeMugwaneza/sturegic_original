@@ -149,12 +149,12 @@
                   <td><%= student.first_name %></td>
                   <td>
                     <%= number_to_currency(student.this_month_payments, precision: false, unit: "Rwf ") if student.country.name == "Rwanda" %>
-                    <%= number_to_currency(student.this_month_payments)  unless student.country.name == "Rwanda" %>
+                    <%= number_to_currency(student.this_month_payments/1000)  unless student.country.name == "Rwanda" %>
                   </td>
                   <td><a href="/students/<%= student.id %>">View Reward</a></td>
                   <td><%= student.created_at %></td>
                   <% payments_rw.push(student.this_month_payments) if student.country.name == "Rwanda" %>
-                  <% payments_dollar.push(student.this_month_payments) if student.country.name != "Rwanda" %>
+                  <% payments_dollar.push(student.this_month_payments/1000) if student.country.name != "Rwanda" %>
                 </tr>
               <% end %>
             <% end %>

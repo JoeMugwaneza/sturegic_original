@@ -185,7 +185,7 @@ module UsersHelper
           level_one_students = self.level_one(self.technicalgroups.index(technicalgroup), "technical") & students
           the_sum[month]=(level_one_students.count * 5000) if level_one_students.count != 0
           level_two_students = self.level_two_tech(self.technicalgroups.index(technicalgroup), "technical") & students
-          the_sum[month]=(level_two_students.count * 4000) if level_two_students.cound != 0
+          the_sum[month]=(level_two_students.count * 4000) if level_two_students.count != 0
           level_three_students = self.level_three_tech(self.technicalgroups.index(technicalgroup), "technical") & students
           the_sum[month]=(level_three_students.count * 3000) if level_three_students.count != 0
           level_four_students = self.level_four_tech(self.technicalgroups.index(technicalgroup), "technical") & students
