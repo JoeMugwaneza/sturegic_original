@@ -187,7 +187,6 @@ module UsersHelper
     if self.technicalgroups.any?
       self.technicalgroups.each do |technicalgroup|
         student_by_month = technicalgroup.group_by { |student| student.created_at.strftime("%B %y") }
-
         month_sum = 0
         student_by_month.each do |month, students|
           level_one_students = self.level_one(self.technicalgroups.index(technicalgroup), "technical") & students
@@ -208,7 +207,6 @@ module UsersHelper
     if self.trafficgroups.any?
       self.trafficgroups.each do |trafficgroup|
         student_by_month = trafficgroup.group_by { |student| student.created_at.strftime("%B %y") }
-
         month_sum = 0
         student_by_month.each do |month, students|
           level_one_students = self.level_one(self.trafficgroups.index(trafficgroup), "Traffic") & students
