@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       end
     elsif user.admin == true
       flash[:warning] = "Admins do not have payment info"
-      redirect_to "/admin"
+      redirect_to "/admin/user"
     else
       flash[:warning] = "You are trying to access payment info a user who is blocked"
       redirect_to student_profile_one_path(user)

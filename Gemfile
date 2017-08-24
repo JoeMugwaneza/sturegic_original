@@ -62,4 +62,5 @@ gem "rails_admin_pundit", :github => "sudosu/rails_admin_pundit"
 gem "pundit"
 gem 'client_side_validations'
 gem 'carrierwave', '~> 1.1'
+gem 'cloudinary', '~> 1.8', '>= 1.8.1'
 gem 'mini_magick', '~> 4.8'
