@@ -64,3 +64,9 @@ gem 'client_side_validations'
 gem 'carrierwave', '~> 1.1'
 gem 'cloudinary', '~> 1.8', '>= 1.8.1'
 gem 'mini_magick', '~> 4.8'
+
+group :development do
+  gem 'capistrano', '~> 3.7', '>= 3.7.1'
+  gem 'capistrano-rails', '~> 1.2'
+  gem 'capistrano-passenger', '~> 0.2.0'
+end
