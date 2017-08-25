@@ -30,13 +30,13 @@ require "capistrano/rbenv"
 set :rbenv_type, :user
 set :rbenv_ruby, '2.4.1'
 
-require 'capistrano/rails'
+require 'capistrano/bundler'
 require 'capistrano/passenger'
 # require "capistrano/rvm"
 # require "capistrano/chruby"
 # require "capistrano/bundler"
-# require "capistrano/rails/assets"
-# require "capistrano/rails/migrations"
+require "capistrano/rails/assets"
+require "capistrano/rails/migrations"
 # require "capistrano/passenger"
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
