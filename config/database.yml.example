@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: sturegic_original_production
-  username: sturegic_original
+  database: sturegic
+  username: deploy
   password: <%= ENV['STUREGIC_ORIGINAL_DATABASE_PASSWORD'] %>
