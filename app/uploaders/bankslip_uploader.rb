@@ -13,7 +13,7 @@ class BankslipUploader < CarrierWave::Uploader::Base
      process :eager => true
      process :resize_to_fit => [50, 50]
    end
-   
+     
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
