@@ -1,19 +1,19 @@
 ---
 development:
-  cloud_name: nexpals
-  api_key: '428372532186277'
-  api_secret: jHazqTvfR-mmBrzAI-H40sQTv-8
+  cloud_name: dopbrlrts
+  api_key: '934946921327621'
+  api_secret: HMwzNRTyQzOh40NJSurHnagiV7Y
   enhance_image_tag: true
   static_image_support: false
 production:
-  cloud_name: nexpals
-  api_key: '428372532186277'
-  api_secret: jHazqTvfR-mmBrzAI-H40sQTv-8
+  cloud_name: dopbrlrts
+  api_key: '934946921327621'
+  api_secret: HMwzNRTyQzOh40NJSurHnagiV7Y
   enhance_image_tag: true
   static_image_support: true
 test:
-  cloud_name: nexpals
-  api_key: '428372532186277'
-  api_secret: jHazqTvfR-mmBrzAI-H40sQTv-8
+  cloud_name: dopbrlrts
+  api_key: '934946921327621'
+  api_secret: HMwzNRTyQzOh40NJSurHnagiV7Y
   enhance_image_tag: true
   static_image_support: false
