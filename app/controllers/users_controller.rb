@@ -7,12 +7,15 @@ class UsersController < ApplicationController
   # before_action :authorize
   def show
     user = User.friendly.find(params[:id])
-    if user && user.enabled == true
+    if user && user.enabled == true && user.admin != true
       if current_user.admin == true || current_user == user
         @user = user
       else
         redirect_to student_path
       end
+    elsif user.admin == true
+      flash[:warning] = "Admins do not have payment info"
+      redirect_to "/admin/user"
     else
       flash[:warning] = "You are trying to access payment info a user who is blocked"
       redirect_to student_profile_one_path(user)
@@ -92,7 +95,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :email, :admin, :agent, :country_id, :sex, :martial_status, :tel, :password, :password_confirmation, :identification, :agent, :district, :bank, :bank_account)
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :admin, :agent, :country_id, :sex, :martial_status, :tel, :password, :password_confirmation, :identification, :agent, :bank, :bank_account)
   end
 
   def find_user

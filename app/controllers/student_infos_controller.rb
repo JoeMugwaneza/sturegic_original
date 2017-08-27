@@ -1,11 +1,14 @@
 class StudentInfosController < ApplicationController
    before_action :authenticate_user
+
   def index
     #approving the request
     if current_user.admin && params[:appr]
       @student_info = StudentInfo.find_by(id: params[:appr])
       @student_info.status = !@student_info.status
+      @student_info.generate_registration
       if @student_info.save
+
         # StudentInfoMailer.student_info_approval_notification(@student_info).deliver_now
         flash[:success] = "Student Registration Approved"
         redirect_to "/"
@@ -43,10 +46,17 @@ class StudentInfosController < ApplicationController
     if @student_infos.save
       @student_infos.fill_missing
       @student_infos.student.update(application_submission: true)
+      if @student_infos.student.country.name == "Rwanda"
+        @student_infos.student.update(district: @student_infos.district.name)
+      else
+        @student_infos.student.update(district: @student_infos.city)
+      end
       # StudentInfoMailer.student_info_approval(@student_infos).deliver_now
      flash[:scuess] = "Student Application Successfully Submited" 
      redirect_to "/students/#{@student_infos.student.friendly_id}/profile-one"
     else
+      @student = @student_infos.student
+      @program_category = @student_infos.program_category
       render 'new'
     end
   end

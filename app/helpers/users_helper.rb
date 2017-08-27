@@ -166,7 +166,9 @@ module UsersHelper
     if self.languagesgroups.any?
       self.languagesgroups.each do |languagesgroup|
         student_by_month = languagesgroup.group_by { |student| student.created_at.strftime("%B %y") }
+
         month_sum = 0
+
         student_by_month.each do |month, students|
           level_one_students = self.level_one(self.languagesgroups.index(languagesgroup), "Languages") & students
           month_sum +=(level_one_students.count * 2000) if level_one_students.count != 0
@@ -189,15 +191,16 @@ module UsersHelper
         student_by_month.each do |month, students|
           level_one_students = self.level_one(self.technicalgroups.index(technicalgroup), "technical") & students
           month_sum +=(level_one_students.count * 5000) if level_one_students.count != 0
-          level_two_students = self.level_two_tech(self.technicalgroups.index(technicalgroup), "technical") & students
-          month_sum +=(level_two_students.count * 4000) if level_two_students.cound != 0
-          level_three_students = self.level_three_tech(self.technicalgroups.index(technicalgroup), "technical") & students
+          level_two_students = self.level_two_tech(self.technicalgroups.index(technicalgroup), "technical").select{|student| student.created_at.strftime("%B %y") == month} 
+          month_sum +=(level_two_students.count * 4000) if level_two_students.count != 0
+          level_three_students = self.level_three_tech(self.technicalgroups.index(technicalgroup), "technical").select{|student| student.created_at.strftime("%B %y") == month} 
           month_sum +=(level_three_students.count * 3000) if level_three_students.count != 0
-          level_four_students = self.level_four_tech(self.technicalgroups.index(technicalgroup), "technical") & students
+          level_four_students = self.level_four_tech(self.technicalgroups.index(technicalgroup), "technical").select{|student| student.created_at.strftime("%B %y") == month} 
           month_sum +=(level_four_students.count * 2000) if level_four_students != 0
-          level_five_students = self.level_five_tech(self.technicalgroups.index(technicalgroup), "technical") & students
+          level_five_students = self.level_five_tech(self.technicalgroups.index(technicalgroup), "technical").select{|student| student.created_at.strftime("%B %y") == month} 
           month_sum +=(level_five_students.count * 1000) if level_five_students.count != 0
           the_sum[month].push(month_sum) 
+
         end
       end
     end
@@ -208,13 +211,13 @@ module UsersHelper
         student_by_month.each do |month, students|
           level_one_students = self.level_one(self.trafficgroups.index(trafficgroup), "Traffic") & students
           month_sum +=(level_one_students.count * 2000) if level_one_students.count != 0
-          level_two_students = self.level_two_tech(self.trafficgroups.index(trafficgroup), "Traffic")
+          level_two_students = self.level_two_tech(self.trafficgroups.index(trafficgroup), "Traffic").select{|student| student.created_at.strftime("%B %y") == month} 
           month_sum +=(level_two_students.count * 1000) if level_two_students.count != 0
-          level_three_students = self.level_three_tech(self.trafficgroups.index(trafficgroup), "Traffic")
+          level_three_students = self.level_three_tech(self.trafficgroups.index(trafficgroup), "Traffic").select{|student| student.created_at.strftime("%B %y") == month} 
           month_sum +=(level_three_students.count * 1000) if level_three_students.count != 0
-          level_four_students = self.level_four_tech(self.trafficgroups.index(trafficgroup), "Traffic")
+          level_four_students = self.level_four_tech(self.trafficgroups.index(trafficgroup), "Traffic").select{|student| student.created_at.strftime("%B %y") == month} 
           month_sum +=(level_four_students.count * 1000) if level_four_students.count != 0
-          level_five_students = self.level_five_tech(self.trafficgroups.index(trafficgroup), "Traffic")
+          level_five_students = self.level_five_tech(self.trafficgroups.index(trafficgroup), "Traffic").select{|student| student.created_at.strftime("%B %y") == month} 
           month_sum +=(level_five_students.count * 1000) if level_five_students.count != 0
           the_sum[month].push(month_sum)
         end

@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dopbrlrts
+  api_key: '934946921327621'
+  api_secret: HMwzNRTyQzOh40NJSurHnagiV7Y
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dopbrlrts
+  api_key: '934946921327621'
+  api_secret: HMwzNRTyQzOh40NJSurHnagiV7Y
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dopbrlrts
+  api_key: '934946921327621'
+  api_secret: HMwzNRTyQzOh40NJSurHnagiV7Y
+  enhance_image_tag: true
+  static_image_support: false
