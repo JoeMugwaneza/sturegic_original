@@ -1,7 +1,7 @@
 <script type="text/javascript" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
 <% if current_user.admin == true %>
 
-<div class="container col-md-12" style="margin-top: 50px;">
+<div class="" style="margin-top: 50px;">
 
 
   <!-- main column -->
@@ -66,7 +66,7 @@
 
     <!-- Admins -->
 
-    <div class="col-md-12 thumbnail" style="margin-top: 10px; margin-right: 30px;">
+    <div class=" thumbnail" style="margin-top: 10px; margin-right: 30px;">
 
       <h2 class="text-center">Agents</h2>
       <table class="table table-hover">
@@ -95,13 +95,13 @@
       </table>
     </div>
   </div>
- 
+ </div>
 
 
   <!-- side column -->
-  <div class="col-md-4">
+  <div class="col-md-4 col-xs-12">
     <!-- pending applications -->
-    <div class="col-md-12" id="admintable">
+    <div class="col-md-12" id="admintable" style="margin-top: 10px; margin-right: 30px;">
       <h2 class="text-center">Pending Applications</h2>
       <div class="tbody">
         <table class="table sidetable" id="test">
@@ -128,7 +128,7 @@
     </div>
 
     <!-- monthly commission details -->
-    <div class="col-md-12" id="admintable">
+    <div class="col-md-12" id="admintable" style="margin-top: 10px; margin-right: 30px;">
       <h2 class="text-center"><%= Date.today.strftime("%B %Y")%> Commission Details</h2>
       <div class="tbody">
         <table class="table sidetable" id="test">

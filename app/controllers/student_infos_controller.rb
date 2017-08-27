@@ -43,8 +43,9 @@ class StudentInfosController < ApplicationController
   def create
     @user = current_user
     @student_infos = StudentInfo.new(student_infos_params)
-    if @student_infos.save
-      @student_infos.fill_missing
+     
+    if @student_infos.save 
+      # @student_infos.fill_missing
       @student_infos.student.update(application_submission: true)
       if @student_infos.student.country.name == "Rwanda"
         @student_infos.student.update(district: @student_infos.district.name)

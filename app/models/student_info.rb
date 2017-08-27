@@ -5,7 +5,7 @@ class StudentInfo < ApplicationRecord
   belongs_to :program_category
   belongs_to :country
   belongs_to :course
-
+  after_save :fill_missing
   mount_uploader :bankslip, BankslipUploader
   
   # validates_uniqueness_of :student_id
@@ -17,12 +17,7 @@ class StudentInfo < ApplicationRecord
   def created_date
    self.created_at.strftime("%d %b. %Y")
   end
-  def fill_missing
-    self.update(student_1: "#{self.student.first_name} #{self.student.last_name}", country_1: self.country.name,registrar_1: "#{self.registrar.first_name} #{self.registrar.first_name}", program_1: self.program_category.name, course_1: self.course.name)
-    if self.district 
-      self.update(district_1: self.district.name)
-    end
-  end
+  
   rails_admin do
     edit do
       exclude_fields :id, :student_id, :registrar_id,:created_at, :updated_at, :bankslip
@@ -100,6 +95,18 @@ class StudentInfo < ApplicationRecord
     end
   end
 
-
+private
+def fill_missing
+  self.update_column(:student_1, "#{self.student.first_name} #{self.student.last_name}")
+  self.update_column(:country_1, self.country.name )
+  self.update_column(:registrar_1, "#{self.registrar.first_name} #{self.registrar.last_name}")
+  self.update_column(:program_1, self.program_category.name)
+  self.update_column(:course_1, self.course.name)
+  if self.district
+    self.update_column(:district_1, self.district.name)
+  else 
+    self.update_column(:district_1, self.city)
+  end
+end
 
 end

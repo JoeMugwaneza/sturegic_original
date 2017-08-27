@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
   validates_uniqueness_of :email
   validates_presence_of :username, :message =>'leaving no space between letters is recommended'
-  validates_presence_of :email, :message => 'Use the valid email; we will use it to send you monthly summary'
+  # validates_presence_of :email, :message => 'Use the valid email; we will use it to send you monthly summary'
 
   validates_presence_of :sex, :message => 'enter either male or female'
   validates_presence_of :martial_status, :message => 'Let us know whether you are single, married, ....'
