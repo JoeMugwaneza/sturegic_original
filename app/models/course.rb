@@ -9,4 +9,22 @@ class Course < ApplicationRecord
       exclude_fields :id, :students
     end
   end
+  rails_admin do
+    list do
+      field :price do
+        label 'Fees (Rwf)'
+        formatted_value do # used in form views
+          value.to_i
+        end
+
+        pretty_value do # used in list view columns and show views, defaults to formatted_value for non-association fields
+          value.to_i
+        end
+
+        export_value do
+          value.to_i # used in exports, where no html/data is allowed
+        end
+      end
+    end
+  end
 end
