@@ -42,9 +42,8 @@ td, th {
 
 .login-container{
   position: relative;
-  width: 300px;
   margin: 80px auto;
-  padding: 20px 40px 40px;
+  padding: 20px 10px 40px;
   text-align: center;
   background: #fff;
   border: 1px solid #ccc;
@@ -91,7 +90,8 @@ td, th {
 }
 
 .imagelogo {
- 
+  /*margin-left: -40px;*/
+  /*margin-bottom: 20px;*/
 }
 
 .avatar{
