@@ -86,7 +86,7 @@ var textfield = $("input[name=user]");
 
                 $('button').click(function(e) {
                     e.preventDefault();
-                    alert("This is a demo.\n :-)");
+                    
                 });
             });
 

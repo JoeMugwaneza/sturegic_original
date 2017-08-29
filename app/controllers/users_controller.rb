@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   # before_action :authorize
   def show
     user = User.friendly.find(params[:id])
-    if user && user.enabled == true && user.admin != true
+    if user && user.enabled == true && user.role == "Student" || "Markter"
       if current_user.admin == true || current_user == user
         @user = user
       else
@@ -22,7 +22,9 @@ class UsersController < ApplicationController
     end
   end
   def new
-    if current_user.admin == true || current_user.agent == true || current_user.studentInfo.status == true 
+    if current_user.role != "Student" && current_user.enabled == true
+      @user = User.new
+    elsif current_user.role == "Student" && current_user.enabled == true && current_user.studentInfo.status == true
       @user = User.new
     else
       flash[:warning] = "You are not allowed to register a new student!"
@@ -34,7 +36,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save 
       # UserMailer.registration_confirmation(@user).deliver_now
-      if current_user.admin == true && @user.agent == true || @user.admin == true
+      if current_user.admin == true && @user.agent_option || @user.admin == true
         flash[:success] = "You have successfully added a new user"
         redirect_to "/"
       else
@@ -95,7 +97,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :email, :admin, :agent, :country_id, :sex, :martial_status, :tel, :password, :password_confirmation, :identification, :agent, :bank, :bank_account)
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :admin, :agent, :country_id, :sex, :martial_status, :tel, :password, :password_confirmation, :identification, :agent_option, :bank, :bank_account)
   end
 
   def find_user

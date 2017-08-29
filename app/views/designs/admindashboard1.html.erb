@@ -75,21 +75,21 @@
           <tr>
             <th>Name</th>
             <th>Country</th>
-            <th>District/City</th>
+            <th>Role</th>
             <th>Students</th>
           </tr>
         </thead>
-        <tbody>
+         <tbody>
           <% @agents.each do |agent| %>
-          <tr>
-            <td><%= agent.first_name %> <%= agent.last_name %></td> 
-            <td><%= agent.country.name%></td> 
-            <td>Musanze</td>
-            <td><%= agent.studentInfos.count%></td>
-            <% if current_user.role == "Superadmin" %>
-             <td><a class="btn btn-register pull-right" href="/student_infos?agent_rm=<%= agent.id %>">Disable</a></td>
-            <% end %>
-          </tr>
+            <tr>
+             <td><%= agent.first_name %> <%= agent.last_name %></td> 
+             <td><%= agent.country.name%></td> 
+             <td><%= agent.role %></td>
+             <td><%= agent.studentInfos.count%></td>
+             <% if current_user.role == "Superadmin" %>
+              <td><a class="btn btn-register pull-right" href="/student_infos?agent_rm=<%= agent.id %>">Disable</a></td>
+             <% end %>
+            </tr>
           <% end %>
         </tbody>
       </table>
