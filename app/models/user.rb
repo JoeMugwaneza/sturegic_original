@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_one :studentInfo, foreign_key: :student_id, :dependent => :restrict_with_error
 
   belongs_to :country
+  # belongs_to :district
 
   validates_uniqueness_of :email
   validates_presence_of :username, :message =>'leaving no space between letters is recommended'
@@ -31,17 +32,19 @@ class User < ApplicationRecord
 
   before_create :confirmation_taken
   before_create {generate_token(:auth_token)}
-
+  before_create :create_agent
   def created_date
    self.created_at.strftime("%d %b. %Y")
   end
   def role
-    if self.admin == true && self.email == "principal@kiac.ac.rw" 
+    if self.admin == true && self.email == "luc.bayo@gmail.com" 
       return "Principal"
     elsif self.admin == true
       return "Admin"
     elsif self.agent == true
       return "Agent"
+    elsif self.agent_option == "Marketer"
+      return "Marketer"
     else
       return "Student"
     end
@@ -58,7 +61,7 @@ class User < ApplicationRecord
    rails_admin do
       configure :reset_password
       list do
-        include_fields :first_name, :last_name, :country, :district, :bank_account, :bank, :email, :identification, :tel, :sex, :martial_status, :application_submission, :admin, :agent
+        include_fields :first_name, :last_name, :country, :district, :bank_account, :bank, :email, :identification, :tel, :sex, :martial_status, :application_submission, :admin, :agent_option
       end
       edit do
        exclude_fields :id, :slug, :password_digest, :created_at, :updated_at, :email_confirmed, :confirm_token , :auth_token, :password_reset_token, :password_reset_sent_at, :application_submission, :studentInfos, :registrar_name
@@ -155,5 +158,10 @@ class User < ApplicationRecord
     user == current_user
   end
 
+  def create_agent
+    if self.agent_option == "Agent"
+      self.agent = true
+    end
+  end
 
 end

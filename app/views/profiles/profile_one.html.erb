@@ -53,7 +53,7 @@
               </tr>
             </tbody>
           </table>
-          <% unless @user.admin == true || @user.agent == true%> 
+          <% if @user.role == "Student"%> 
           <a href="profile-two" class="btn btn-primary">Next</a>
           <% end %>
         </div>

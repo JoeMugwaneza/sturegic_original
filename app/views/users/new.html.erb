@@ -73,18 +73,8 @@
           <br>
           <% if current_user.admin == true %>
           <p>By clicking the bellow button, you approve that the user will be saved as agent.</p> <p><b><u>N.B:</u></b> Agent can't have application information, since he or she will not be a student and enrolled in any program</p>
-              <div class="check_box">
-                  <%= check_box("user", "agent", { id: 'fancy-checkbox-primary' }, true, false) %>
-                  <div class="[ btn-group ]">
-                      <label for="fancy-checkbox-primary" class="[ btn btn-primary ]">
-                          <span class="[ glyphicon glyphicon-ok ]"></span>
-                          <span> </span>
-                      </label>
-                      <label for="fancy-checkbox-primary" class="[ btn btn-default active ]">
-                          Approve agent
-                      </label>
-                  </div>
-              </div>
+            <label class="radio-inline"><%= radio_button("user", "agent_option", "Agent") %>Agent</label>
+            <label class="radio-inline"><%= radio_button("user", "agent_option", "Marketer") %>Marketer</label>
           <% end %>
 
           <div class="actions">
@@ -96,4 +86,4 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
