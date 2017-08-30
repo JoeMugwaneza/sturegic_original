@@ -25,6 +25,7 @@
             <% if student.studentInfos.any? %>
                 <% student.archive_payments.each do |month, value|%>
                     <tr>
+                    <% if student.role == "Student" %>
                       <td><%= "#{student.first_name} #{student.last_name}" %></td>
                       <td><%= student.country.name %></td>
                       <th><%= student.studentInfo.district.name if student.studentInfo.district %> <%=student.studentInfo.city if student.studentInfo.city %></th>
@@ -38,6 +39,19 @@
                       </td>
                       <td><small><%= month %></small></td>
                       <td><small><%= student.studentInfo.registrar.first_name%><small></td>
+                    <% elsif student.role == "Marketer" %>
+                      <td><%= "#{student.first_name} #{student.last_name}" %></td>
+                      <td><%= student.country.name %></td>
+                      <th><%= student.district if student.district %></th>
+                      <td><%= student.tel %></td>
+                      <td><small>Marketer</small></td>
+                      <td><%= student.bank if student.bank %></td>
+                      <td><small><%= student.bank_account if student.bank_account %></small></td>
+                      <td>
+                        <%= number_to_currency(value, precision: false, unit: "Rwf ") if student.country.name == "Rwanda" %>
+                        <%= number_to_currency(value/1000, precision: false, unity: "Rwf ") if student.country.name != "Rwanda" %>  
+                      </td>
+                    <% end %>
                     </tr>
                 <% end %>
             <% end %>

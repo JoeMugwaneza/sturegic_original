@@ -46,7 +46,17 @@
         <p class="form-control application-input"><%= current_user.first_name %> <%= current_user.last_name %></p>
         <p class="form-control application-input">ID/Passport: <%= current_user.identification %><p>
           <div class="form-control application-input">
-            Reg N<span><sup>0</sup><%= current_user.studentInfo.reg_no %></span>
+          <% if current_user.studentInfo %>
+            Reg N<span><sup>0</sup><%= current_user.studentInfo.reg_no  %></span>
+          <% elsif current_user.role == "Marketer" %>
+            <span>Marketer</span>
+          <% elsif current_user.role == "Agent" %>
+             <span>Agent</span>
+          <% elsif current_user.role == "Admin" %>
+             <span>Admin</span>
+          <% elsif current_user.role == "Precincipal" %>
+            <span>Principal</span>
+          <% end %>
           </div>
           <p class="form-control application-input"><%= current_user.tel if current_user.tel %></p>
           <p class="form-control application-input"><%= current_user.email if current_user.email %></p>
