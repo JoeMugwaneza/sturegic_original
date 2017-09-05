@@ -275,6 +275,7 @@
               <th>District</th>
               <th>Date</th>
               <th>Registration N<sup>0</sup></th>
+              <th>Phone</th>
             </tr>
           </thead>
           <tbody>
@@ -291,6 +292,7 @@
               </td>
               <td><%= student.studentInfo.created_date %></td>
               <td><%= student.studentInfo.reg_no %></td>
+              <td><%= student.tel if student.tel %></td>
             </tr>
             <% end %>
           </tbody>

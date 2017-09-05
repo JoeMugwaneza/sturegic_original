@@ -105,7 +105,7 @@
           <td>5</td>
           <td><%= @user.level_five_lang(@user.languagesgroups.index(group),"languages").count %></td>
           <td>Rwf 1,000</td>
-          <td>Rwf <%= number_to_currency("#{@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 1000}", precision: false, unit: "Rwf ")%></td>
+          <td><%= number_to_currency("#{@user.level_five_lang(@user.languagesgroups.index(group),"languages").count * 1000}", precision: false, unit: "Rwf ")%></td>
           <td>Land</td>
           <td>
             <% if Time.now - @user.created_at < 360.days && @user.level_five_lang(@user.languagesgroups.index(group),"languages").count < 3125 %>
@@ -276,6 +276,7 @@
                 <th>District</th>
                 <th>Date</th>
                 <th>Registration N<sup>0</sup></th>
+                <th>Phone</th>
               </tr>
             </thead>
             <tbody>
@@ -293,6 +294,7 @@
                 </td>
                 <td><%= student.studentInfo.created_date %></td>
                 <td><%= student.studentInfo.reg_no %></td>
+                <td><%= student.tel if student.tel %></td>
               </tr>
             <% end %>
             </tbody>

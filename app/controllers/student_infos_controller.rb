@@ -47,7 +47,7 @@ class StudentInfosController < ApplicationController
     if @student_infos.save 
       # @student_infos.fill_missing
       @student_infos.student.update(application_submission: true)
-      if @student_infos.student.country.name == "Rwanda"
+      if @student_infos.student.country.name == "Rwanda" && @student_info.district
         @student_infos.student.update(district: @student_infos.district.name)
       else
         @student_infos.student.update(district: @student_infos.city)

@@ -51,6 +51,8 @@
                         <%= number_to_currency(value, precision: false, unit: "Rwf ") if student.country.name == "Rwanda" %>
                         <%= number_to_currency(value/1000, precision: false, unity: "Rwf ") if student.country.name != "Rwanda" %>  
                       </td>
+                      <td><small><%= month %></small></td>
+                      <td><small>Principal<small></td>
                     <% end %>
                     </tr>
                 <% end %>
