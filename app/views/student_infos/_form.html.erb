@@ -1,5 +1,5 @@
 <% @student_infos.errors.full_messages.each do |message| %>
-<li><%= message %></li>
+<li style="color: red"><%= message %></li>
 <% end %>
 <%= form_for @student_infos, validate: true do |f| %>
 <br>

@@ -42,17 +42,8 @@ class StudentInfosController < ApplicationController
 
   def create
     @user = current_user
-    @student_infos = StudentInfo.new(student_infos_params)
-     
+    @student_infos = StudentInfo.new(student_infos_params) 
     if @student_infos.save 
-      # @student_infos.fill_missing
-      @student_infos.student.update(application_submission: true)
-      if @student_infos.student.country.name == "Rwanda" && @student_info.district
-        @student_infos.student.update(district: @student_infos.district.name)
-      else
-        @student_infos.student.update(district: @student_infos.city)
-      end
-      # StudentInfoMailer.student_info_approval(@student_infos).deliver_now
      flash[:scuess] = "Student Application Successfully Submited" 
      redirect_to "/students/#{@student_infos.student.friendly_id}/profile-one"
     else

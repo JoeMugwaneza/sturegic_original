@@ -8,7 +8,7 @@ class StudentInfo < ApplicationRecord
   after_save :fill_missing
   mount_uploader :bankslip, BankslipUploader
   
-  # validates_uniqueness_of :student_id
+  validates_uniqueness_of :student_id, :message => ' is already saved'
   validates_presence_of :bankslip, :message => 'Please provide you valid bankslip'
   def generate_registration
     self.update(reg_no: "#{self.country.abbreviation}" + "00" + "#{StudentInfo.where(status: true).count + 1 }" + "/KIAC/#{Time.now.year}")
@@ -107,6 +107,12 @@ def fill_missing
   else 
     self.update_column(:district_1, self.city)
   end
+  if self.student.country.name == "Rwanda" && self.district
+    self.student.update(district: self.district.name)
+  else
+    self.student.update(district: self.city)
+  end
+  self.student.update(application_submission: true)
 end
 
 end
