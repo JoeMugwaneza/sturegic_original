@@ -43,4 +43,7 @@ Rails.application.routes.draw do
 
   get "dashboard" => "designs#admindashboard1"
   get "/paymentarchive" => "designs#paymentarchive"
+  get "/bonus/technical/:id" =>"users#technical" 
+  get "/bonus/languages/:id" =>"users#languages"
+  get "/bonus/traffic/:id" =>"users#traffic"
 end

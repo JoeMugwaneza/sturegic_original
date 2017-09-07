@@ -21,6 +21,55 @@ class UsersController < ApplicationController
       redirect_to student_profile_one_path(user)
     end
   end
+
+  def technical
+    user = User.friendly.find(params[:id])
+    if user && user.enabled == true && user.role == "Student" || "Markter"
+      if current_user.admin == true || current_user == user
+        @user = user
+      else
+        redirect_to student_path
+      end
+    elsif user.admin == true
+      flash[:warning] = "Admins do not have payment info"
+      redirect_to "/admin/user"
+    else
+      flash[:warning] = "You are trying to access payment info a user who is blocked"
+      redirect_to student_profile_one_path(user)
+    end
+  end
+  def traffic
+    user = User.friendly.find(params[:id])
+    if user && user.enabled == true && user.role == "Student" || "Markter"
+      if current_user.admin == true || current_user == user
+        @user = user
+      else
+        redirect_to student_path
+      end
+    elsif user.admin == true
+      flash[:warning] = "Admins do not have payment info"
+      redirect_to "/admin/user"
+    else
+      flash[:warning] = "You are trying to access payment info a user who is blocked"
+      redirect_to student_profile_one_path(user)
+    end
+  end
+  def languages
+    user = User.friendly.find(params[:id])
+    if user && user.enabled == true && user.role == "Student" || "Markter"
+      if current_user.admin == true || current_user == user
+        @user = user
+      else
+        redirect_to student_path
+      end
+    elsif user.admin == true
+      flash[:warning] = "Admins do not have payment info"
+      redirect_to "/admin/user"
+    else
+      flash[:warning] = "You are trying to access payment info a user who is blocked"
+      redirect_to student_profile_one_path(user)
+    end
+  end
   def new
     if current_user.role != "Student" && current_user.enabled == true
       @user = User.new
