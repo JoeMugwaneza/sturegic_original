@@ -1,6 +1,4 @@
-<% @student_infos.errors.full_messages.each do |message| %>
-<li style="color: red"><%= message %></li>
-<% end %>
+
 <%= form_for @student_infos, validate: true do |f| %>
 <br>
 <%= f.select :program_time, [["Day Program", "Day Program"], ["Evening Program", "Evening Program"], ["Weekend Program", "Weekend Program"]], {include_blank: "Select Program Time"}, {class: "form-control", required: "required"}%>
@@ -10,7 +8,7 @@
 <br>
 <h2 class="text-center application-header">Other Required Information</h2>
 <hr>
-<%= f.select :education_level, [["O-level", "O-level"], ["A-level", "A-level"], ["Associate Degree", "Associate Degree"], ["Bachelor Degree", "Bachelor Degree"]], {include_blank: "Select Education Level"}, {class: "form-control", required: "required"}%>
+<%= f.select :education_level, [["O-level", "O-level"], ["A-level", "A-level"], ["Associate Degree", "Associate Degree"], ["Bachelor Degree", "Bachelor Degree"], ["Master's Degree", "Master's Degree"], ["PhD", "PhD"]], {include_blank: "Select Education Level"}, {class: "form-control", required: "required"}%>
 <br>
 <% if @student && @student.country.name == "Rwanda" %>
 <%= f.select :district_id ,  District.all.collect {|d| [ d.name , d.id.to_i ] }, {include_blank: 'Resident District'}, {class: "form-control", required: "required"} %><br>

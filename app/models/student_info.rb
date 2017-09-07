@@ -9,6 +9,9 @@ class StudentInfo < ApplicationRecord
   mount_uploader :bankslip, BankslipUploader
   
   validates_uniqueness_of :student_id, :message => ' is already saved'
+  validates_presence_of :program_time, :message => 'musth be specified'
+  validates_presence_of :course_id, :message => 'must be choosen before saving'
+  validates_presence_of :education_level, :message => 'must be specified'
   validates_presence_of :bankslip, :message => 'Please provide you valid bankslip'
   def generate_registration
     self.update(reg_no: "#{self.country.abbreviation}" + "00" + "#{StudentInfo.where(status: true).count + 1 }" + "/KIAC/#{Time.now.year}")
