@@ -1,4 +1,6 @@
-
+<% @student_infos.errors.full_messages.each do |message| %>
+<li style="color: red"><%= message %></li>
+<% end %>
 <%= form_for @student_infos, validate: true do |f| %>
 <br>
 <%= f.select :program_time, [["Day Program", "Day Program"], ["Evening Program", "Evening Program"], ["Weekend Program", "Weekend Program"]], {include_blank: "Select Program Time"}, {class: "form-control", required: "required"}%>
