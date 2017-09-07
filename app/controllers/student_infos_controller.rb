@@ -31,6 +31,7 @@ class StudentInfosController < ApplicationController
 
   def show
     find_student_infos
+    redirect_to user_path(@student_infos.student)
   end
 
   def new
