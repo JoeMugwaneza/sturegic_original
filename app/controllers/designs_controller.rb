@@ -19,7 +19,8 @@ class DesignsController < ApplicationController
   def admindashboard1
     if current_user.admin == true
       @table_number = 0
-      @students = User.where("admin = ? AND agent = ? AND enabled = ?", false, false, true)
+      @approved_studentInfos = StudentInfo.where(status: true).paginate(:page => params[:page], :per_page => 20)
+      @payment_recievers = User.payment_reciever
       @agents = User.where("agent_option = ? OR agent_option = ?", "Agent",  "Marketer")
       @admins = User.where("admin = ? AND enabled = ?", true, true)
       @studentInfos = StudentInfo.where(status: false)

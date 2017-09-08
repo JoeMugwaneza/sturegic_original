@@ -25,25 +25,24 @@
           </tr>
         </thead>
         <tbody>
-          <% @students.each do |student| %>
-            <% if student.studentInfo && student.studentInfo.status?%>
+          <% @approved_studentInfos.each do |studentInfo| %>
             <% @table_number += 1 %>
               <tr>
                 <td><%= @table_number %></td>
-                <td><a href="students/<%= student.friendly_id %>/profile-one"><%= student.first_name %> <%= student.last_name %></a></td>
-                <td><%= student.country.name%></td>
-                <% if student.studentInfo%>
+                <td><a href="students/<%= studentInfo.student.friendly_id %>/profile-one"><%= studentInfo.student.first_name %> <%= studentInfo.student.last_name %></a></td>
+                <td><%= studentInfo.student.country.name%></td>
+                <% if studentInfo%>
                 <td>
-                  <% if student.studentInfo.district%>
-                  <%= student.studentInfo.district.name%>
+                  <% if studentInfo.district%>
+                  <%= studentInfo.district.name%>
                   <% else %>
-                  <%= student.studentInfo.city%>
+                  <%= studentInfo.city%>
                   <% end %> 
                 </td>
-                <td><%= student.studentInfo.program_category.name%></td>
-                <td><%= student.studentInfo.program_time if student.studentInfo.program_time%></td>
-                <td><%= student.studentInfo.course.name%></td>
-                <% if student.studentInfo.status == true %>
+                <td><%= studentInfo.program_category.name%></td>
+                <td><%= studentInfo.program_time if studentInfo.program_time%></td>
+                <td><%= studentInfo.course.name%></td>
+                <% if studentInfo.status == true %>
                 <td>Approved</td>
                 <% else %>
                 <td>Pending</td>
@@ -57,10 +56,10 @@
                 <td><a href="/student_infos/new?student_id=<%=student.id%>"><small>Complete Registration</small></a></td>
                 <% end %>
               </tr>
-            <% end %>
           <% end %>
         </tbody>
       </table>
+      <center><%= will_paginate @approved_studentInfos, renderer: BootstrapPagination::Rails %></center>
 
     </div>
 
@@ -143,18 +142,18 @@
           <tbody>
           <% payments_rw = [] %>
           <% payments_dollar = [] %>
-            <% @students.each do |student| %>
-              <% unless student.this_month_payments == 0 %>
+            <% @payment_recievers.each do |user| %>
+              <% unless user.this_month_payments == 0 %>
                 <tr>
-                  <td><%= student.first_name %></td>
+                  <td><%= user.first_name %></td>
                   <td>
-                    <%= number_to_currency(student.this_month_payments, precision: false, unit: "Rwf ") if student.country.name == "Rwanda" %>
-                    <%= number_to_currency(student.this_month_payments/1000)  unless student.country.name == "Rwanda" %>
+                    <%= number_to_currency(user.this_month_payments, precision: false, unit: "Rwf ") if user.country.name == "Rwanda" %>
+                    <%= number_to_currency(user.this_month_payments/1000)  unless user.country.name == "Rwanda" %>
                   </td>
-                  <td><a href="/students/<%= student.id %>">View Reward</a></td>
-                  <td><%= student.created_at %></td>
-                  <% payments_rw.push(student.this_month_payments) if student.country.name == "Rwanda" %>
-                  <% payments_dollar.push(student.this_month_payments/1000) if student.country.name != "Rwanda" %>
+                  <td><a href="/users/<%= user.id %>">View Reward</a></td>
+                  <td><%= user.created_at %></td>
+                  <% payments_rw.push(user.this_month_payments) if user.country.name == "Rwanda" %>
+                  <% payments_dollar.push(user.this_month_payments/1000) if user.country.name != "Rwanda" %>
                 </tr>
               <% end %>
             <% end %>

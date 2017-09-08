@@ -118,7 +118,9 @@ class User < ApplicationRecord
   def this_month
     where(created_at: Time.now.beginning_of_month..Time.now.end_of_month)
   end
-
+  def self.payment_reciever
+      where("admin = ? AND agent = ? AND enabled = ?", false, false, true)
+  end
 
   include UsersHelper
   
