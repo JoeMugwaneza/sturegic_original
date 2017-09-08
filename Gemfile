@@ -65,9 +65,8 @@ gem 'carrierwave', '~> 1.1'
 gem 'cloudinary', '~> 1.8', '>= 1.8.1'
 gem 'mini_magick', '~> 4.8'
 
-group :development do
-  gem 'capistrano', '~> 3.7', '>= 3.7.1'
-  gem 'capistrano-bundler'
-  gem 'capistrano-passenger', '~> 0.2.0'
-  gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.1'
-end
+
+
+# pagination
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap'
