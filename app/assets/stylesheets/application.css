@@ -19,19 +19,23 @@ td, th {
   font-size: 17px;
 }
  html, body {
-  background-color: #325e7f;
+  background-color: #0099ff;
   font-family: 'Bellefair', sans-serif;
   position: relative;
   height: 100%;
 }
 
 .thead {
-  background-color: #123854;
+  background-color: #555;
   color: #bcbcbd;
 }
 
+.nav-text {
+  color: white;
+}
+
 .myNavbar {
-  background-color: #123854;
+  background-color: #555;
   margin-bottom: 0px;
   font-size: 20px;
 }

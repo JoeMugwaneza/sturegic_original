@@ -1,91 +1,66 @@
-  <div class="col-md-3"></div>
-  <div class="col-md-6 thumbnail application-box">
-    <h1 class="text-center application-header"><strong>Registration Form</strong></h1>
-    <div class="col-md-12 thumbnail info-box">
-     <div class="col-md-3"></div>
-     <div class="col-md-6">
-      <div class="text-center">
-        <h3 class="text-center application-header"><strong>Personal Information</strong></h3>
-        <hr>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/**/
+.main {
+  padding: 16px;
+  margin-top: 30px;
+  height: 1500px; /* Used in this example to enable scrolling */
+}
+/*body {font-family: "Lato", sans-serif;}*/
+.tablink {
+    background-color: #555;
+   color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 13px;
+    width: 20%;
+}
+.tablink:hover {
+    background-color: #777;
+}
 
-        <%= form_for @user, validate: true do |f| %>
-        <% if @user.errors.any? %>
-        <div class="error_messages">
-          <h2>Form is Invalid</h2>
-          <ul>
-            <% @user.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-        <% end %>
-        <div class="field">
+/* Style the tab content */
+.tabcontent {
+   /* color: white;*/
+    display: none;
+    padding: 40px 40px;
+    text-align: left;
+}
 
-          <%= f.text_field :first_name, class:"form-control application-input", placeholder:"First Name...", title:"First Name"  %>
-        </div>
+#London {background-color:#0099ff;}
+#Paris {background-color:#0099ff;}
+#Tokyo {background-color:#0099ff;}
+#Oslo {background-color:#0099ff;}
+#Drc {background-color:#0099ff;}
+#<%= @country.name if @country%> {
+  background-color: #0099ff;
+}
+select {
+    width: 100%;
+}
 
-        <div class="field">
-          <%= f.text_field :last_name, class:"form-control application-input", placeholder:"Last Name...", title:"Last Name"  %>
-        </div>
+</style>
+<title>KIAC STUREGIC - Student Information From</title>
+<link rel="shortcut icon" href="icon.png" type="image/x-icon">
+</head>
+<body>
+<a href="/signup?country_id=1"  class="tablink" id="Rwanda" title="KIAC Rwanda"><b>KIAC - RWANDA</b><img src="http://res.cloudinary.com/dopbrlrts/image/upload/v1505468335/Rwanda_flag_animate_hvjptn.gif" width="20" height="10" border="0" ></a>
+<a href="/signup?country_id=5" class="tablink" id="Uganda"  title="KIAC Uganda"><b>KIAC - UGANDA</b><img src="http://res.cloudinary.com/dopbrlrts/image/upload/v1505569113/Uganda_flag-XXL-anim_ashs0n.gif" width="20" height="10" border="0" alt=""></a>
+<a href="/signup?country_id=8" class="tablink" id="Burundi" title="KIAC Burundi"><b>KIAC - BURUNDI</b><img src="http://res.cloudinary.com/dopbrlrts/image/upload/v1505468335/Burundi_flag_animation_vrdb7c.gif" width="20" height="10" border="0" alt=""></a>
+<a href="/signup?country_id=7" class="tablink" id="Tanzania" title="KIAC Tanzania"><b>KIAC - TANZANIA</b><img src="http://res.cloudinary.com/dopbrlrts/image/upload/v1505468331/animated-tanzania-flag-image-0019_bkiq9r.gif" width="20" height="10" border="0" alt=""></a>
+<a  href="/signup?country_id=6" class="tablink" id="DRC" title="KIAC DRC"><b>KIAC - DRC</b><img src="http://res.cloudinary.com/dopbrlrts/image/upload/v1505468334/drcFlagAnim1_bdxlhj.gif" width="20" height="10" border="0" alt=""></a>
 
-        <div class="field">
-          <%= f.text_field :username,class:"form-control application-input", placeholder:"Username...", title:"username" %>
-        </div>
-
-        <div class="field">
-          <%= f.text_field :tel, class:"form-control application-input", placeholder:"Telephone number ...", title:"Telephone number"  %>
-        </div>
-
-        <div class="field">
-          <%= f.text_field :identification, class:"form-control application-input", placeholder:"Enter your ID number or Passport  ...", title:"ID number/Passport for internation student"  %>
-        </div>
-
-        <div class="field select-form-input">
-          <%= f.select :sex, [["Male", "Male"], ["Female", "Female"]], :include_blank => "Gender", class:" form-group select-form-input"  %><br>
-        </div>
-
-        <div class="field select-form-input">
-          <%= f.select :martial_status, [["Single", "Single"], ["Married", "Married"], ["Widower", "Widower"], ["Divorced", "Divorced"]], :include_blank => "Martial tatus" %>
-        </div>
-
-        <div class="field select-form-input">
-          <%= f.collection_select(:country_id, Country.all, :id, :name, :include_blank => "Select Country")%><br>
-        </div>
-
-        <div class="field">
-          <%= f.text_field :bank, class:"form-control application-input", placeholder:"Bank (e.g: Bk)...", title:"Bank", required: "required" %>
-        </div>
-
-        <div class="field">
-          <%= f.text_field :bank_account, class:"form-control application-input", placeholder:"Bank Account Number...", title:"Your Bank Account Number", required: "required"  %>
-        </div>
-
-        <div class="field">
-          <%= f.email_field :email, class:"form-control application-input", placeholder:"Email ...", title:"Email" %>
-        </div>
-
-        <div class="field">
-          <%= f.password_field :password, autocomplete: "off", placeholder:"Create Password...", class:"form-control application-input", title:"Password" %>
-        </div>
-
-        <div class="field">
-          <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Retype Password...", class:"form-control application-input", title:"Confirm Password" %>
-
-        </div>
-        <br>
-        <% if current_user.role == "Principal" %>
-        <p>By clicking the bellow button, you approve that the user will be saved as agent.</p> <p><b><u>N.B:</u></b> Agent can't have application information, since he or she will not be a student and enrolled in any program</p>
-           <label class="radio-inline"><%= radio_button("user", "agent_option", "Agent") %>Agent</label>
-           <label class="radio-inline"><%= radio_button("user", "agent_option", "Marketer") %>Marketer</label>
-        <% end %>
-
-        <div class="actions">
-          <%= f.submit "Create profile", class:"btn btn-submit application-input" %>
-        </div>
-        <% end %>
-        <hr>
-        <p>If you are a student you need to complete even the second part of the application to be accepted</p>
-      </div>
-    </div>
-  </div>
-  </div>
+  <% if @country && @country.name =="Rwanda"%>
+      <%= render "rwanda_user" %>
+  <% elsif @country %>
+      <%= render "international_user" %>
+  <% else%>
+  <p>Please naviage through the above tab to choose any KIAC Country</p>
+  <% end %>
+</body>
+</html> 

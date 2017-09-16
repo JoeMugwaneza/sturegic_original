@@ -1,0 +1,29 @@
+<table class="points_table">
+  <thead>
+    <tr>
+      <th class="col-xs-1">N<sup>o</sup></th>
+      <th class="col-xs-2">Name</th>
+      <th class="col-xs-2">Program</th>
+      <th class="col-xs-2">Course</th>
+      <th class="col-xs-3"><small>KIAC District</small></th>
+      <th class="col-xs-2">view</th>
+    </tr>
+  </thead>
+
+  <tbody class="points_table_scrollbar">
+    <tr class="even">
+      <% n = 1 %>
+      <% @studentInfos.each do |studentInfo| %>
+        <tr>
+          <td class="col-xs-1"><%= n %></td>     
+          <td class="col-xs-2"><%= studentInfo.student.first_name %> <%= studentInfo.student.last_name %></td>
+          <td class="col-xs-2"><small><%= studentInfo.program_category.name %></small></td>
+          <td class="col-xs-2"><small><%= studentInfo.course.name %></small></td>
+          <td class="col-xs-3"><%= studentInfo.district_1 %></td>
+          <td class="col-xs-2"><a href="students/<%= studentInfo.student.friendly_id %>/profile-one" class="btn btn-register pull-right">View</a></td> 
+          <% n +=1 %>           
+        </tr>
+      <%end%>
+    </tr>
+  </tbody>
+</table>

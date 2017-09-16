@@ -36,7 +36,7 @@ class StudentInfo < ApplicationRecord
         filterable true
       end
       field :country_1 do
-        label 'Country'
+        label 'KIAC Country'
         filterable true
       end
 
@@ -46,7 +46,7 @@ class StudentInfo < ApplicationRecord
         filterable true
       end
       field :district_1 do
-        label 'District'
+        label 'KIAC District'
         filterable true
       end
 

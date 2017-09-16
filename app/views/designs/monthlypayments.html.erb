@@ -1,0 +1,60 @@
+<h1><center><%= Date.today.strftime("%B %Y")%> Commission Details</center></h1>
+<div class="col-md-12" id="admintable" style="margin-top: 10px; margin-right: 30px;">
+  <div class="tbody">
+    <table class="table sidetable" id="test">
+      <thead class="thead">
+        <tr>      
+          <th>Name</th>
+          <th>Commission Received</th>
+          <th>Students</th>
+          <th>Reward</th>
+          <th>Started Date</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% payments_rw = [] %>
+      <% payments_dollar = [] %>
+        <% @payment_recievers.each do |user| %>
+          <% unless user.this_month_payments == 0 %>
+            <tr>
+              <td><%= user.first_name %></td>
+              <td>
+                <%= number_to_currency(user.this_month_payments, precision: false, unit: "Rwf ") if user.country.name == "Rwanda" %>
+                <%= number_to_currency(user.this_month_payments/1000)  unless user.country.name == "Rwanda" %>
+              </td>
+              <td><%= user.studentInfos.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month).count %></td>
+              <td><a href="/users/<%= user.id %>" title="View Reward">View Reward</a></td>
+              <td><%= user.created_date %></td>
+              <% payments_rw.push(user.this_month_payments) if user.country.name == "Rwanda" %>
+              <% payments_dollar.push(user.this_month_payments/1000) if user.country.name != "Rwanda" %>
+            </tr>
+          <% end %>
+        <% end %>
+        <tr style="color: green">
+          <td><b>Total</b></td>
+          <td>
+            <% payments_sum_rw = 0 %>
+            <% payments_rw.each do |payment| %>
+              <% payments_sum_rw += payment %>
+            <% end %>
+            <% payments_sum_dollar = 0 %>
+            <% payments_dollar.each do |payment| %>
+              <% payments_sum_dollar += payment %>
+            <% end %>
+            <small>
+              <b>Rwanda:</b><br>
+                <u style="color: black"><%= number_to_currency(payments_sum_rw, precision: false, unit: "Rwf ")%></u><br>
+              <b>Other Countries:</b><br>
+                <u style="color: black"><%= number_to_currency(payments_sum_dollar, precision: 2) %></u>
+            </small>
+          </td>
+          <td>
+
+          </td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<center><%= will_paginate  @payment_recievers, renderer: BootstrapPagination::Rails %></center>
