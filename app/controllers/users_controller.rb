@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     if user && user.enabled == true && user.role == "Student" || "Markter"
       if current_user.admin == true || current_user == user
         @user = user
+        @all_technicalgroups = @user.technicalgroups
          @technicalgroups = @user.technicalgroups.paginate(:page => params[:page], :per_page => 1)
       else
         redirect_to student_path
@@ -44,7 +45,8 @@ class UsersController < ApplicationController
     if user && user.enabled == true && user.role == "Student" || "Markter"
       if current_user.admin == true || current_user == user
         @user = user
-         @trafficgroups = @user.trafficgroups.paginate(:page => params[:page], :per_page => 1)
+        @all_trafficgroups = @user.trafficgroups
+        @trafficgroups = @user.trafficgroups.paginate(:page => params[:page], :per_page => 1)
       else
         redirect_to student_path
       end
@@ -61,6 +63,7 @@ class UsersController < ApplicationController
     if user && user.enabled == true && user.role == "Student" || "Markter"
       if current_user.admin == true || current_user == user
         @user = user
+        @all_languagesgroups = @user.languagesgroups
         @languagesgroups = @user.languagesgroups.paginate(:page => params[:page], :per_page => 1)
       else
         redirect_to student_path
