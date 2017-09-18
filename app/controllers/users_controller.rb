@@ -76,8 +76,10 @@ class UsersController < ApplicationController
   def new
     if current_user.role != "Student" && current_user.enabled == true
       @user = User.new
+      @country = Country.find_by_id(params[:country_id])
     elsif current_user.role == "Student" && current_user.enabled == true && current_user.studentInfo.status == true
       @user = User.new
+      @country = Country.find_by_id(params[:country_id])
     else
       flash[:warning] = "You are not allowed to register a new student!"
       redirect_to "/students/#{current_user.friendly_id}"
@@ -149,7 +151,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :email, :admin, :agent, :country_id, :sex, :martial_status, :tel, :password, :password_confirmation, :identification, :agent_option, :bank, :bank_account)
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :admin, :agent, :country_id, :sex, :martial_status, :tel, :password, :password_confirmation, :identification, :agent_option, :bank, :bank_account, :district, :nationality)
   end
 
   def find_user

@@ -1,0 +1,103 @@
+
+<center>
+  <img src="http://res.cloudinary.com/dopbrlrts/image/upload/v1505468334/KIAC_LOGO_Version_2_r6tknu.png" width="150" height="90" border="0" alt=""> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+<font size="6" color="" face="Segoe Print">Welcome to KIAC Rwanda</font>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+<img src="http://res.cloudinary.com/dopbrlrts/image/upload/v1505468335/Rwanda_flag_animate_hvjptn.gif" width="150" height="90" border="0" alt="Rwanda">
+  
+<div>
+<div class="col-md-3"></div>
+<div class="col-md-6 thumbnail application-box">
+  <h1 class="text-center application-header"><strong>Personal Information</strong></h1>
+  <div class="col-md-12 thumbnail info-box">
+   <div class="col-md-3"></div>
+   <div class="col-md-6">
+    <div class="text-center">
+
+      <%= form_for @user, validate: true do |f| %>
+      <% if @user.errors.any? %>
+      <div class="error_messages">
+        <h2>Form is Invalid</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+      <div class="field">
+
+        <%= f.text_field :first_name, class:"form-control application-input", placeholder:"First Name...", title:"First Name"  %>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :last_name, class:"form-control application-input", placeholder:"Last Name...", title:"Last Name"  %>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :username,class:"form-control application-input", placeholder:"Username...", title:"username" %>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :tel, class:"form-control application-input", placeholder:"Telephone number ...", title:"Telephone number"  %>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :identification, class:"form-control application-input", placeholder:"Enter your ID number or Passport  ...", title:"ID number/Passport for internation student"  %>
+      </div>
+
+
+      <div class="field select-form-input">
+        <%= f.collection_select(:nationality, Country.all, :id, :name, :include_blank => "Nationality")%><br>
+      </div>
+      <div class="field select-form-input">
+        <%= f.collection_select(:district, District.all, :name, :name, :include_blank => "District of Residance", required: "required") %><br>
+      </div>
+
+
+      <div class="field select-form-input">
+        <%= f.select :sex, [["Male", "Male"], ["Female", "Female"]], :include_blank => "Gender", class:" form-group select-form-input"  %><br>
+      </div>
+
+      <div class="field select-form-input">
+        <%= f.select :martial_status, [["Single", "Single"], ["Married", "Married"], ["Widower", "Widower"], ["Divorced", "Divorced"]], :include_blank => "Martial tatus" %>
+      </div>
+      <div class="field">
+        <%= f.text_field :bank, class:"form-control application-input", placeholder:"Bank (e.g: Bk)...", title:"Bank", required: "required" %>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :bank_account, class:"form-control application-input", placeholder:"Bank Account Number...", title:"Your Bank Account Number", required: "required"  %>
+      </div>
+
+      <div class="field">
+        <%= f.email_field :email, class:"form-control application-input", placeholder:"Email ...", title:"Email" %>
+      </div>
+
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "off", placeholder:"Create Password...", class:"form-control application-input", title:"Password" %>
+      </div>
+
+      <div class="field">
+        <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Retype Password...", class:"form-control application-input", title:"Confirm Password" %>
+      </div>
+      <br>
+      <% if current_user.role == "Principal" %>
+      <p>By clicking the bellow button, you approve that the user will be saved as agent.</p> <p><b><u>N.B:</u></b> Agent can't have application information, since he or she will not be a student and enrolled in any program</p>
+         <label class="radio-inline"><%= radio_button("user", "agent_option", "Agent") %>Agent</label>
+         <label class="radio-inline"><%= radio_button("user", "agent_option", "Marketer") %>Marketer</label>
+      <% end %>
+      <%= f.hidden_field :country_id, value: "#{@country.id}"  if @country%>
+      <div class="actions">
+        <%= f.submit "Create profile", class:"btn btn-submit application-input" %>
+      </div>
+      <% end %>
+      <hr>
+      <p>If you are a student you need to complete even the second part of the application to be accepted</p>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+

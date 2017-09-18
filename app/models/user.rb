@@ -16,14 +16,16 @@ class User < ApplicationRecord
   has_one :studentInfo, foreign_key: :student_id, :dependent => :restrict_with_error
 
   belongs_to :country
-
-  validates_uniqueness_of :email
+  validates_presence_of :district, :message => 'District or City required'
+  validates_uniqueness_of :username, :message =>'Invalide username'
+  validates_presence_of :first_name, :message => 'First name required'
+  validates_presence_of :last_name, :message => 'Last name required'
+  validates_uniqueness_of :email, :message => 'The email has been taken'
   validates_presence_of :username, :message =>'leaving no space between letters is recommended'
   # validates_presence_of :email, :message => 'Use the valid email; we will use it to send you monthly summary'
-
   validates_presence_of :sex, :message => 'enter either male or female'
   validates_presence_of :martial_status, :message => 'Let us know whether you are single, married, ....'
-  validates_presence_of :tel, :message => 'Enter the phone number we can use to reach you '
+  validates_presence_of :tel, :message => 'Provide valide phone number'
   validates_presence_of :identification, :message => "Enter your national ID number, or password"
   validates :password, :presence =>true, :confirmation => true, :length => { :within => 6..40 }, :on => :create
   validates :password, :confirmation => true, :length => { :within => 6..40 }, :on => :update, :unless => lambda{ |user| user.password.blank? } 
@@ -118,10 +120,15 @@ class User < ApplicationRecord
   def this_month
     where(created_at: Time.now.beginning_of_month..Time.now.end_of_month)
   end
-  def self.payment_reciever
-      where("admin = ? AND agent = ? AND enabled = ?", false, false, true)
+
+  def self.payment_eligible
+    User.joins(:studentInfos).where(created_at: Time.now.beginning_of_month..Time.now.end_of_month)
   end
 
+  def created_date
+   self.created_at.strftime("%d %b. %Y")
+  end
+  
   include UsersHelper
   
 

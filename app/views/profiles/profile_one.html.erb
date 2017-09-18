@@ -20,8 +20,12 @@
                 <td><%= @user.username %></td>
               </tr>
               <tr>
-                <td>Country:</td>
-                <td><%= @user.country.name %></td>
+                <td>Country of Residence:</td>
+                <td><%= @user.nationality if @user.nationality %></td>
+              </tr>
+              <tr>
+                <td>District of Residence:</td>
+                <td><%= @user.district if @user.district %></td>
               </tr>
               <tr>
                 <td>Email Adress</td>
