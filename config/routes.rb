@@ -46,4 +46,6 @@ Rails.application.routes.draw do
   get "/bonus/technical/:id" =>"users#technical" 
   get "/bonus/languages/:id" =>"users#languages"
   get "/bonus/traffic/:id" =>"users#traffic"
+
+  get "/monthly&payments" => "designs#monthlypayments"
 end

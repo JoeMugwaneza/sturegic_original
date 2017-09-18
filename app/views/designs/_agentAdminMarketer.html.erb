@@ -1,0 +1,25 @@
+<div class=" thumbnail" style="margin-top: 10px; margin-right: 30px;">
+  <table class="table table-hover">
+    <thead>
+      <tr style="background-color: #555; color: white;">
+        <th>Name</th>
+        <th>Country</th>
+        <th>Role</th>
+        <th>Students</th>
+      </tr>
+    </thead>
+     <tbody>
+      <% @agents.each do |agent| %>
+        <tr>
+         <td><%= agent.first_name %> <%= agent.last_name %></td> 
+         <td><%= agent.country.name%></td> 
+         <td><%= agent.role %></td>
+         <td><%= agent.studentInfos.count%></td>
+         <% if current_user.role == "Superadmin" %>
+          <td><a class="btn btn-register pull-right" href="/student_infos?agent_rm=<%= agent.id %>">Disable</a></td>
+         <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

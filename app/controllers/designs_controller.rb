@@ -19,8 +19,7 @@ class DesignsController < ApplicationController
   def admindashboard1
     if current_user.admin == true
       @table_number = 0
-      @approved_studentInfos = StudentInfo.where(status: true).order("updated_at DESC").paginate(:page => params[:page], :per_page => 20)
-      @payment_recievers = User.payment_reciever
+      @approved_studentInfos = StudentInfo.where(status: true).order("student_1 ASC").paginate(:page => params[:page], :per_page => 25)
       @agents = User.where("agent_option = ? OR agent_option = ?", "Agent",  "Marketer")
       @admins = User.where("admin = ? AND enabled = ?", true, true)
       @studentInfos = StudentInfo.where(status: false)
@@ -56,6 +55,15 @@ class DesignsController < ApplicationController
       end
     else
       redirect_to student_path(current_user)
+    end
+  end
+
+  def monthlypayments
+    if current_user && current_user.admin
+    @payment_recievers =  User.payment_eligible.where("admin = ? AND agent = ? AND enabled = ?", false, false, true).paginate(:page => params[:page], :per_page => 10)
+    else
+      flash[:warning]="Access denied"
+      redirect_to "/"
     end
   end
 end
