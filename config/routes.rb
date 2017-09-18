@@ -48,4 +48,5 @@ Rails.application.routes.draw do
   get "/bonus/traffic/:id" =>"users#traffic"
 
   get "/monthly&payments" => "designs#monthlypayments"
+  get "/agent&index" => "designs#agent_index"
 end

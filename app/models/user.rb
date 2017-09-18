@@ -122,7 +122,8 @@ class User < ApplicationRecord
   end
 
   def self.payment_eligible
-    User.joins(:studentInfos).where(created_at: Time.now.beginning_of_month..Time.now.end_of_month)
+    time_range = Time.now.beginning_of_month..Time.now.end_of_month
+    User.joins(:studentInfos).where(student_infos: {created_at: time_range})
   end
 
   def created_date

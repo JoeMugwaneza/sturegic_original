@@ -23,46 +23,26 @@ class DesignsController < ApplicationController
       @agents = User.where("agent_option = ? OR agent_option = ?", "Agent",  "Marketer")
       @admins = User.where("admin = ? AND enabled = ?", true, true)
       @studentInfos = StudentInfo.where(status: false)
-    elsif current_user.agent == true
-      if params[:district_id]
-        @student_infos = current_user.studentInfos.where(district_id: params[:district_id])
-        @int_student_infos = current_user.studentInfos.where(country_id: !Country.find_by(name:"Rwanda").id)
-
-        render :admindashboard1
-        
-      elsif params[:program_id]
-        @student_infos = current_user.studentInfos.where(program_category_id: params[:program_id])
-        @int_student_infos = current_user.studentInfos.where(country_id: !Country.find_by(name:"Rwanda").id)
-
-        render :admindashboard1
-      elsif params[:course_id] 
-        @student_infos = current_user.studentInfos.where(course_id: params[:course_id])
-        @int_student_infos = current_user.studentInfos.where(country_id: !Country.find_by(name:"Rwanda").id)
-
-        render :admindashboard1
-      elsif params[:search]
-        @student_infos = current_user.studentInfos.where(country_id: Country.find_by(name: "Rwanda").id)
-        @int_student_infos = current_user.studentInfos.where(city: params[:search])
-
-        render :admindashboard1
-      else
-        
-        @student_infos = current_user.studentInfos.where(country_id: 1)
-        @int_student_infos = current_user.studentInfos.where(country_id: !Country.find_by(name:"Rwanda").id)
-
-        render :admindashboard1
-
-      end
-    else
+    elsif current_user.role == "Student"
       redirect_to student_path(current_user)
+    elsif current_user.agent == true
+      redirect_to "/agent&index"
     end
   end
 
   def monthlypayments
     if current_user && current_user.admin
-    @payment_recievers =  User.payment_eligible.where("admin = ? AND agent = ? AND enabled = ?", false, false, true).paginate(:page => params[:page], :per_page => 10)
+    @payment_recievers =  User.payment_eligible.where("admin = ? AND agent = ? AND enabled = ?", false, false, true).uniq.paginate(:page => params[:page], :per_page => 10)
     else
       flash[:warning]="Access denied"
+      redirect_to "/"
+    end
+  end
+
+  def agent_index
+    if current_user.agent == true
+      @students = current_user.studentInfos.paginate(:page => params[:page], :per_page => 25)
+    else
       redirect_to "/"
     end
   end
