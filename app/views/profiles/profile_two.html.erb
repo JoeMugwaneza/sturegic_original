@@ -62,7 +62,8 @@
                 <% if @studentInfo.status == false %>
                 <p style="color: red">Pending</p> <span>
                 <% if current_user.admin == true%>
-                <%= link_to "Click to Approve", "/student_infos?appr=#{@studentInfo.id}" %>
+                <%= link_to "Click to Approve", "/student_infos?appr=#{@studentInfo.id}", class: "btn btn-primary" %>
+                <%= link_to "Decline", "/student_infos?decline=#{@studentInfo.id}", class: "btn btn-danger pull-right"%>
                 <% end %>
                 <% else %>
                 Approved

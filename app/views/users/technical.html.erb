@@ -77,11 +77,11 @@
         <br>
         <div class="col-md-12 col-xs-12">
           <center>
-          <% if @user.technicalgroups && @user.technicalgroups.any? %>
-            <a href="/bonus/languages/<%= @user.id %>" class= "btn btn-primary btn-lg">Veiw Bonus from Languages Groups</a>
-          <% elsif @user.trafficgroups && @user.trafficgroups.any? %>
-            <a href="/bonus/traffic/<%= @user.id %>" class= "btn btn-primary btn-lg">View Bonus from Traffic Group</a>
-          <% end %>
+          
+            <a href="/bonus/languages/<%= @user.id %>" class= "btn btn-primary btn-lg">Veiw Bonus from Languages Program</a>
+         
+            <a href="/bonus/traffic/<%= @user.id %>" class= "btn btn-primary btn-lg">View Bonus from Traffic Program</a>
+        
           </center>
         </div>
         <!-- tab content -->

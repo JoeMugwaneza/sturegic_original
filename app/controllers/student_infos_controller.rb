@@ -10,10 +10,22 @@ class StudentInfosController < ApplicationController
       if @student_info.save
 
         # StudentInfoMailer.student_info_approval_notification(@student_info).deliver_now
-        flash[:success] = "Student Registration Approved"
+        flash[:success] = "#{@student_info.student.first_name} Registration Approved"
         redirect_to "/"
       else
         flash[:warning] = "Something is wrong, student registration approval failed"
+        redirect_to :back
+      end
+    elsif current_user.admin && params[:decline]
+      @student_info = StudentInfo.find_by(id: params[:decline])
+      @user = @student_info.student
+      if @student_info.destroy 
+          @user.destroy
+        # StudentInfoMailer.student_info_approval_notification(@student_info).deliver_now
+        flash[:success] = "Student Registration Declined, and the data are removed from teh database"
+        redirect_to "/"
+      else
+        flash[:warning] = "Something is wrong, student registration decline failed"
         redirect_to :back
       end
     elsif current_user.admin == true && params[:agent_rm]

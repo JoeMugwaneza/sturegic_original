@@ -418,4 +418,6 @@
   </div>
   </div>
   <%= will_paginate @trafficgroups, renderer: BootstrapPagination::Rails %>
+<% else %>
+  <h3>No details from this section</h3>
 <% end %>
