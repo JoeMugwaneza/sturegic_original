@@ -18,15 +18,20 @@ class StudentInfosController < ApplicationController
       end
     elsif current_user.admin && params[:decline]
       @student_info = StudentInfo.find_by(id: params[:decline])
-      @user = @student_info.student
-      if @student_info.destroy 
-          @user.destroy
-        # StudentInfoMailer.student_info_approval_notification(@student_info).deliver_now
-        flash[:success] = "Student Registration Declined, and the data are removed from teh database"
-        redirect_to "/"
+      if @student_info.status != true
+        @user = @student_info.student
+        if @student_info.destroy 
+            @user.destroy
+          # StudentInfoMailer.student_info_approval_notification(@student_info).deliver_now
+          flash[:success] = "Student Registration Declined, and the data are removed from teh database"
+          redirect_to "/"
+        else
+          flash[:warning] = "Something is wrong, student registration decline failed"
+          redirect_to :back
+        end
       else
-        flash[:warning] = "Something is wrong, student registration decline failed"
-        redirect_to :back
+        flash[:warning] = "This action is very danger!!!"
+        redirect_to "/"
       end
     elsif current_user.admin == true && params[:agent_rm]
       user = User.find_by(id: params[:agent_rm])
