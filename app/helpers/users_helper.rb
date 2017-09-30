@@ -10,7 +10,7 @@ module UsersHelper
       self.trafficgroups[n].each do |student|
         users.push(student)
       end
-    else
+    elsif
       self.languagesgroups[n].each do |student|
         users.push(student)
       end

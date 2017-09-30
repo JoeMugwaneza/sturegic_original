@@ -1,7 +1,10 @@
 <div class="container">  
   <div class="row">
     <div class="col-md-12 col-xs-12 thumbnail application-box">
-      <h4 class="text-center application-header"><strong><%= "#{@user.first_name} #{@user.last_name}"%> Technical Programs Commission Details</strong></h4>
+      <center>
+      <h3 class="text-center application-header"><strong><%= "#{@user.first_name} #{@user.last_name}"%><br>Technical Programs Commission Details</strong></h3>
+      <h4><span style="color: green"><%= Date.today.strftime("%B %Y")%> Payment:</span><u><%= render "monthpay" %></u></h4>
+      </center>
       <a class="btn btn-register pull-right" href="/signup">Register a Student</a>
       <div class="text-center">
 
@@ -74,8 +77,11 @@
         <br>
         <div class="col-md-12 col-xs-12">
           <center>
+          <% if @user.technicalgroups && @user.technicalgroups.any? %>
             <a href="/bonus/languages/<%= @user.id %>" class= "btn btn-primary btn-lg">Veiw Bonus from Languages Groups</a>
+          <% elsif @user.trafficgroups && @user.trafficgroups.any? %>
             <a href="/bonus/traffic/<%= @user.id %>" class= "btn btn-primary btn-lg">View Bonus from Traffic Group</a>
+          <% end %>
           </center>
         </div>
         <!-- tab content -->

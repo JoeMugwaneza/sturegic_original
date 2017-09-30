@@ -1,140 +1,26 @@
+<% if @technicalgroups.any? && @all_technicalgroups.any? %>
+  <h2> Group <%= @technicalgroups.current_page %></h2>
 
-<h2> Group <%= @technicalgroups.current_page %></h2>
+  <div class="col-md-offset-2 panel">
+    <h2 class="text-center">Technical Programs | Summary</h2>
 
-<div class="col-md-offset-2 panel">
-  <h2 class="text-center">Technical Programs | Summary</h2>
-
-  <table class="table table-hover">
-    <thead>
-      <th>Level</th>
-      <th>Students</th>
-      <th>Bonus Unit</th>
-      <th>Total Bonus</th>
-      <th>Reward</th>
-      <th>Time Remaining</th>
-      <th>Progress</th>
-    </thead>
-    <tbody>
-      <% if @user.country.name =="Rwanda" %>
-      <tr>        
-        <td>1</td>
-        <td><%= @user.level_one(@all_technicalgroups.index(@technicalgroups.first),"technical").count %></td>
-        <td>Rwf 5,000</td>
-        <td><%= number_to_currency("#{@user.level_one(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 5000}", precision: false, unit: "Rwf ")%></td>
-        <td>No Reward</td>
-        <td> - </td>
-        <td> - </td>
-      </tr>
-      
-      <tr>
-
-        <td>2</td>
-        <td><%= @user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count %></td>
-        <td>Rwf 4,000</td>
-        <td><%= number_to_currency("#{@user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 4000}", precision: false, unit: "Rwf ")%></td>
-        <td>Laptop</td>
-        <td>
-          <% if Time.now - @user.created_at < 90.days && @user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count < 25 %>
-          <%= distance_of_time_in_words(Time.now, @user.created_at + 90.days)%>
-          <% elsif @user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count == 25%>
-          <small style="color: green;">You won a Laptop</small>
-          <% else %>
-          <small style="color: red;">Reward Missed!</small>
-          <% end %>
-        </td>
-        <td>          
-          <div class="progress">
-            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 100)/25%>%">
-            <%=(@user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 100)/25%>%</div>
-          </div>
-        </td>
-      </tr>
-
-      <tr>        
-        <td>3</td>
-        <td><%= @user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count %></td>
-        <td>Rwf 3,000</td>
-        <td><%= number_to_currency("#{@user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 3000}", precision: false, unit: "Rwf ")%></td>
-        <td>Scholarship</td>
-        <td>
-          <% if Time.now - @user.created_at < 90.days && @user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count < 125%>
-          <%= distance_of_time_in_words(Time.now, @user.created_at + 180.days)%>
-          <% elsif @user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count == 125%>
-          <small style="color: green;"> You won Scholarship</small>
-          <% else %>
-          <small style="color: red;">Reward Missed!</small>
-          <% end %>
-        </td>
-        <td>          
-          <div class="progress">
-            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 100)/25%>%">
-            <%=(@user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 100)/125%>%</div>
-          </div>
-        </td>
-      </tr>
-
-      <tr>
-        <td>4</td>
-        <td><%= @user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count %></td>
-        <td>Rwf 2,000</td>
-        <td><%= number_to_currency("#{@user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 2000}", precision: false, unit: "Rwf ")%></td>
-        <td>Car</td>
-        <td>
-        <% if Time.now - @user.created_at < 90.days && @user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count < 625%>
-        <%= distance_of_time_in_words(Time.now, @user.created_at + 270.days)%>
-        <% elsif @user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count == 625 %>
-        <small style="color: green;">You won a Car</small>
-        <% else %>
-        <small style="color: red;">Reward Missed!</small>
-        <% end %>
-        </td>
-        <td>          
-          <div class="progress">
-            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 100)/125%>%">
-            <%=(@user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 100)/625%>%</div>
-          </div>
-        </td>
-      </tr>
-
-      <tr>
-        <td>5</td>
-        <td><%= @user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count %></td>
-        <td>Rwf 1,000</td>
-        <td><%= number_to_currency("#{@user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 1000}", precision: false , unit: "Rwf ")%></td>
-        <td>House</td>
-        <td>
-        <% if Time.now - @user.created_at < 90.days && @user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count < 3125 %>
-        <%= distance_of_time_in_words(Time.now, @user.created_at + 360.days)%>
-        <% elsif @user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count == 3125 %>
-        <small style="color: green;">You won a House</small>
-        <% else %>
-        <small style="color: red;">Reward Missed!</small>
-        <% end %>
-        </td>
-        <td>          
-          <div class="progress">
-            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-            aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 100)/25%>%">
-            <%=(@user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 100)/3125%>%</div>
-          </div>
-        </td>
-      </tr>
-
-      <tr>
-        <td><b>Total</b></td>
-        <td><%= "#{@user.level_one(@all_technicalgroups.index(@technicalgroups.first),"technical").count + @user.level_two_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count + @user.level_three_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count + @user.level_four_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count + @user.level_five_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count}" %></td>
-        <td>-</td>
-        <td><b><%=number_to_currency("#{(@user.level_five_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 1000)+ (@user.level_four_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 2000) + (@user.level_three_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 3000) + (@user.level_two_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 4000) + (@user.level_one(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 5000)}", precision: false, unit: "Rwf ")%></b></td>
-      </tr>
-      <% else %>
+    <table class="table table-hover">
+      <thead>
+        <th>Level</th>
+        <th>Students</th>
+        <th>Bonus Unit</th>
+        <th>Total Bonus</th>
+        <th>Reward</th>
+        <th>Time Remaining</th>
+        <th>Progress</th>
+      </thead>
+      <tbody>
+        <% if @user.country.name =="Rwanda" %>
         <tr>        
           <td>1</td>
           <td><%= @user.level_one(@all_technicalgroups.index(@technicalgroups.first),"technical").count %></td>
-          <td>$5</td>
-          <td><%= number_to_currency("#{@user.level_one(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 5}")%></td>
+          <td>Rwf 5,000</td>
+          <td><%= number_to_currency("#{@user.level_one(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 5000}", precision: false, unit: "Rwf ")%></td>
           <td>No Reward</td>
           <td> - </td>
           <td> - </td>
@@ -144,12 +30,12 @@
 
           <td>2</td>
           <td><%= @user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count %></td>
-          <td>$4</td>
-          <td><%= number_to_currency("#{@user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 4}")%></td>
+          <td>Rwf 4,000</td>
+          <td><%= number_to_currency("#{@user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 4000}", precision: false, unit: "Rwf ")%></td>
           <td>Laptop</td>
           <td>
             <% if Time.now - @user.created_at < 90.days && @user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count < 25 %>
-            <%= distance_of_time_in_words(Time.now, @user.created_at + 7.days)%>
+            <%= distance_of_time_in_words(Time.now, @user.created_at + 90.days)%>
             <% elsif @user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count == 25%>
             <small style="color: green;">You won a Laptop</small>
             <% else %>
@@ -168,8 +54,8 @@
         <tr>        
           <td>3</td>
           <td><%= @user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count %></td>
-          <td>$3</td>
-          <td><%= number_to_currency("#{@user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 3}")%></td>
+          <td>Rwf 3,000</td>
+          <td><%= number_to_currency("#{@user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 3000}", precision: false, unit: "Rwf ")%></td>
           <td>Scholarship</td>
           <td>
             <% if Time.now - @user.created_at < 90.days && @user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count < 125%>
@@ -192,17 +78,17 @@
         <tr>
           <td>4</td>
           <td><%= @user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count %></td>
-          <td>$2</td>
-          <td><%= number_to_currency("#{@user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 2}")%></td>
+          <td>Rwf 2,000</td>
+          <td><%= number_to_currency("#{@user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 2000}", precision: false, unit: "Rwf ")%></td>
           <td>Car</td>
           <td>
-            <% if Time.now - @user.created_at < 90.days && @user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count < 625%>
-            <%= distance_of_time_in_words(Time.now, @user.created_at + 270.days)%>
-            <% elsif @user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count == 625 %>
-            <small style="color: green;">You won a Car</small>
-            <% else %>
-            <small style="color: red;">Reward Missed!</small>
-            <% end %>
+          <% if Time.now - @user.created_at < 90.days && @user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count < 625%>
+          <%= distance_of_time_in_words(Time.now, @user.created_at + 270.days)%>
+          <% elsif @user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count == 625 %>
+          <small style="color: green;">You won a Car</small>
+          <% else %>
+          <small style="color: red;">Reward Missed!</small>
+          <% end %>
           </td>
           <td>          
             <div class="progress">
@@ -216,17 +102,17 @@
         <tr>
           <td>5</td>
           <td><%= @user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count %></td>
-          <td>$1</td>
-          <td><%= number_to_currency("#{@user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 1}")%></td>
+          <td>Rwf 1,000</td>
+          <td><%= number_to_currency("#{@user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 1000}", precision: false , unit: "Rwf ")%></td>
           <td>House</td>
           <td>
-            <% if Time.now - @user.created_at < 90.days && @user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count < 3125 %>
-            <%= distance_of_time_in_words(Time.now, @user.created_at + 360.days)%>
-            <% elsif @user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count == 3125 %>
-            <small style="color: green;">You won a House</small>
-            <% else %>
-            <small style="color: red;">Reward Missed!</small>
-            <% end %>
+          <% if Time.now - @user.created_at < 90.days && @user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count < 3125 %>
+          <%= distance_of_time_in_words(Time.now, @user.created_at + 360.days)%>
+          <% elsif @user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count == 3125 %>
+          <small style="color: green;">You won a House</small>
+          <% else %>
+          <small style="color: red;">Reward Missed!</small>
+          <% end %>
           </td>
           <td>          
             <div class="progress">
@@ -241,184 +127,299 @@
           <td><b>Total</b></td>
           <td><%= "#{@user.level_one(@all_technicalgroups.index(@technicalgroups.first),"technical").count + @user.level_two_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count + @user.level_three_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count + @user.level_four_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count + @user.level_five_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count}" %></td>
           <td>-</td>
-          <td><b>$<%=number_to_currency("#{(@user.level_five_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 1)+ (@user.level_four_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 2) + (@user.level_three_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 3) + (@user.level_two_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 4) + (@user.level_one(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 5)}")%></b></td>
+          <td><b><%=number_to_currency("#{(@user.level_five_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 1000)+ (@user.level_four_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 2000) + (@user.level_three_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 3000) + (@user.level_two_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 4000) + (@user.level_one(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 5000)}", precision: false, unit: "Rwf ")%></b></td>
         </tr>
-
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-<h2 class="col-md-offset-2 text-center">Students List</h2>
-
-
-
-<div class="panel col-md-offset-2">
-  <div class="panel-heading" style="background-color: #0b56a8;">
-  <h3 class="panel-title" style="color: white;">Levels</h3>
-    <span class="pull-right">
-      <!-- Tabs -->
-      <ul class="nav panel-tabs">
-        <li class="active"><a href="#col1TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>" data-toggle="tab">Level 1</a></li>
-        <li><a href="#col2TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>" data-toggle="tab">Level 2</a></li>
-        <li><a href="#col3TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>" data-toggle="tab">Level 3</a></li>
-        <li><a href="#col4TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>" data-toggle="tab">Level 4</a></li>
-        <li><a href="#col5TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>" data-toggle="tab">Level 5</a></li>
-      </ul>
-    </span>
-  </div>
-  <div class="panel-body">
-    <div class="tab-content">
-      <div class="tab-pane active" id="col1TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Full Name</th>
-              <th>Program</th>
-              <th>District</th>
-              <th>Date</th>
-              <th>Registration N<sup>0</sup></th>
-              <th>Phone</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @user.level_one(@all_technicalgroups.index(@technicalgroups.first), "technical").each do |student| %>
-            <tr>
-              <td><%= student.first_name %> <%= student.last_name%></td>
-              <td><%= student.studentInfo.program_category.name%></td>
-              <td>
-              <% if student.studentInfo.district %>
-              <%= student.studentInfo.district.name%>
-              <% else %>
-              <%= student.studentInfo.city%>
-              <% end %>  
-              </td>
-              <td><%= student.studentInfo.created_date %></td>
-              <td><%= student.studentInfo.reg_no %></td>
-              <td><%= student.tel if student.tel %></td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-
-      </div>
-
-      <div class="tab-pane" id="col2TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Full Name</th>
-              <th>Program</th>
-              <th>District</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first), "technical").each do |student| %>
-            <tr>
-              <td><%= student.first_name %> <%= student.last_name%></td>
-              <td><%= student.studentInfo.program_category.name%></td>
-              <td>
-              <% if student.studentInfo.district %>
-              <%= student.studentInfo.district.name%>
-              <% else %>
-              <%= student.studentInfo.city%>
-              <% end %>  
-              </td>
-              <td><%= student.studentInfo.created_date %></td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-
-      </div>
-      <div class="tab-pane" id="col3TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Full Name</th>
-              <th>Program</th>
-              <th>District</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first), "technical").each do |student| %>
-            <tr>
-              <td><%= student.first_name %> <%= student.last_name%></td>
-              <td><%= student.studentInfo.program_category.name%></td>
-              <td>
-              <% if student.studentInfo.district %>
-              <%= student.studentInfo.district.name%>
-              <% else %>
-              <%= student.studentInfo.city%>
-              <% end %>  
-              </td>
-              <td><%= student.studentInfo.created_date %></td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-
-      </div>
-      <div class="tab-pane" id="col4TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Full Name</th>
-              <th>Program</th>
-              <th>District</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-           <% @user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first), "technical").each do |student| %>
-           <tr>
-            <td><%= student.first_name %> <%= student.last_name%></td>
-            <td><%= student.studentInfo.program_category.name%></td>
-            <td>
-            <% if student.studentInfo.district %>
-            <%= student.studentInfo.district.name%>
-            <% else %>
-            <%= student.studentInfo.city%>
-            <% end %>  
-            </td>
-            <td><%= student.studentInfo.created_date %></td>
+        <% else %>
+          <tr>        
+            <td>1</td>
+            <td><%= @user.level_one(@all_technicalgroups.index(@technicalgroups.first),"technical").count %></td>
+            <td>$5</td>
+            <td><%= number_to_currency("#{@user.level_one(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 5}")%></td>
+            <td>No Reward</td>
+            <td> - </td>
+            <td> - </td>
           </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-    </div>
-    <div class="tab-pane" id="col5TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>">
-      <table class="table table-hover">
-        <thead>
+          
           <tr>
-            <th>Full Name</th>
-            <th>Program</th>
-            <th>District</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first), "technical").each do |student| %>
-          <tr>
-            <td><%= student.first_name %> <%= student.last_name%></td>
-            <td><%= student.studentInfo.program_category.name%></td>
+
+            <td>2</td>
+            <td><%= @user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count %></td>
+            <td>$4</td>
+            <td><%= number_to_currency("#{@user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 4}")%></td>
+            <td>Laptop</td>
             <td>
-            <% if student.studentInfo.district %>
-            <%= student.studentInfo.district.name%>
-            <% else %>
-            <%= student.studentInfo.city%>
-            <% end %>  
+              <% if Time.now - @user.created_at < 90.days && @user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count < 25 %>
+              <%= distance_of_time_in_words(Time.now, @user.created_at + 7.days)%>
+              <% elsif @user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count == 25%>
+              <small style="color: green;">You won a Laptop</small>
+              <% else %>
+              <small style="color: red;">Reward Missed!</small>
+              <% end %>
             </td>
-            <td><%= student.studentInfo.created_date %></td>
+            <td>          
+              <div class="progress">
+                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+                aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 100)/25%>%">
+                <%=(@user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 100)/25%>%</div>
+              </div>
+            </td>
           </tr>
-          <% end %>
-        </tbody>
-      </table>
+
+          <tr>        
+            <td>3</td>
+            <td><%= @user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count %></td>
+            <td>$3</td>
+            <td><%= number_to_currency("#{@user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 3}")%></td>
+            <td>Scholarship</td>
+            <td>
+              <% if Time.now - @user.created_at < 90.days && @user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count < 125%>
+              <%= distance_of_time_in_words(Time.now, @user.created_at + 180.days)%>
+              <% elsif @user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count == 125%>
+              <small style="color: green;"> You won Scholarship</small>
+              <% else %>
+              <small style="color: red;">Reward Missed!</small>
+              <% end %>
+            </td>
+            <td>          
+              <div class="progress">
+                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+                aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 100)/25%>%">
+                <%=(@user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 100)/125%>%</div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>4</td>
+            <td><%= @user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count %></td>
+            <td>$2</td>
+            <td><%= number_to_currency("#{@user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 2}")%></td>
+            <td>Car</td>
+            <td>
+              <% if Time.now - @user.created_at < 90.days && @user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count < 625%>
+              <%= distance_of_time_in_words(Time.now, @user.created_at + 270.days)%>
+              <% elsif @user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count == 625 %>
+              <small style="color: green;">You won a Car</small>
+              <% else %>
+              <small style="color: red;">Reward Missed!</small>
+              <% end %>
+            </td>
+            <td>          
+              <div class="progress">
+                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+                aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 100)/125%>%">
+                <%=(@user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 100)/625%>%</div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>5</td>
+            <td><%= @user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count %></td>
+            <td>$1</td>
+            <td><%= number_to_currency("#{@user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 1}")%></td>
+            <td>House</td>
+            <td>
+              <% if Time.now - @user.created_at < 90.days && @user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count < 3125 %>
+              <%= distance_of_time_in_words(Time.now, @user.created_at + 360.days)%>
+              <% elsif @user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count == 3125 %>
+              <small style="color: green;">You won a House</small>
+              <% else %>
+              <small style="color: red;">Reward Missed!</small>
+              <% end %>
+            </td>
+            <td>          
+              <div class="progress">
+                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+                aria-valuemin="0" aria-valuemax="100" style="width:<%=(@user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 100)/25%>%">
+                <%=(@user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 100)/3125%>%</div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><b>Total</b></td>
+            <td><%= "#{@user.level_one(@all_technicalgroups.index(@technicalgroups.first),"technical").count + @user.level_two_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count + @user.level_three_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count + @user.level_four_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count + @user.level_five_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count}" %></td>
+            <td>-</td>
+            <td><b>$<%=number_to_currency("#{(@user.level_five_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 1)+ (@user.level_four_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 2) + (@user.level_three_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 3) + (@user.level_two_lang(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 4) + (@user.level_one(@all_technicalgroups.index(@technicalgroups.first),"technical").count * 5)}")%></b></td>
+          </tr>
+
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="col-md-offset-2 text-center">Students List</h2>
+
+
+
+  <div class="panel col-md-offset-2">
+    <div class="panel-heading" style="background-color: #0b56a8;">
+    <h3 class="panel-title" style="color: white;">Levels</h3>
+      <span class="pull-right">
+        <!-- Tabs -->
+        <ul class="nav panel-tabs">
+          <li class="active"><a href="#col1TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>" data-toggle="tab">Level 1</a></li>
+          <li><a href="#col2TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>" data-toggle="tab">Level 2</a></li>
+          <li><a href="#col3TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>" data-toggle="tab">Level 3</a></li>
+          <li><a href="#col4TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>" data-toggle="tab">Level 4</a></li>
+          <li><a href="#col5TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>" data-toggle="tab">Level 5</a></li>
+        </ul>
+      </span>
+    </div>
+    <div class="panel-body">
+      <div class="tab-content">
+        <div class="tab-pane active" id="col1TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Program</th>
+                <th>District</th>
+                <th>Date</th>
+                <th>Registration N<sup>0</sup></th>
+                <th>Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @user.level_one(@all_technicalgroups.index(@technicalgroups.first), "technical").each do |student| %>
+              <tr>
+                <td><%= student.first_name %> <%= student.last_name%></td>
+                <td><%= student.studentInfo.program_category.name%></td>
+                <td>
+                <% if student.studentInfo.district %>
+                <%= student.studentInfo.district.name%>
+                <% else %>
+                <%= student.studentInfo.city%>
+                <% end %>  
+                </td>
+                <td><%= student.studentInfo.created_date %></td>
+                <td><%= student.studentInfo.reg_no %></td>
+                <td><%= student.tel if student.tel %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+        </div>
+
+        <div class="tab-pane" id="col2TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Program</th>
+                <th>District</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @user.level_two_tech(@all_technicalgroups.index(@technicalgroups.first), "technical").each do |student| %>
+              <tr>
+                <td><%= student.first_name %> <%= student.last_name%></td>
+                <td><%= student.studentInfo.program_category.name%></td>
+                <td>
+                <% if student.studentInfo.district %>
+                <%= student.studentInfo.district.name%>
+                <% else %>
+                <%= student.studentInfo.city%>
+                <% end %>  
+                </td>
+                <td><%= student.studentInfo.created_date %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+        </div>
+        <div class="tab-pane" id="col3TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Program</th>
+                <th>District</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @user.level_three_tech(@all_technicalgroups.index(@technicalgroups.first), "technical").each do |student| %>
+              <tr>
+                <td><%= student.first_name %> <%= student.last_name%></td>
+                <td><%= student.studentInfo.program_category.name%></td>
+                <td>
+                <% if student.studentInfo.district %>
+                <%= student.studentInfo.district.name%>
+                <% else %>
+                <%= student.studentInfo.city%>
+                <% end %>  
+                </td>
+                <td><%= student.studentInfo.created_date %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+        </div>
+        <div class="tab-pane" id="col4TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Program</th>
+                <th>District</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+             <% @user.level_four_tech(@all_technicalgroups.index(@technicalgroups.first), "technical").each do |student| %>
+             <tr>
+              <td><%= student.first_name %> <%= student.last_name%></td>
+              <td><%= student.studentInfo.program_category.name%></td>
+              <td>
+              <% if student.studentInfo.district %>
+              <%= student.studentInfo.district.name%>
+              <% else %>
+              <%= student.studentInfo.city%>
+              <% end %>  
+              </td>
+              <td><%= student.studentInfo.created_date %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </div>
+      <div class="tab-pane" id="col5TG<%= @all_technicalgroups.index(@technicalgroups.first) +1 %>">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Program</th>
+              <th>District</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user.level_five_tech(@all_technicalgroups.index(@technicalgroups.first), "technical").each do |student| %>
+            <tr>
+              <td><%= student.first_name %> <%= student.last_name%></td>
+              <td><%= student.studentInfo.program_category.name%></td>
+              <td>
+              <% if student.studentInfo.district %>
+              <%= student.studentInfo.district.name%>
+              <% else %>
+              <%= student.studentInfo.city%>
+              <% end %>  
+              </td>
+              <td><%= student.studentInfo.created_date %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>
-</div>
-<%= will_paginate @technicalgroups, renderer: BootstrapPagination::Rails %>
+  </div>
+  <%= will_paginate @technicalgroups, renderer: BootstrapPagination::Rails %>
+<% end %>

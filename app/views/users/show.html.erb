@@ -2,9 +2,11 @@
 <div class="container">  
   <div class="row">
     <div class="col-md-12 col-xs-12 thumbnail application-box">
+    <center>  
       <h1 class="text-center application-header"><strong><%= "#{@user.first_name} #{@user.last_name}"%></strong></h1>
 
-      <h1><span style="color: green"><%= Date.today.strftime("%B %Y")%> Payment:</span><u><%= render "monthpay" %></u></h1>
+      <h3><span style="color: green"><%= Date.today.strftime("%B %Y")%> Payment:</span><u><%= render "monthpay" %></u></h3>
+    </center>
 
 
       <a class="btn btn-register pull-right" href="/signup?country_id=<%=current_user.country.id %>">Register a Student</a>
@@ -79,9 +81,15 @@
       <br>
         <div class="col-md-12 col-xs-12">
           <center>
+          <% if @user.technicalgroups && @user.technicalgroups.any? %>
             <a href="/bonus/technical/<%= @user.id %>" class= "btn btn-primary btn-lg">View Bonus from Technical Groups</a>
+          <% end %>
+          <% if @user.languagesgroups && @user.languagesgroups.any? %>
             <a href="/bonus/languages/<%= @user.id %>" class= "btn btn-primary btn-lg">Veiw Bonus from Languages Groups</a>
+          <% end %>
+          <% if @user.trafficgroups && @user.trafficgroups.any? %>
             <a href="/bonus/traffic/<%= @user.id %>" class= "btn btn-primary btn-lg">View Bonus from Traffic Group</a>
+          <% end %>
           </center>
         </div>
     </div>
